@@ -1,0 +1,851 @@
+@charset "UTF-8";
+
+:root {
+  --light-color: #000;
+  --dark-color: #ebdbb2;
+  --light-code-color: #8a6001;
+  --dark-code-color: #c1a972;
+}
+/* reset */
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* end reset */
+
+html {
+  width: 100%;
+  color: var(--light-color);
+}
+
+* {
+  box-sizing: border-box;
+}
+.dark_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*height: 100px;*/
+  margin: 0;
+  transition: background 0.2s linear;
+  position: fixed;
+  right: 44px;
+  opacity: 0.6;
+  z-index: 999;
+}
+body {
+  transition: background 0.2s linear;
+}
+body.dark {
+  background-color: #2d2d2d;
+}
+
+body p {
+  margin-left: -50pt !important;
+  font-size: 14pt;
+  font-family: PT Serif, serif;
+  line-height: 1.5 !important;
+}
+
+body.dark p,
+.dark h1,
+.dark h2,
+.dark h3,
+.dark a.s14,
+.dark .s11 {
+  color: var(--dark-color);
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.button_label {
+  width: 43px;
+  height: 22px;
+  background-color: #fff;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  border: 1px solid #575757;
+  border: 2px solid #626262;
+  transform: scale(2.5);
+  transition: background 0.3s ease-in-out;
+}
+
+.ball {
+  width: 20px;
+  height: 20px;
+  background-color: #626262;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+/*  target the elemenent after the label*/
+.checkbox:checked + .button_label .ball {
+  transform: translateX(21px);
+}
+
+.ligthToggleIcon {
+  color: #c40022;
+}
+
+.darkToggleIcon {
+  color: #a4a400;
+}
+
+p.top_nav,
+p.nav {
+  padding-left: 50pt;
+}
+
+.nav > a,
+.top_nav > a,
+.toc > a {
+  background-color: inherit;
+}
+
+/*--- start dark theme --- */
+
+.dark .button_label {
+  background-color: #2d2d2d;
+}
+
+.dark section[data-type="chapter"] > div > h1,
+.dark section[data-type="preface"] > div > h1,
+.dark section[data-type="appendix"] > div > h1,
+.dark section[data-type="glossary"] > div > h1,
+.dark section[data-type="bibliography"] > div > h1,
+.dark section[data-type="index"] > div > h1 {
+  color: #eee;
+  border-bottom: 1px solid #777;
+}
+
+.dark section[data-type="sect1"] h1 {
+  color: #ff8f9d;
+}
+
+.dark pre {
+  background-color: #1f2124 !important;
+}
+
+.dark code {
+  color: #c1a972;
+}
+
+.dark em {
+  color: #ff8860;
+}
+
+.dark a[data-type="noteref"] {
+  color: #abffb4;
+}
+
+.dark pre code.nx {
+  color: #99f;
+}
+
+.dark pre code.p {
+  color: var(--dark-color);
+}
+
+.dark pre code.s1 {
+  color: #ffa080;
+}
+
+.dark pre code.o {
+  color: #b9b9b9;
+}
+
+.dark pre code.kr,
+.dark pre code.kc,
+.dark pre code.k {
+  color: #39bdff;
+  font-weight: bold;
+}
+
+.dark pre code.nb {
+  color: #7bffff;
+}
+
+.dark pre code.si {
+  color: #ff4811;
+}
+
+.dark pre code.sb {
+  color: #ff7040;
+}
+
+.dark pre code.c1 {
+  color: #77ceff;
+}
+
+.dark pre code.mi {
+  color: #b94a00;
+}
+
+.dark pre code.s2 {
+  color: #a82b00;
+}
+
+.dark a.ulink,
+.dark a.xref,
+.dark a.email,
+.dark a.link,
+.dark a,
+.dark .s31 {
+  color: #abffb4;
+}
+
+.dark a.s14 + span {
+  color: #abffb4 !important;
+}
+
+a.s14 + span {
+  font-size: 10.5pt !important;
+}
+
+.dark p[data-type="footnote"] a[href$="-marker"] {
+  color: #abffb4 !important;
+}
+
+.dark div[data-type="example"] h1,
+.dark div[data-type="example"] h2,
+.dark div[data-type="example"] h3,
+.dark div[data-type="example"] h4,
+.dark div[data-type="example"] h5,
+.dark div[data-type="example"] h6 {
+  border-bottom: 1px solid #777;
+}
+
+.dark div[data-type="footnotes"] {
+  border-top: 1px solid #777;
+}
+
+.dark div.tip,
+.dark div[data-type="tip"],
+.dark div.note,
+.dark div[data-type="note"] {
+  border: 1px solid #777;
+  background-color: transparent;
+}
+
+.dark a[name^="bookmark"] {
+  color: inherit;
+}
+
+.dark .s24,
+.dark .s50 {
+  color: #c1a972 !important;
+}
+
+.dark .s22 {
+  color: #ff8f9d;
+}
+
+.dark .s33 {
+  color: #39bdff;
+}
+
+.dark .s34 {
+  color: #99f;
+}
+
+.dark .s35,
+.dark span[style=" color: #545454;"] {
+  color: #b9b9b9 !important;
+}
+
+.dark .s36 {
+  color: #77ceff !important;
+}
+
+.dark span[style=" color: #C30;"],
+.dark .s37,
+.dark .s41 {
+  color: #c30 !important;
+}
+
+.dark span[style=" color: #000087;"] {
+  color: #99f !important;
+}
+
+.dark span[style=" color: #000;"] {
+  color: var(--dark-color) !important;
+}
+
+.dark span[style=" color: #366;"] {
+  color: #7bffff !important;
+}
+
+.dark .s18,
+.dark .s20,
+.dark .s20 a,
+.dark .s28,
+.dark .s72,
+.dark span[style=" color: #900;"],
+.dark a ~ span {
+  color: #abffb4 !important;
+}
+
+.dark a[style^=" color: black;"],
+.dark .p {
+  color: var(--dark-color) !important;
+}
+
+.dark .s40 {
+  color: inherit;
+}
+
+.dark img {
+  filter: invert(82%);
+}
+
+/*--- end dark theme --- */
+
+/*text*/
+/*<p style="padding-top: 3pt;padding-left: 50pt;text-indent: 0pt;text-align: left;">...</p>*/
+
+img[height="547"] {
+  filter: none;
+}
+
+/*a ~ span,*/
+/*p > span {
+  font-size: 12.5pt !important;
+}*/
+
+p[style="text-indent: 0pt;text-align: left;"] {
+  padding-left: 68pt;
+}
+
+/*p[style^="padding-left: 68pt;text-indent: 0pt;"] {
+  padding-bottom: 5pt;
+}*/
+
+/*p[style*="line-height: 92%;"] {
+  padding-bottom: 5pt;
+}*/
+
+/*affected to span*/
+/*p[style$="text-align: left;"] :not(br, img) {
+  padding-bottom: 5pt;
+}*/
+
+p[style^="padding-top: 2pt"] {
+  padding-top: 0pt !important;
+  margin-top: 0pt;
+}
+
+p[style$="text-align: right;"],
+p[style$="text-align: center;"] {
+  text-align: left !important;
+}
+
+p[style$="text-align: right;"],
+p[style$="text-align: center;"] {
+  padding-left: 68pt !important;
+}
+
+/*p[style$="text-align: left;"] {
+  margin-left: 0pt !important;
+}*/
+
+img[height="0"] {
+  /*height: 0pt;*/
+  display: none;
+}
+
+p.s29 + p img[height="0"] {
+  height: 1px;
+  width: auto;
+  display: block;
+}
+
+p br {
+  display: none;
+}
+
+.s1,
+.s3,
+.s4,
+.s5,
+.s6,
+.s7,
+.s8,
+.s9 {
+  padding-left: 68pt !important;
+}
+
+.p,
+.s18,
+.s21,
+.s25,
+.s26,
+.s27,
+.s28,
+.s31,
+.s44,
+.s46,
+a[style^=" color: black;"] {
+  font-size: 14pt !important;
+  font-family: PT Serif, serif !important;
+}
+
+p.s17 {
+  /*padding-left: 0pt !important;*/
+  padding-bottom: 160pt;
+  text-align: right !important;
+}
+
+/*hide names in edition release page ?????*/
+
+/*p.s15[style$="text-align: right;"] {
+  display: none;
+}*/
+
+/*hide colontitles*/
+/*<p class="s15" style="padding-top: 2pt;text-indent: 0pt;text-align: right;">7</p>*/
+p[style^="padding-top: 2pt"] {
+  /*display: none;*/
+}
+
+/* ---------- start image ------------ */
+
+/*move right the text wrapping the image */
+/*<p class="s28" style="padding-top: 13pt;padding-left: 147pt;text-indent: 0pt;line-height: 89%;text-align: justify;">text</p>*/
+p[style^="padding-top: 13pt;padding-left: 147pt"] {
+  padding-left: 200pt !important;
+  margin-top: -40pt;
+}
+
+/*move up the text wrapping the image */
+/*<p class="s26" style="padding-left: 115pt;text-indent: 0pt;text-align: left;">text</p>*/
+p[style^="padding-left: 115pt"] {
+  margin-top: -45pt;
+}
+
+/*wrapping image*/
+/*<p style="text-indent: 0pt;text-align: left;"><span><img /></span></p>*/
+
+/*not wrapping image*/
+/*<p style="padding-left: 51pt;text-indent: 0pt;text-align: left;"><span><img /></span></p>*/
+
+/* ---------- end image ------------ */
+
+/* -------- start code block --------*/
+
+/*background*/
+.s32,
+.s33,
+.s34,
+.s35,
+.s36,
+.s37,
+.s41 {
+  background-color: #ebf6ff;
+}
+.dark .s32,
+.dark .s33,
+.dark .s34,
+.dark .s35,
+.dark .s36,
+.dark .s37,
+.dark .s41 {
+  background-color: #202822;
+}
+
+/*code font-size*/
+.s32,
+.s33,
+.s34,
+.s35,
+.s36,
+.s37,
+.s39,
+.s41 {
+  font-size: 12.5pt !important;
+}
+
+/*<span class="s32">; </span>*/
+/*<span class="s32">;</span>*/
+.dark span.s32 {
+  color: var(--dark-color);
+}
+
+/*.s32 {
+  color: var(--light-code-color);
+}
+
+.dark .s32 {
+  color: var(--dark-code-color);
+}*/
+
+/*end text line*/
+/*<p style="padding-top: 4pt;padding-left: 50pt;text-indent: 0pt;text-align: justify;">...</p>*/
+
+/*single code line*/
+/*<p class="s32" style="padding-top: 6pt;padding-left: 68pt;text-indent: 0pt;text-align: left;">npm init -y</p>*/
+/*<p class="s32" style="padding-top: 6pt;padding-left: 67pt;text-indent: 0pt;text-align: left;">npm install package-name</p>*/
+/*<p class="s33" style="padding-top: 7pt;padding-left: 67pt;text-indent: 0pt;line-height: 92%;text-align: left;">...</p>*/
+/*p[style^="padding-top: 6pt"] {
+  padding-top: 5pt !important;
+  padding-bottom: 5pt !important;
+}*/
+
+/*p[style$="text-align: left;"] {
+  padding-top: 5pt !important;
+  padding-bottom: 5pt !important;
+}*/
+
+/*p[style$="text-align: justify;"] + p[style$="text-align: left;"] {
+  padding-top: 5pt !important;
+}
+
+/*p[style$="text-align: left;"] ~ p:not([style$="text-align: left;"]) {
+  padding-bottom: 5pt !important;
+}*/
+/*p[class] {
+  padding-top: 5pt !important;
+  padding-bottom: 5pt !important;
+}*/
+
+/*p[class] + p[class] {
+  margin-top: -15px;
+}
+
+p[class] + p[class][style$="text-align: justify;"] {
+  margin-top: 0pt !important;
+}*/
+
+/*two classes bag*/
+/*<p class="s24" style="padding-left: 50pt;text-indent: 0pt;line-height: 14pt;text-align: left;">text</p>*/
+/*<p class="s31" style="padding-top: 6pt;padding-left: 50pt;text-indent: 0pt;line-height: 89%;text-align: justify;">text</p>*/
+
+/*p[style$="text-align: left;"] ~ :not(p[class]) {
+  padding-bottom: 5pt !important;
+}*/
+/*p[style$="text-align: left;"] {
+  padding-bottom: 5pt !important;
+}*/
+
+/*p[style$="text-align: left;"] + :not(p[class]) {
+  padding-bottom: 5pt !important;
+}*/
+
+/*p[style$="text-align: left;"] :has(~ p:not([class])) {
+  padding-bottom: 5pt !important;
+}*/
+
+/*p[style$="text-align: left;"] ~ :not(p[class]) {
+  padding-bottom: 5pt !important;
+}*/
+
+/*first code line*/
+/*<p class="s33" style="padding-top: 6pt;padding-left: 68pt;text-indent: 0pt;line-height: 92%;text-align: left;">...</p>*/
+/*<p class="s33" style="padding-top: 6pt;padding-left: 68pt;text-indent: 0pt;text-align: left;">...</p>*/
+
+/*middle code line*/
+/*<p class="s32" style="padding-left: 68pt;text-indent: 0pt;line-height: 11pt;text-align: left;">...</p>*/
+/*<p class="s33" style="padding-left: 76pt;text-indent: 0pt;line-height: 10pt;text-align: left;">...</p>*/
+/*<p class="s32" style="padding-left: 76pt;text-indent: 0pt;line-height: 11pt;text-align: left;">...</p>*/
+
+/*last code line*/
+/*<p class="s34" style="padding-left: 68pt;text-indent: 0pt;line-height: 10pt;text-align: left;">...</p>*/
+
+/*?*/
+/*<p class="s34" style="padding-top: 7pt;padding-left: 76pt;text-indent: -8pt;line-height: 92%;text-align: left;">...</p>*/
+/*<p class="s32" style="padding-left: 68pt;text-indent: 0pt;text-align: left;">...</p>*/
+/*<p class="s33" style="padding-top: 7pt;padding-left: 67pt;text-indent: 0pt;line-height: 92%;text-align: left;">...</p>*/
+/*<p class="s32" style="padding-left: 68pt;text-indent: 0pt;line-height: 11pt;text-align: left;">...</p>*/
+/*<p class="s36" style="padding-left: 67pt;text-indent: 0pt;text-align: left;">// In JavaScript, functions are variables</p>*/
+/*<p class="s36" style="padding-left: 68pt;text-indent: 0pt;text-align: left;">// They can be sent to other functions as arguments</p>*/
+
+/* -------- end code block --------*/
+
+/* ----start links---- */
+.dark p a[style^=" color: black"] {
+  color: var(--dark-color);
+}
+/* ----end links---- */
+
+.s18,
+.s20,
+.s72,
+a.a {
+  color: #900 !important;
+}
+
+.s48 {
+  padding-top: 30pt;
+}
+
+.s26 {
+  padding-bottom: 30pt;
+}
+
+.s22 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #8e0012;
+}
+
+.s22 a {
+  font-size: 19pt !important;
+}
+
+.s23 {
+  padding-bottom: 10pt;
+}
+
+.s24,
+.s50 {
+  color: var(--light-code-color) !important;
+  font-size: 12.5pt;
+}
+
+p.s29 {
+  text-align: right !important;
+  padding-top: 50pt !important;
+  /*padding-left: 51pt;*/
+  height: 63pt;
+}
+
+.s30 {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.s31 span {
+  font-size: inherit !important;
+}
+
+.s5,
+.s8 {
+  text-align: right !important;
+  max-width: 500pt;
+}
+
+.s6 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.s10 {
+  font-size: 12pt !important;
+}
+
+.s10 {
+  padding-bottom: 10pt;
+}
+
+span.s11 {
+  display: block;
+}
+
+.s11,
+.s12,
+.s13,
+.s14,
+.s15 {
+  font-size: 10.5pt !important;
+}
+
+.s30 a,
+.s6 {
+  font-size: 15.5pt !important;
+}
+
+.s6 {
+  font-size: 13.5pt !important;
+}
+
+.s33 {
+  color: #006699;
+  /*font-weight: bold;*/
+}
+
+.s24,
+.s25,
+.s32,
+.s33,
+.s34,
+.s35,
+.s36,
+.s37,
+.s39,
+.s41,
+.s50 {
+  font-family: monospace !important;
+}
+
+.s23 {
+  font-size: 14pt;
+}
+
+/*p.s32,
+p.s33,
+p.s34,
+p.s35,
+p.s36,
+p.s37 {
+  border-left: 50px solid;
+}*/
+
+/*p.s34,
+p.s37,
+p.s32 {
+  padding-bottom: 5pt;
+}*/
+
+.s40 {
+  font-size: inherit;
+}
+
+p.s41 {
+  /*padding-top: 10pt;*/
+  padding-bottom: 10pt;
+}
+
+.s48 {
+  margin-top: -80pt;
+}
+
+pre {
+  padding: 7px !important;
+  border-radius: 5px;
+  background-color: #ececec !important;
+}
+
+code {
+  color: var(--light-code-color);
+}
+
+em {
+  color: #751d00;
+}
+
+@media (min-width: 720px) {
+  .button_label {
+    transform: scale(1.5);
+  }
+
+  section[data-type="chapter"] > div > h1,
+  section[data-type="preface"] > div > h1,
+  section[data-type="appendix"] > div > h1,
+  section[data-type="glossary"] > div > h1,
+  section[data-type="bibliography"] > div > h1,
+  section[data-type="index"] > div > h1 {
+    padding-right: 10%;
+  }
+}
+
+/* Placeholder for custom series CSS: DO NOT EDIT OR DELETE */
+
+html {
+  direction: ltr;
+  padding-top: 12px;
+  -moz-column-count: 1;
+  -webkit-column-count: 1;
+  column-count: 1;
+  -moz-column-fill: balance;
+  -webkit-column-fill: balance;
+  column-fill: balance;
+  background-color: transparent;
+}
+body {
+  margin-left: 0px;
+  margin-right: 0px;
+  /*font-size: 14pt;*/
+  text-align: justify;
+  padding-left: 6mm;
+  padding-right: 6mm;
+  background-color: transparent;
+  font-family: Helvetica;
+}
+div,
+span,
+p,
+ul,
+li,
+code,
+pre,
+a {
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hypens: auto;
+  /*font-size: 14pt;*/
+  line-height: 1.5 !important;
+  background-color: transparent;
+  /*font-family: Helvetica !important;*/
+  break-before: auto;
+  break-after: auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  background-color: transparent;
+  /*font-family: Helvetica;*/
+  break-before: auto;
+  break-after: auto;
+}
+img {
+  max-width: 100%;
+  margin-top: 20px;
+  /*width: auto;
+  height: auto;*/
+}
+
+a[href] {
+  cursor: pointer;
+}
+
+/*span {
+  font-size: initial !important;
+  color: inherit !important;
+}*/
