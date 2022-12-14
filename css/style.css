@@ -15,7 +15,7 @@ html {
   margin: 0;
   transition: background 0.2s linear;
   position: fixed;
-  left: 655px;
+  left: 647px;
   opacity: 0.6;
   z-index: 999;
 }
