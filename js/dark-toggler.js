@@ -12,21 +12,22 @@ if (document.getElementById("checkbox")) {
   );
 }
 
-if (document.getElementsByTagName("h1")[0]) {
-  const header = document.getElementsByTagName("h1")[0];
-  const parentDiv = header.parentNode;
+if (document.getElementById("top-nav")) {
+  const topNav = document.getElementById("top-nav");
+  const h1 = document.getElementsByTagName("h1")[0];
+  const parentDiv = h1.parentNode;
 
-  const headerBefore = document.createElement("div");
-  headerBefore.setAttribute("id", "headerBefore");
-  headerBefore.setAttribute("style", "height: 0px;");
+  const h1Before = document.createElement("div");
+  h1Before.setAttribute("id", "h1Before");
+  h1Before.setAttribute("style", "height: 0px;");
   // ✅ Insert element before h1
-  parentDiv.insertBefore(headerBefore, header);
+  parentDiv.insertBefore(h1Before, h1);
 
-  const headerAfter = document.createElement("div");
-  headerAfter.setAttribute("id", "headerAfter");
-  headerAfter.setAttribute("style", "height: 80px;");
+  const h1After = document.createElement("div");
+  h1After.setAttribute("id", "h1After");
+  h1After.setAttribute("style", "height: 80px;");
   // ✅ Insert element after h1
-  parentDiv.insertBefore(headerAfter, header.nextSibling);
+  parentDiv.insertBefore(h1After, h1.nextSibling);
 
   let fixed = false,
     JD = {},
@@ -39,19 +40,21 @@ if (document.getElementsByTagName("h1")[0]) {
     // tiny transition correction
     curentScrollTop = curentScrollTop - 29;
 
-    var anchorTop = offset(headerBefore).top;
+    var anchorTop = offset(h1Before).top;
 
-    console.log("scroll", curentScrollTop, anchorTop, header.offsetHeight);
+    //console.log("scroll", curentScrollTop, anchorTop, h1.offsetHeight);
     if (curentScrollTop > anchorTop) {
       if (!fixed) {
-        headerBefore.style.height = header.offsetHeight + "px";
-        header.className = "tog-fixed";
+        h1Before.style.height = h1.offsetHeight + "px";
+        h1.className = "tog-fixed";
+        topNav.className = "nav-fixed";
         fixed = true;
       }
     } else {
       if (fixed) {
-        headerBefore.style.height = 0;
-        header.className = "";
+        h1Before.style.height = 0;
+        h1.className = "";
+        topNav.className = "";
         fixed = false;
       }
     }

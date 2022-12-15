@@ -2147,10 +2147,22 @@ img {
   font-size: 75%;
 }
 
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 2;
+  max-width: 660px;
+}
+
 .calibreMeta,
 .calibreMeta h1,
 .calibreEbNav,
+nav,
 .calibreEbNavTop,
+footer,
 .calibreToc {
   background-color: initial;
   color: initial;
@@ -2158,13 +2170,27 @@ img {
 
 .calibreMeta a,
 .calibreEbNav a,
+nav a,
+footer a,
 .calibreEbNavTop a,
 .calibreToc a {
   color: #630;
 }
 
+nav span {
+  color: black;
+  font-size: 75%;
+  vertical-align: 3px;
+}
+
+.dark nav span {
+  color: white;
+}
+
 .dark .calibreMeta a,
 .dark .calibreEbNav a,
+.dark nav a,
+.dark footer a,
 .dark .calibreEbNavTop a,
 .dark .calibreToc a {
   color: #abffb4;
@@ -2178,14 +2204,21 @@ img {
   padding: 0;
 }
 
-.calibreEbNavTop {
+.calibreEbNavTop,
+footer {
   padding-top: 0;
   padding-bottom: 100px;
 }
 
 .calibreEbNavTop a,
+nav a,
+footer a,
 .calibreEbNav a {
-  font-size: 55%;
+  font-size: 17px;
+}
+
+nav.nav-fixed a {
+  font-size: 13px;
 }
 
 .dark .calibreMetaAuthor {
@@ -2201,14 +2234,11 @@ html {
 }
 
 .calibreEbNav a,
+nav a,
+footer a,
 .calibreEbNavTop a {
   padding: 0;
-}
-
-.calibreAPrev::after,
-.calibreAHome::after {
-  content: "|";
-  padding: 0 2px 0 2px;
+  vertical-align: 3px;
 }
 
 .calibreAPrev::before {
