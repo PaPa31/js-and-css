@@ -16,6 +16,7 @@ html {
   transition: background 0.2s linear;
   position: fixed;
   left: 647px;
+  top: 12px;
   opacity: 0.6;
   z-index: 999;
 }
@@ -2039,7 +2040,7 @@ div[data-type="example"] pre[data-type="screen"] {
 
 html {
   direction: ltr;
-  margin-top: 12px;
+  /*margin-top: 12px;*/
   -moz-column-count: 1;
   -webkit-column-count: 1;
   column-count: 1;
@@ -2147,20 +2148,10 @@ img {
   font-size: 75%;
 }
 
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 2;
-  max-width: 660px;
-}
-
 .calibreMeta,
 .calibreMeta h1,
 .calibreEbNav,
-nav,
+header,
 .calibreEbNavTop,
 footer,
 .calibreToc {
@@ -2168,28 +2159,55 @@ footer,
   color: initial;
 }
 
+header {
+  /*position: fixed;*/
+
+  text-align: center;
+  z-index: 2;
+  max-width: 660px;
+  /*background-color: #ecd6d6;*/
+  margin: 20px auto;
+  width: fit-content;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+header.he-fixed {
+  padding: 1px 2px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /*right: 0;*/
+  width: 660px;
+  margin: 0 auto;
+}
+
+/*.dark header {
+  background-color: #2b1111;
+}*/
+
 .calibreMeta a,
 .calibreEbNav a,
-nav a,
+header a,
 footer a,
 .calibreEbNavTop a,
 .calibreToc a {
   color: #630;
 }
 
-nav span {
+header span {
   color: black;
   font-size: 75%;
   vertical-align: 3px;
 }
 
-.dark nav span {
+.dark header span {
   color: white;
 }
 
 .dark .calibreMeta a,
 .dark .calibreEbNav a,
-.dark nav a,
+.dark header a,
 .dark footer a,
 .dark .calibreEbNavTop a,
 .dark .calibreToc a {
@@ -2211,13 +2229,13 @@ footer {
 }
 
 .calibreEbNavTop a,
-nav a,
+header a,
 footer a,
 .calibreEbNav a {
   font-size: 17px;
 }
 
-nav.nav-fixed a {
+header.he-fixed a {
   font-size: 13px;
 }
 
@@ -2234,7 +2252,7 @@ html {
 }
 
 .calibreEbNav a,
-nav a,
+header a,
 footer a,
 .calibreEbNavTop a {
   padding: 0;
@@ -2323,7 +2341,6 @@ ul {
 }
 
 .tog-fixed {
-  color: #ccc;
   background-color: white;
   height: 50px;
   padding-top: 5px;
@@ -2332,6 +2349,10 @@ ul {
 
 .dark .tog-fixed {
   background-color: #2d2d2d;
+}
+
+div[data-type="part"] h1 {
+  border-bottom: 1px solid #777;
 }
 
 @page {
