@@ -110,7 +110,7 @@ body.dark {
 }
 
 .dark pre code.nx {
-  color: #99f;
+  color: #c18572;
 }
 
 .dark pre code.p {
@@ -128,11 +128,11 @@ body.dark {
 .dark pre code.kr,
 .dark pre code.kc,
 .dark pre code.k {
-  color: #39bdff;
+  color: #df6565;
 }
 
 .dark pre code.nb {
-  color: #7bffff;
+  color: #ffc57b;
 }
 
 .dark pre code.si {
@@ -144,15 +144,15 @@ body.dark {
 }
 
 .dark pre code.c1 {
-  color: #77ceff;
+  color: #35a403;
 }
 
 .dark pre code.mi {
-  color: #b94a00;
+  color: #df5d06;
 }
 
 .dark pre code.s2 {
-  color: #a82b00;
+  color: #7f9ffd;
 }
 
 .dark a.ulink,
@@ -207,7 +207,11 @@ pre {
 }
 
 code {
-  color: #8a6001;
+  color: #016a08;
+}
+
+.dark code {
+  color: #d7af56;
 }
 
 em {
@@ -1386,6 +1390,10 @@ tr:nth-of-type(even) {
   background-color: #f1f6fc;
 }
 
+.dark tr:nth-of-type(even) {
+  background-color: #383a3c;
+}
+
 thead {
   font-family: sans-serif;
   font-weight: bold;
@@ -1694,6 +1702,9 @@ pre code.cm {
 pre code.cp {
   color: #009999;
 } /* Comment.Preproc */
+.dark pre code.cp {
+  color: #091;
+}
 pre code.c1 {
   color: #35586c;
   font-style: italic;
@@ -1747,6 +1758,9 @@ pre code.kd {
   color: #006699;
   font-weight: bold;
 } /* Keyword.Declaration */
+.dark pre code.kd {
+  color: #8bc172;
+}
 pre code.kn {
   color: #006699;
   font-weight: bold;
@@ -1768,9 +1782,15 @@ pre code.m {
 pre code.s {
   color: #cc3300;
 } /* Literal.String */
+.dark pre code.s {
+  color: #ccb600;
+}
 pre code.na {
   color: #330099;
 } /* Name.Attribute */
+.dark pre code.na {
+  color: #b0c172;
+}
 pre code.nb {
   color: #336666;
 } /* Name.Builtin */
@@ -1802,6 +1822,9 @@ pre code.nn {
   color: #00ccff;
   font-weight: bold;
 } /* Name.Namespace */
+.dark pre code.nt {
+  color: #c1a972;
+}
 pre code.nt {
   color: #330099;
   font-weight: bold;
