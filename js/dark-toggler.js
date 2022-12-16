@@ -12,8 +12,15 @@ if (document.getElementById("checkbox")) {
   );
 }
 
-if (document.getElementById("top-nav")) {
-  const topNav = document.getElementById("top-nav");
+if (
+  document.querySelector('section[data-type="preface"]') ||
+  document.querySelector('section[data-type="chapter"]') ||
+  document.querySelector('section[data-type="appendix"]') ||
+  document.querySelector('section[data-type="glossary"]') ||
+  document.querySelector('section[data-type="bibliography"]') ||
+  document.querySelector('section[data-type="index"]')
+) {
+  const he = document.getElementsByTagName("header")[0];
   const h1 = document.getElementsByTagName("h1")[0];
   const parentDiv = h1.parentNode;
 
@@ -42,19 +49,19 @@ if (document.getElementById("top-nav")) {
 
     var anchorTop = offset(h1Before).top;
 
-    //console.log("scroll", curentScrollTop, anchorTop, h1.offsetHeight);
+    console.log("scroll", curentScrollTop, anchorTop, h1.offsetHeight);
     if (curentScrollTop > anchorTop) {
       if (!fixed) {
         h1Before.style.height = h1.offsetHeight + "px";
         h1.className = "tog-fixed";
-        topNav.className = "nav-fixed";
+        he.className = "he-fixed";
         fixed = true;
       }
     } else {
       if (fixed) {
         h1Before.style.height = 0;
         h1.className = "";
-        topNav.className = "";
+        he.className = "";
         fixed = false;
       }
     }
