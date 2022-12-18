@@ -2378,6 +2378,14 @@ div[data-type="part"] h1 {
   border-bottom: 1px solid #777;
 }
 
+ol.tree li a {
+  color: #8e0012;
+}
+
+.dark ol.tree li a {
+  color: #abffb4;
+}
+
 @page {
   margin-bottom: 5pt;
   margin-top: 5pt;
