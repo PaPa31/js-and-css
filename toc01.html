@@ -263,6 +263,8 @@
         document.addEventListener("keydown", function (e) {
           switch (e.key) {
             case "Enter":
+              selected.firstElementChild.click();
+              break;
             case " ":
               actExpandCollapse();
               break;
