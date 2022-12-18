@@ -44,7 +44,7 @@
         list-style-type: none;
         position: relative;
         line-height: 1.2;
-        padding: 3px 0;
+        padding: 3px 0 3px 5px;
       }
       nav > ol li ol {
         display: none;
@@ -69,7 +69,7 @@
         border-width: 0px;
       }
       nav > ol li::before {
-        content: "";
+        content: ">";
         width: 8px;
         border-bottom-width: 1px;
       }
@@ -92,9 +92,11 @@
       }
 
       nav > ol > li > ol > li::before {
-        top: 0px;
-        height: 10px;
+        top: 3px;
+        height: 6px;
         left: -16px;
+        padding-left: 5px;
+        width: 1px;
       }
 
       nav > ol > li > ol > li::after {
@@ -104,7 +106,10 @@
 
       nav > ol > li > ol > li.open > ol > li::before {
         left: 4px;
-        top: 9px;
+        top: 2px;
+        height: 6px;
+        padding-left: 7px;
+        width: 0px;
       }
 
       nav > ol > li > ol > li.open > ol > li::after {
@@ -131,28 +136,24 @@
 
       nav > ol > li::before {
         content: "⊞";
-        font-weight: bold;
       }
       nav > ol > li.open::before {
         content: "⊟";
-        font-weight: normal;
       }
 
       li.open:not([data-type="preface"]) > ol > li::before {
         content: "⊞";
-        font-weight: bold;
       }
       li.open:not([data-type="preface"]) > ol > li.open::before {
         content: "⊟";
-        font-weight: normal;
       }
 
       ol li ol li ol li::before {
-        content: "" !important;
+        content: ">" !important;
       }
 
       nav > ol > li[data-type="part"]::before {
-        content: "" !important;
+        content: ">" !important;
       }
       nav > ol > li[data-type="part"] {
         margin: 15px 0;
