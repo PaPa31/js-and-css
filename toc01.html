@@ -302,10 +302,21 @@
               gotoPrevSibling();
               break;
             case "ArrowRight":
+              console.log("--------------------------------------------");
+              console.log("START RIIIIIGHT key pressed: sELEcted = ", selected);
+              console.log(
+                "START RIIIIIGHT key pressed: sELEctedParent = ",
+                selected.parentElement
+              );
               if (selected.classList.contains("open") === false) {
                 clickSelected();
               }
               gotoFirstChild();
+              console.log(" END RIIIIIGHT key pressed: sELEcted = ", selected);
+              console.log(
+                "END RIIIIIGHT key pressed: sELEctedParent = ",
+                selected.parentElement
+              );
               break;
             case "ArrowLeft":
               console.log("--------------------------------------------");
@@ -320,11 +331,10 @@
                   selected = selected.parentElement;
                 showFocus();
               } else {
-                if (selected.classList.contains("open") === true) {
-                  clickSelected();
-                } else if (
-                  selected.parentElement.parentElement.tagName != "NAV"
-                ) {
+                if (selected.parentElement.tagName != "NAV") {
+                  if (selected.classList.contains("open") === true) {
+                    clickSelected();
+                  }
                   gotoParent();
                 }
               }
