@@ -229,8 +229,9 @@
       var fromA = function () {
         if (selected.tagName == "A") {
           hideFocus();
-          if (selected.parentElement.tagName != "NAV")
+          if (selected.parentElement.tagName != "NAV") {
             selected = selected.parentElement;
+          }
           showFocus();
         }
       };
@@ -305,7 +306,24 @@
               break;
             case "ArrowLeft":
               if (selected.tagName == "A") {
-                fromA();
+                hideFocus();
+                if (!selected.nextElementSibling) {
+                  selected = selected.parentElement.parentElement.parentElement;
+                } else {
+                  if (
+                    selected.parentElement.parentElement.parentElement
+                      .tagName != "NAV"
+                  ) {
+                    selected =
+                      selected.parentElement.parentElement.parentElement;
+                  } else {
+                    selected = selected.parentElement;
+                  }
+                }
+                showFocus();
+                if (selected.classList.contains("open") === true) {
+                  clickSelected();
+                }
               } else {
                 if (selected.parentElement.tagName != "NAV") {
                   gotoParent();
