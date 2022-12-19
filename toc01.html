@@ -234,6 +234,14 @@
         }
         showFocus();
       };
+      var fromA = function () {
+        if (selected.tagName == "A") {
+          hideFocus();
+          if (selected.parentElement.tagName != "NAV")
+            selected = selected.parentElement;
+          showFocus();
+        }
+      };
       var onLoad = function () {
         // 3. selection box, defaolt on the first item on the tree
         selected = document
@@ -275,23 +283,21 @@
 
         // 5. keyboard handler
         document.addEventListener("keydown", function (e) {
-          console.log(e.key);
           switch (e.key) {
             case "Enter":
               if (selected.firstElementChild) {
-                //selected.firstElementChild.target = "_blank";
                 selected.firstElementChild.click();
               }
-              //selected = selected.firstElementChild;
-              //glig();
               break;
             case " ":
               actExpandCollapse();
               break;
             case "ArrowDown":
+              fromA();
               gotoNextSibling();
               break;
             case "ArrowUp":
+              fromA();
               gotoPrevSibling();
               break;
             case "ArrowRight":
@@ -302,10 +308,7 @@
               break;
             case "ArrowLeft":
               if (selected.tagName == "A") {
-                hideFocus();
-                if (selected.parentElement.tagName != "NAV")
-                  selected = selected.parentElement;
-                showFocus();
+                fromA();
               } else {
                 if (selected.parentElement.tagName != "NAV") {
                   if (selected.classList.contains("open") === true) {
