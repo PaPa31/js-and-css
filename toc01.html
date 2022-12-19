@@ -292,7 +292,10 @@
               gotoPrevSibling();
               break;
             case "ArrowRight":
-              if (selected.classList.contains("open") === false) {
+              if (
+                selected.classList.contains("open") === false &&
+                selected.tagName != "A"
+              ) {
                 clickSelected();
               }
               gotoFirstChild();
