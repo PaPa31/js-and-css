@@ -178,12 +178,10 @@
         selected.style.color = "";
       };
       var clickSelected = function () {
-        console.log("in CLickSlected: tagName = ", selected.tagName);
         if (selected.tagName == "A") selected.parentElement.click();
         else selected.click();
       };
       //var glig = function () {
-      //  console.log("GliG selected. = ", selected);
       //  selected.target = "_blank";
       //  selected.click();
       //};
@@ -247,12 +245,10 @@
         var treeListItems = document.querySelectorAll(
           'nav > ol > li:not([data-type="part"])'
         );
-        console.log("on start: tree list = ", treeListItems.length);
         for (var i = 0; i < treeListItems.length; i++) {
           // click handler
           treeListItems[i].addEventListener("click", function (e) {
             var current = e.target;
-            console.log("on click: current -> selected =", current);
             hideFocus();
             selected = current;
             showFocus();
@@ -261,10 +257,6 @@
               // close the element and its children
               classList.remove("open");
               var openChildrenList = current.querySelectorAll(":scope .open");
-              console.log(
-                " on click: all children with .open = ",
-                openChildrenList.length
-              );
               for (var j = 0; j < openChildrenList.length; j++) {
                 openChildrenList[j].classList.remove("open");
               }
@@ -283,6 +275,7 @@
 
         // 5. keyboard handler
         document.addEventListener("keydown", function (e) {
+          console.log(e.key);
           switch (e.key) {
             case "Enter":
               if (selected.firstElementChild) {
@@ -302,29 +295,12 @@
               gotoPrevSibling();
               break;
             case "ArrowRight":
-              console.log("--------------------------------------------");
-              console.log("START RIIIIIGHT key pressed: sELEcted = ", selected);
-              console.log(
-                "START RIIIIIGHT key pressed: sELEctedParent = ",
-                selected.parentElement
-              );
               if (selected.classList.contains("open") === false) {
                 clickSelected();
               }
               gotoFirstChild();
-              console.log(" END RIIIIIGHT key pressed: sELEcted = ", selected);
-              console.log(
-                "END RIIIIIGHT key pressed: sELEctedParent = ",
-                selected.parentElement
-              );
               break;
             case "ArrowLeft":
-              console.log("--------------------------------------------");
-              console.log("START LEFT key pressed: sELEcted = ", selected);
-              console.log(
-                "START LEFT key pressed: sELEctedParent = ",
-                selected.parentElement
-              );
               if (selected.tagName == "A") {
                 hideFocus();
                 if (selected.parentElement.tagName != "NAV")
@@ -338,12 +314,6 @@
                   gotoParent();
                 }
               }
-              console.log(" END LEFT key pressed: sELEcted = ", selected);
-              console.log(
-                "END LEFT key pressed: sELEctedParent = ",
-                selected.parentElement
-              );
-              console.log("--------------------------------------------");
               break;
           }
         });
@@ -351,7 +321,6 @@
 
       var expandAll = function () {
         var allListItems = document.querySelectorAll("nav > ol > li");
-        console.log("on expand click: deep = ", allListItems.length);
         for (var k = 0; k < allListItems.length; k++) {
           allListItems[k].classList.add("open");
           //allListItems[k].classList.remove("close");
