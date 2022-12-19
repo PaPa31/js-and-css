@@ -169,9 +169,6 @@
       var showFocus = function () {
         if (selected.tagName != "OL") {
           selected.style.color = "red";
-        } else {
-          //if (selected.parentElement.tagName != "NAV")
-          //  selected.parentElement.style.color = "red";
         }
       };
       var hideFocus = function () {
@@ -181,10 +178,6 @@
         if (selected.tagName == "A") selected.parentElement.click();
         else selected.click();
       };
-      //var glig = function () {
-      //  selected.target = "_blank";
-      //  selected.click();
-      //};
       var gotoPrevSibling = function () {
         hideFocus();
         if (selected.previousElementSibling) {
@@ -278,12 +271,6 @@
           });
         }
 
-        //document.addEventListener("click", function (e) {
-        //  if (e.target.tagName == "A" && !e.target.hasAttribute("target")) {
-        //    e.target.setAttribute("target", "_blank");
-        //  }
-        //});
-
         // 5. keyboard handler
         document.addEventListener("keydown", function (e) {
           switch (e.key) {
@@ -329,16 +316,13 @@
         var allListItems = document.querySelectorAll("nav > ol > li");
         for (var k = 0; k < allListItems.length; k++) {
           allListItems[k].classList.add("open");
-          //allListItems[k].classList.remove("close");
         }
       };
       var collapseAll = function () {
         var allListItems = document.querySelectorAll("nav > ol > li");
         for (var k = 0; k < allListItems.length; k++) {
-          //allListItems[k].classList.add("close");
           allListItems[k].classList.remove("open");
         }
-        //window.location.reload();
       };
       var EXPAND_ALL = "Expand";
       var COLLAPSE_ALL = "Collapse";
