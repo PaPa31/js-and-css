@@ -275,6 +275,7 @@
         document.addEventListener("keydown", function (e) {
           switch (e.key) {
             case "Enter":
+              e.preventDefault();
               if (selected.firstElementChild) {
                 selected.firstElementChild.click();
               } else {
