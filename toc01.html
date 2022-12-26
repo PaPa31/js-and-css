@@ -320,28 +320,47 @@
         });
       };
 
-      var expandAll = function () {
-        var allListItems = document.querySelectorAll("nav > ol > li");
+      var expandOneLevel = function (sel) {
+        var allListItems = document.querySelectorAll(sel);
         for (var k = 0; k < allListItems.length; k++) {
           allListItems[k].classList.add("open");
         }
       };
-      var collapseAll = function () {
-        var allListItems = document.querySelectorAll("nav > ol > li");
+      var collapseOneLevel = function (sel) {
+        var allListItems = document.querySelectorAll(sel);
         for (var k = 0; k < allListItems.length; k++) {
           allListItems[k].classList.remove("open");
         }
       };
-      var EXPAND_ALL = "Expand";
-      var COLLAPSE_ALL = "Collapse";
+      var i = 1;
+      var j = 1;
+      var exp = ["Collapse", "Expand"];
+      var aSel = ["nav > ol > li", "nav ol > li"];
+
       var actExpandCollapse = function () {
         var button = document.getElementById("expand");
-        if (button.innerHTML === EXPAND_ALL) {
-          expandAll();
-          button.innerHTML = COLLAPSE_ALL;
+
+        if (1 - j && i === 1) {
+          collapseOneLevel(aSel[1]);
+          expandOneLevel(aSel[0]);
         } else {
-          collapseAll();
-          button.innerHTML = EXPAND_ALL;
+          if (i != 0) {
+            expandOneLevel(aSel[1 - j]);
+          } else {
+            collapseOneLevel(aSel[1]);
+          }
+        }
+
+        if (j) {
+          i = i + 1;
+          button.innerHTML = exp[j] + " all: " + i + " level";
+        } else {
+          button.innerHTML = exp[j] + " all: " + i + " level";
+          i = i - 1;
+        }
+
+        if (i === 2 || i === 0) {
+          j = 1 - j;
         }
       };
     </script>
@@ -361,7 +380,7 @@
         href="javascript: void(0)"
         onClick="actExpandCollapse()"
         title="Space key"
-        >Expand</a
+        >Expand all: 1 level</a
       >
     </p>
     <nav data-type="toc" epub:type="toc" id="idm45475196442824">
