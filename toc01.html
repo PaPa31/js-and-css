@@ -11,30 +11,12 @@
     <title>toc01</title>
 
     <style>
-      body {
-        font-family: Courier, Arial;
-        font-size: 95%;
-      }
-      .stripebox {
-        border-bottom: solid black 0px;
+      .memo {
         background-color: WhiteSmoke;
+        padding: 20px;
       }
-      .stripebox h1 {
-        font-family: Courier, Arial;
-        font-size: 2.5em;
-        margin-bottom: 5px;
-      }
-      .stripecontent {
-        font-family: Arial;
-        padding-left: 23px;
-        padding-bottom: 12px;
-      }
-      #credit {
-        float: right;
-        color: #909090;
-        padding-right: 10px;
-      }
-      #filehead,
+
+      #wrap-expand,
       nav {
         padding-left: 23px;
       }
@@ -362,80 +344,26 @@
           botton.innerHTML = EXPAND_ALL;
         }
       };
-      var boolCredit = false;
-      var displayCredit = function () {
-        credit = document.getElementById("credit");
-        if (!boolCredit) {
-          credit.innerHTML =
-            "<a href='https://github.com/Leedehai/expandable-tree-list'>Leedehai Github repo<a>";
-          credit.style.color = "black";
-          credit.style.textDecoration = "none";
-        } else {
-          credit.innerHTML = "Credit";
-          credit.style.color = "blue";
-          credit.style.textDecoration = "underline";
-        }
-        boolCredit = ~boolCredit;
-      };
-
-      function renderJSON(obj) {
-        var keys = [];
-        var objIsArray = Array.isArray(obj); // check if [..] array. Otherwise, it is an ordinary {..} object
-        jsonText = "";
-        for (var key in obj) {
-          if (typeof obj[key] === "object") {
-            if (objIsArray === false) {
-              jsonText += "<li><a href='#'>" + key + "</a><ol>";
-            }
-            jsonText += renderJSON(obj[key]);
-            if (objIsArray === false) {
-              jsonText += "</ul></li>";
-            }
-          } else {
-            // obj[key] not object, e.g. just a number or string, or empty
-            if (objIsArray === false) {
-              jsonText += "<li><a href='#'>" + key;
-              if (obj[key]) {
-                jsonText += ": " + obj[key];
-              }
-              jsonText += "</a></li>";
-            } else {
-              jsonText += "<li><a href='#'>";
-              if (obj[key]) {
-                jsonText += obj[key];
-              } else {
-                jsonText += "(empty)";
-              }
-              jsonText += "</a></li>";
-            }
-          }
-
-          keys.push(key);
-        }
-        return jsonText;
-      }
     </script>
   </head>
   <body onload="onLoad()">
-    <div class="stripebox">
-      <div class="stripecontent">
-        <h1>AST View</h1>
-        <span>Click individual nodes or use arrow keys to navigate.</span>
-        <a
-          class="control"
-          id="expand"
-          href="javascript: void(0)"
-          onClick="actExpandCollapse()"
-          title="Space key"
-          >Expand</a
-        >
-        <a class="control" id="credit" href="#" onClick="displayCredit()"
-          >Credit</a
-        >
-      </div>
+    <div class="memo">
+      <span
+        >Click (or hit Enter) individual nodes or use arrow keys to
+        navigate.</span
+      >
     </div>
 
-    <p id="filehead">File: <span id="filename">source.demo</span></p>
+    <p id="wrap-expand">
+      <a
+        class="control"
+        id="expand"
+        href="javascript: void(0)"
+        onClick="actExpandCollapse()"
+        title="Space key"
+        >Expand</a
+      >
+    </p>
     <nav data-type="toc" epub:type="toc" id="idm45475196442824">
       <ol>
         <li data-type="preface">
