@@ -217,7 +217,7 @@
         }
       };
       var onLoad = function () {
-        // 3. selection box, defaolt on the first item on the tree
+        // 3. selection box, default on the first item on the tree
         selected = document
           .getElementsByTagName("nav")[0]
           .firstElementChild.getElementsByTagName("li")[0];
@@ -335,13 +335,13 @@
       var EXPAND_ALL = "Expand";
       var COLLAPSE_ALL = "Collapse";
       var actExpandCollapse = function () {
-        var botton = document.getElementById("expand");
-        if (botton.innerHTML === EXPAND_ALL) {
+        var button = document.getElementById("expand");
+        if (button.innerHTML === EXPAND_ALL) {
           expandAll();
-          botton.innerHTML = COLLAPSE_ALL;
+          button.innerHTML = COLLAPSE_ALL;
         } else {
           collapseAll();
-          botton.innerHTML = EXPAND_ALL;
+          button.innerHTML = EXPAND_ALL;
         }
       };
     </script>
