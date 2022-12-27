@@ -107,4 +107,4 @@ function moveToHash() {
   }
 }
 
-setTimeout(moveToHash, 300);
+setTimeout(moveToHash, 400);
