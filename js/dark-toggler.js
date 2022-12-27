@@ -93,3 +93,18 @@ if (
 
   window.addEventListener("scroll", JD.firstName, false);
 }
+
+function moveToHash() {
+  let urlHash = window.location.hash;
+
+  if (urlHash) {
+    location.replace(urlHash);
+    window.scrollBy({
+      top: -80,
+      left: 0,
+      behavior: "smooth",
+    });
+  }
+}
+
+setTimeout(moveToHash, 300);

@@ -95,8 +95,8 @@ window.addEventListener("load", (event) => {
     scriptTag.setAttribute("id", "toggler-script");
     scriptTag.setAttribute("type", "text/javascript");
     scriptTag.setAttribute("src", "/js-and-css/js/dark-toggler.js");
-    // ✅ Insert element as last in body
-    document.body.appendChild(scriptTag);
+    // ✅ Insert element as last in head
+    document.head.appendChild(scriptTag);
 
     //inject toggler script for Unix browsers
     const scriptTag2 = document.createElement("script");
@@ -106,8 +106,8 @@ window.addEventListener("load", (event) => {
       "src",
       "file:///media/storage418Gb/Users/parsh/Documents/Books/js-and-css/js/dark-toggler.js"
     );
-    // ✅ Insert element as last in body
-    document.body.appendChild(scriptTag2);
+    // ✅ Insert element as last in head
+    document.head.appendChild(scriptTag2);
 
     //inject toggler script for Windows browsers
     const scriptTag3 = document.createElement("script");
@@ -117,7 +117,7 @@ window.addEventListener("load", (event) => {
       "src",
       "file:///F:/Users/parsh/Documents/Books/js-and-css/js/dark-toggler.js"
     );
-    // ✅ Insert element as last in body
-    document.body.appendChild(scriptTag3);
+    // ✅ Insert element as last in head
+    document.head.appendChild(scriptTag3);
   }
 });

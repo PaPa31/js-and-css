@@ -1,0 +1,132 @@
+.memo {
+  background-color: WhiteSmoke;
+  padding: 20px;
+}
+
+#wrap-expand,
+nav {
+  padding-left: 23px;
+}
+
+nav > ol li {
+  list-style-type: none;
+  position: relative;
+  line-height: 1.2;
+  padding: 3px 0 3px 5px;
+}
+nav > ol li ol {
+  display: none;
+  padding-left: 20px;
+}
+nav > ol li.open > ol {
+  display: block;
+}
+nav > ol li a {
+  color: black;
+  text-decoration: none;
+  line-height: 1.2;
+  vertical-align: text-top;
+}
+
+nav > ol li::before,
+nav > ol li::after {
+  position: absolute;
+  left: -1.2em;
+  border-style: dotted;
+  border-color: #000000;
+  border-width: 0px;
+}
+nav > ol li::before {
+  content: ">";
+  width: 8px;
+  border-bottom-width: 1px;
+}
+nav > ol li::after {
+  content: "";
+  border-left-width: 1px;
+  height: 100%;
+  width: 0px;
+  top: 1px;
+}
+nav > ol > li::before {
+  width: 0px;
+  line-height: 1.2;
+}
+nav > ol > li::after {
+  height: 0px;
+}
+nav > ol > li li:last-child::after {
+  height: 8px;
+}
+
+nav > ol > li > ol > li::before {
+  top: 3px;
+  height: 6px;
+  left: -16px;
+  padding-left: 5px;
+  width: 1px;
+}
+
+nav > ol > li > ol > li::after {
+  left: -17px;
+  top: 2px;
+}
+
+nav > ol > li > ol > li.open > ol > li::before {
+  left: 4px;
+  top: 2px;
+  height: 6px;
+  padding-left: 7px;
+  width: 0px;
+}
+
+nav > ol > li > ol > li.open > ol > li::after {
+  top: 1px;
+  left: 4px;
+}
+
+nav > ol > li:not([data-type="preface"]) > ol > li::before {
+  top: 1px;
+  height: 6px;
+  width: 0px;
+  padding-left: 14px;
+  padding-top: 2px;
+  line-height: 1.2;
+}
+
+nav > ol > li:not([data-type="preface"]) > ol > li > a {
+  margin-left: 20px;
+}
+
+nav > ol > li.open > ol > li.open > ol > li a {
+  margin-left: 20px;
+}
+
+nav > ol > li::before {
+  content: "⊞";
+}
+nav > ol > li.open::before {
+  content: "⊟";
+}
+
+li.open:not([data-type="preface"]) > ol > li::before {
+  content: "⊞";
+}
+li.open:not([data-type="preface"]) > ol > li.open::before {
+  content: "⊟";
+}
+
+ol li ol li ol li::before {
+  content: ">" !important;
+}
+
+nav > ol > li[data-type="part"]::before {
+  content: ">";
+}
+nav > ol > li[data-type="part"] {
+  margin: 15px 0;
+}
+
+ol {
+  color: initial;
+}
