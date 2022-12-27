@@ -9,20 +9,45 @@ nav {
 }
 
 nav > ol li {
-  list-style-type: none;
+  list-style-type: none !important;
   position: relative;
   line-height: 1.2;
   padding: 3px 0 3px 5px;
+  margin: 0;
 }
+
+nav > ol > li > ol > li {
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  padding-left: 15px;
+}
+
+nav > ol > li {
+  margin: 0.5em 0 0.65em;
+}
+
+nav > ol ol ol {
+  margin: 8px 0 0 10px !important;
+}
+
+nav > ol ol ol a {
+  padding-left: 10px;
+}
+
+/*#idm45475196442824 > ol > li.open > ol > li.open > ol > li:nth-child(1) > a*/
+/*nav > ol > li > ol > li > ol > li > a {
+
+}*/
+
 nav > ol li ol {
   display: none;
-  padding-left: 20px;
+  padding-left: 0px;
+  margin: 10px 0 0 21px;
 }
 nav > ol li.open > ol {
   display: block;
 }
 nav > ol li a {
-  color: black;
   text-decoration: none;
   line-height: 1.2;
   vertical-align: text-top;
@@ -60,34 +85,34 @@ nav > ol > li li:last-child::after {
 }
 
 nav > ol > li > ol > li::before {
-  top: 3px;
-  height: 6px;
+  top: 7px;
+  height: 10px;
   left: -16px;
-  padding-left: 5px;
+  padding-left: 15px;
   width: 1px;
 }
 
 nav > ol > li > ol > li::after {
   left: -17px;
-  top: 2px;
+  top: 11px;
 }
 
 nav > ol > li > ol > li.open > ol > li::before {
   left: 4px;
   top: 2px;
-  height: 6px;
-  padding-left: 7px;
+  height: 10px;
+  padding-left: 15px;
   width: 0px;
 }
 
 nav > ol > li > ol > li.open > ol > li::after {
-  top: 1px;
+  top: 5px;
   left: 4px;
 }
 
 nav > ol > li:not([data-type="preface"]) > ol > li::before {
-  top: 1px;
-  height: 6px;
+  top: 5px;
+  height: 11px;
   width: 0px;
   padding-left: 14px;
   padding-top: 2px;
@@ -95,7 +120,7 @@ nav > ol > li:not([data-type="preface"]) > ol > li::before {
 }
 
 nav > ol > li:not([data-type="preface"]) > ol > li > a {
-  margin-left: 20px;
+  margin-left: 9px;
 }
 
 nav > ol > li.open > ol > li.open > ol > li a {
@@ -124,9 +149,27 @@ nav > ol > li[data-type="part"]::before {
   content: ">";
 }
 nav > ol > li[data-type="part"] {
-  margin: 15px 0;
+  margin: 35px 0 35px -25px;
 }
 
 ol {
   color: initial;
+}
+
+li {
+  color: #8e6400;
+}
+
+li::before,
+li::after {
+  border-color: #8e6400 !important;
+}
+
+.dark li {
+  color: #83a61d;
+}
+
+.dark li::before,
+.dark li::after {
+  border-color: #83a61d !important;
 }
