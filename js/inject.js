@@ -100,7 +100,6 @@ window.addEventListener("load", (event) => {
 
     //inject toggler script for Unix browsers
     const scriptTag2 = document.createElement("script");
-    scriptTag2.setAttribute("id", "toggler-script");
     scriptTag2.setAttribute("type", "text/javascript");
     scriptTag2.setAttribute(
       "src",
@@ -111,7 +110,6 @@ window.addEventListener("load", (event) => {
 
     //inject toggler script for Windows browsers
     const scriptTag3 = document.createElement("script");
-    scriptTag3.setAttribute("id", "toggler-script");
     scriptTag3.setAttribute("type", "text/javascript");
     scriptTag3.setAttribute(
       "src",
