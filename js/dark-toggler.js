@@ -49,7 +49,6 @@ if (
 
     var anchorTop = offset(h1Before).top;
 
-    console.log("scroll", curentScrollTop, anchorTop, h1.offsetHeight);
     if (curentScrollTop > anchorTop) {
       if (!fixed) {
         h1Before.style.height = h1.offsetHeight + "px";
