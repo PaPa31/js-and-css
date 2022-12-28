@@ -12,6 +12,21 @@ if (document.getElementById("checkbox")) {
   );
 }
 
+if (document.getElementsByTagName("nav")[0]) {
+  console.log("Enter");
+  const navEl = document.getElementsByTagName("nav")[0];
+  const pWrapExpand = document.createElement("p");
+  pWrapExpand.setAttribute("id", "wrap-expand");
+  document.body.insertBefore(pWrapExpand, navEl);
+
+  const aEl = document.createElement("a");
+  aEl.setAttribute("id", "expand");
+  aEl.setAttribute("href", "javascript: void(0)");
+  aEl.setAttribute("onclick", "actExpandCollapse()");
+  aEl.innerHTML = "Expand all: 1 level";
+  pWrapExpand.appendChild(aEl);
+}
+
 if (
   document.querySelector('section[data-type="preface"]') ||
   document.querySelector('section[data-type="chapter"]') ||
