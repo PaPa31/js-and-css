@@ -173,7 +173,13 @@ li::after {
 
 a#expand {
   text-decoration: dotted underline;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 2px;
 }
+a#expand:hover {
+  text-decoration-style: solid;
+}
+
 a[style="font-weight: bold;"],
 li[style="font-weight: bold;"] {
   color: red;
