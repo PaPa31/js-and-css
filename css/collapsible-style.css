@@ -34,11 +34,6 @@ nav > ol ol ol a {
   padding-left: 10px;
 }
 
-/*#idm45475196442824 > ol > li.open > ol > li.open > ol > li:nth-child(1) > a*/
-/*nav > ol > li > ol > li > ol > li > a {
-
-}*/
-
 nav > ol li ol {
   display: none;
   padding-left: 0px;
@@ -149,7 +144,7 @@ nav > ol > li[data-type="part"]::before {
   content: ">";
 }
 nav > ol > li[data-type="part"] {
-  margin: 35px 0 35px -25px;
+  margin: 35px 0 35px 5px;
 }
 
 ol {
@@ -172,4 +167,8 @@ li::after {
 .dark li::before,
 .dark li::after {
   border-color: #83a61d !important;
+}
+
+a#expand {
+  text-decoration: underline;
 }
