@@ -139,16 +139,12 @@ document.addEventListener("keydown", function (e) {
     case "ArrowLeft":
       if (selected.tagName == "A") {
         hideFocus();
-        if (!selected.nextElementSibling) {
+        if (
+          selected.parentElement.parentElement.parentElement.tagName != "NAV"
+        ) {
           selected = selected.parentElement.parentElement.parentElement;
         } else {
-          if (
-            selected.parentElement.parentElement.parentElement.tagName != "NAV"
-          ) {
-            selected = selected.parentElement.parentElement.parentElement;
-          } else {
-            selected = selected.parentElement;
-          }
+          selected = selected.parentElement;
         }
         showFocus();
         if (selected.classList.contains("open") === true) {
