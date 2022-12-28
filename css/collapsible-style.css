@@ -141,7 +141,8 @@ ol li ol li ol li::before {
   content: ">" !important;
 }
 
-nav > ol > li[data-type="part"]::before {
+nav > ol > li[data-type="part"]::before,
+nav > ol > li[data-type="index"]::before {
   content: ">";
 }
 nav > ol > li[data-type="part"] {
