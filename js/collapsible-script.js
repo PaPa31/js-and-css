@@ -182,9 +182,9 @@ var i = 1;
 var j = 1;
 var exp = ["Collapse", "Expand"];
 var aSel = ["nav > ol > li", "nav ol > li"];
-var button = document.getElementById("expand");
 
 var actExpandCollapse = function () {
+  var button = document.getElementById("expand");
   if (1 - j && i === 1) {
     collapseOneLevel(aSel[1]);
     expandOneLevel(aSel[0]);
