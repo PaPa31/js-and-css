@@ -90,7 +90,7 @@ nav > ol > li > ol > li::before {
 
 nav > ol > li > ol > li::after {
   left: -17px;
-  top: 11px;
+  top: 10px;
 }
 
 nav > ol > li > ol > li.open > ol > li::before {
