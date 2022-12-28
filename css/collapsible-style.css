@@ -46,6 +46,7 @@ nav > ol li a {
   text-decoration: none;
   line-height: 1.2;
   vertical-align: text-top;
+  font-weight: normal;
 }
 
 nav > ol li::before,
@@ -170,5 +171,14 @@ li::after {
 }
 
 a#expand {
-  text-decoration: underline;
+  text-decoration: dotted underline;
+}
+a[style="font-weight: bold;"],
+li[style="font-weight: bold;"] {
+  color: red;
+}
+
+.dark a[style="font-weight: bold;"],
+.dark li[style="font-weight: bold;"] {
+  color: #df9509;
 }

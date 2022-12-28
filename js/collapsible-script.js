@@ -1,11 +1,11 @@
 var selected;
 var showFocus = function () {
   if (selected.tagName != "OL") {
-    selected.style.color = "red";
+    selected.style.fontWeight = "bold";
   }
 };
 var hideFocus = function () {
-  selected.style.color = "";
+  selected.style.fontWeight = "normal";
 };
 var clickSelected = function () {
   if (selected.tagName == "A") selected.parentElement.click();
