@@ -23,6 +23,7 @@ if (document.getElementsByTagName("nav")[0]) {
   aEl.setAttribute("id", "expand");
   aEl.setAttribute("href", "javascript: void(0)");
   aEl.setAttribute("onclick", "actExpandCollapse()");
+  aEl.setAttribute("title", "Click or hit Space");
   aEl.innerHTML = "Expand all: 1 level";
   pWrapExpand.appendChild(aEl);
 }
