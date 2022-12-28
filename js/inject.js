@@ -1,6 +1,4 @@
 window.addEventListener("load", (event) => {
-  console.log("page is fully loaded");
-
   if (!document.getElementById("toggler-script")) {
     //inject metatag with UTF-8 charset
     const metaTag = document.createElement("metaTag");

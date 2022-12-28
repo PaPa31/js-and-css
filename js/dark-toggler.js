@@ -13,7 +13,6 @@ if (document.getElementById("checkbox")) {
 }
 
 if (document.getElementsByTagName("nav")[0]) {
-  console.log("Enter");
   const navEl = document.getElementsByTagName("nav")[0];
   const pWrapExpand = document.createElement("p");
   pWrapExpand.setAttribute("id", "wrap-expand");
