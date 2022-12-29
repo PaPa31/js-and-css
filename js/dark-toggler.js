@@ -2,9 +2,8 @@ if (document.getElementById("checkbox")) {
   const checkbox = document.getElementById("checkbox");
 
   checkbox.addEventListener(
-    "change",
+    "click",
     function (e) {
-      e.stopPropagation();
       toggleLocalStorageItem();
       toggleDark();
     },

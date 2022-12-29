@@ -40,8 +40,7 @@ window.addEventListener("load", (event) => {
     const firstDivTag = document.createElement("div");
     firstDivTag.setAttribute("class", "dark_button");
     firstDivTag.innerHTML = `
-      <input type="checkbox" class="checkbox" id="checkbox" />
-      <label for="checkbox" class="button_label">
+      <a href="javascript: void(0)" id="checkbox" class="button_label">
         <svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon">
           <path
             fill="currentColor"
@@ -55,7 +54,7 @@ window.addEventListener("load", (event) => {
           ></path>
         </svg>
         <div class="ball"></div>
-      </label>
+      </a>
     `;
     // ✅ Insert element as first in body
     document.body.insertAdjacentElement("afterbegin", firstDivTag);

@@ -61,7 +61,7 @@ body.dark {
 }
 
 /*  target the elemenent after the label*/
-.checkbox:checked + .button_label .ball {
+.dark #checkbox .ball {
   transform: translateX(21px);
 }
 
