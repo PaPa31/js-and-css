@@ -105,11 +105,15 @@ for (var i = 0; i < treeListItems.length; i++) {
 document.addEventListener("keydown", function (e) {
   switch (e.key) {
     case "Enter":
-      e.preventDefault();
-      if (selected.firstElementChild) {
-        selected.firstElementChild.click();
-      } else {
-        selected.click();
+      var checkboxEl = document.getElementById("checkbox");
+      var isFocused = document.activeElement === checkboxEl;
+      if (!isFocused) {
+        e.preventDefault();
+        if (selected.firstElementChild) {
+          selected.firstElementChild.click();
+        } else {
+          selected.click();
+        }
       }
       break;
     case " ":
