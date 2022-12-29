@@ -538,7 +538,8 @@ section[data-type="index"] > div > h1 {
   font-size: 2em;
   line-height: 1;
   color: #000;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
+  padding-top: 22px;
   border-bottom: 1px solid #000;
   padding-right: 18%;
 }
@@ -2365,8 +2366,7 @@ ul {
 
 .tog-fixed {
   background-color: white;
-  height: 50px;
-  padding-top: 5px;
+  padding-top: 15px;
   padding-left: 24px;
 }
 
