@@ -151,6 +151,7 @@ nav > ol > li[data-type="part"] {
 
 ol {
   color: initial;
+  font-weight: normal !important;
 }
 
 li {
