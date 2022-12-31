@@ -13,7 +13,6 @@ var clickSelected = function () {
 };
 var gotoPrevSibling = function () {
   hideFocus();
-
   if (selected.previousElementSibling) {
     selected = selected.previousElementSibling;
   }
@@ -29,7 +28,6 @@ var gotoPrevSiblingOrCousin = function (_hasParentLi) {
   } else {
     if (_hasParentLi) {
       gotoParent();
-    } else {
     }
   }
 };
@@ -37,14 +35,22 @@ var gotoNextSibling = function () {
   hideFocus();
   if (selected.nextElementSibling) {
     selected = selected.nextElementSibling;
-  } else if (selected.parentElement.nextElementSibling) {
-    liElems =
-      selected.parentElement.nextElementSibling.getElementsByTagName("li");
-    if (liElems.length) {
-      selected = liElems[0];
-    }
   }
   showFocus();
+};
+var gotoNextSiblingOrCousin = function (_hasParentLi) {
+  if (selected.nextElementSibling) {
+    if (selected.classList.contains("open") === true) {
+      gotoFirstChild();
+    } else {
+      gotoNextSibling();
+    }
+  } else {
+    if (_hasParentLi) {
+      gotoParent();
+      gotoNextSibling();
+    }
+  }
 };
 var gotoFirstChild = function () {
   hideFocus();
@@ -163,7 +169,7 @@ document.addEventListener("keydown", function (e) {
       break;
     case "ArrowDown":
       fromA();
-      gotoNextSibling();
+      gotoNextSiblingOrCousin(hasParentLi);
       break;
     case "ArrowUp":
       fromA();
