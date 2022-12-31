@@ -154,7 +154,7 @@ document.addEventListener("keydown", function (e) {
         showFocus();
         if (e.shiftKey) {
           fromA();
-          gotoPrevSibling();
+          gotoPrevSiblingOrCousin(hasParentLi);
         } else {
           fromA();
           gotoNextSibling();
