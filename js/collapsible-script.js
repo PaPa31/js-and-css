@@ -16,18 +16,6 @@ var gotoPrevSibling = function () {
 
   if (selected.previousElementSibling) {
     selected = selected.previousElementSibling;
-  } else {
-    //if (selected.parentElement.previousElementSibling) {
-    //  console.log("hi!!!");
-    //  liElems =
-    //    selected.parentElement.previousElementSibling.getElementsByTagName("li");
-    //  console.log(liElems);
-    //  if (liElems.length) {
-    //    console.log("bye!!!");
-    //    selected = liElems[0];
-    //  }
-    //  console.log(selected);
-    //}
   }
   showFocus();
 };
@@ -54,26 +42,12 @@ var gotoFirstChild = function () {
 };
 var gotoLastChild = function () {
   hideFocus();
-  //lastChild = document.querySelector("ol li:last-child");
-  //gotoParent();
-
-  //console.log("SELLL ", selected);
-
-  //if (selected.classList.contains("open") === true) {
-  //firstSub = selected.getElementsByTagName("ol")[0];
-  //if (firstSub) {
-  //  selected = firstSub.getElementsByTagName("li")[0];
-  //}
 
   olElems = selected.previousElementSibling.getElementsByTagName("ol");
   if (olElems.length) {
     hideFocus();
-    console.log("bye!!!", "Length = ", olElems.length);
     selected = olElems[olElems.length - 1].parentElement;
   }
-
-  console.log("S : ", selected);
-  //}
   showFocus();
 };
 var gotoParent = function () {
@@ -169,9 +143,6 @@ document.addEventListener("keydown", function (e) {
           fromA();
           gotoNextSibling();
         }
-        //hideFocus();
-        //selected = activeTab;
-        //showFocus();
       }
       break;
     case " ":
