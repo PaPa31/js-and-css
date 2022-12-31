@@ -19,6 +19,24 @@ var gotoPrevSibling = function () {
   }
   showFocus();
 };
+var gotoPrevSiblingOrCousin = function (_hasParentLi) {
+  if (selected.previousElementSibling) {
+    console.log("Has Sibling!");
+    if (selected.previousElementSibling.classList.contains("open") === true) {
+      gotoLastChild();
+      console.log("I point to cousin", selected);
+    } else {
+      gotoPrevSibling();
+      console.log("I point to sibling", selected);
+    }
+  } else {
+    if (_hasParentLi) {
+      gotoParent();
+      console.log("I point to parent", selected);
+    } else {
+    }
+  }
+};
 var gotoNextSibling = function () {
   hideFocus();
   if (selected.nextElementSibling) {
@@ -153,24 +171,7 @@ document.addEventListener("keydown", function (e) {
       break;
     case "ArrowUp":
       fromA();
-      if (selected.previousElementSibling) {
-        console.log("Has Sibling!");
-        if (
-          selected.previousElementSibling.classList.contains("open") === true
-        ) {
-          gotoLastChild();
-          console.log("I point to cousin", selected);
-        } else {
-          gotoPrevSibling();
-          console.log("I point to sibling", selected);
-        }
-      } else {
-        if (hasParentLi) {
-          gotoParent();
-          console.log("I point to parent", selected);
-        } else {
-        }
-      }
+      gotoPrevSiblingOrCousin(hasParentLi);
       break;
     case "ArrowRight":
       if (
