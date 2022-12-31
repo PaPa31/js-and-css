@@ -59,21 +59,21 @@ var gotoLastChild = function () {
 
   //console.log("SELLL ", selected);
 
-  if (selected.classList.contains("open") === true) {
-    //firstSub = selected.getElementsByTagName("ol")[0];
-    //if (firstSub) {
-    //  selected = firstSub.getElementsByTagName("li")[0];
-    //}
+  //if (selected.classList.contains("open") === true) {
+  //firstSub = selected.getElementsByTagName("ol")[0];
+  //if (firstSub) {
+  //  selected = firstSub.getElementsByTagName("li")[0];
+  //}
 
-    olElems = selected.previousElementSibling.getElementsByTagName("ol");
-    if (olElems.length) {
-      hideFocus();
-      console.log("bye!!!", "Length = ", olElems.length);
-      selected = olElems[olElems.length - 1].parentElement;
-    }
-
-    console.log("S : ", selected);
+  olElems = selected.previousElementSibling.getElementsByTagName("ol");
+  if (olElems.length) {
+    hideFocus();
+    console.log("bye!!!", "Length = ", olElems.length);
+    selected = olElems[olElems.length - 1].parentElement;
   }
+
+  console.log("S : ", selected);
+  //}
   showFocus();
 };
 var gotoParent = function () {
