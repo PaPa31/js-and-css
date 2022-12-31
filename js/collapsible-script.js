@@ -21,18 +21,14 @@ var gotoPrevSibling = function () {
 };
 var gotoPrevSiblingOrCousin = function (_hasParentLi) {
   if (selected.previousElementSibling) {
-    console.log("Has Sibling!");
     if (selected.previousElementSibling.classList.contains("open") === true) {
       gotoLastChild();
-      console.log("I point to cousin", selected);
     } else {
       gotoPrevSibling();
-      console.log("I point to sibling", selected);
     }
   } else {
     if (_hasParentLi) {
       gotoParent();
-      console.log("I point to parent", selected);
     } else {
     }
   }
