@@ -41,14 +41,12 @@ var gotoFirstChild = function () {
   showFocus();
 };
 var gotoLastChild = function () {
-  hideFocus();
-
   olElems = selected.previousElementSibling.getElementsByTagName("ol");
   if (olElems.length) {
     hideFocus();
     selected = olElems[olElems.length - 1].parentElement;
+    showFocus();
   }
-  showFocus();
 };
 var gotoParent = function () {
   hideFocus();
