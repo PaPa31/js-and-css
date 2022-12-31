@@ -21,13 +21,17 @@ var gotoPrevSibling = function () {
 var gotoPrevSiblingOrCousin = function (_hasParentLi) {
   if (selected.previousElementSibling) {
     if (selected.previousElementSibling.classList.contains("open") === true) {
+      console.log("Before Point to Cousin", selected);
       gotoLastChild();
+      console.log("Point to Cousin", selected);
     } else {
       gotoPrevSibling();
+      console.log("Point to Sibling", selected);
     }
   } else {
     if (_hasParentLi) {
       gotoParent();
+      console.log("Point to Parent", selected);
     }
   }
 };
@@ -62,9 +66,17 @@ var gotoFirstChild = function () {
 };
 var gotoLastChild = function () {
   olElems = selected.previousElementSibling.getElementsByTagName("ol");
+  console.log(olElems);
   if (olElems.length) {
     hideFocus();
-    selected = olElems[olElems.length - 1].parentElement;
+    if (olElems.length !== 1) {
+      selected = olElems[olElems.length - 1].parentElement;
+    } else {
+      liElems = selected.previousElementSibling.getElementsByTagName("li");
+      if (liElems.length) {
+        selected = liElems[liElems.length - 1];
+      }
+    }
     showFocus();
   }
 };
