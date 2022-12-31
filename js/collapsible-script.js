@@ -171,7 +171,7 @@ document.addEventListener("keydown", function (e) {
           gotoPrevSiblingOrCousin(hasParentLi);
         } else {
           fromA();
-          gotoNextSibling();
+          gotoNextSiblingOrCousin(hasParentLi);
         }
       }
       break;
