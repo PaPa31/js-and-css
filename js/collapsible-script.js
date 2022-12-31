@@ -135,17 +135,21 @@ for (var i = 0; i < treeListItems.length; i++) {
 // 5. keyboard handler
 document.addEventListener("keydown", function (e) {
   var activeTab = document.activeElement;
-  var isInsideNav =
+  var isTabActive = activeTab.tagName !== "BODY";
+  var activeTabInsideNav =
     activeTab.parentElement && activeTab.parentElement.tagName === "LI";
-  console.log("activeElement = ", document.activeElement.tagName);
-  var isTabActive = document.activeElement.tagName !== "BODY";
+  console.log("activeElement = ", activeTab.tagName);
+
   var hasParentLi = selected.parentElement.parentElement.tagName === "LI";
   console.log("hasParentLi = ", hasParentLi);
 
   switch (e.key) {
     case "Enter":
-      if (isInsideNav) {
+      console.log(activeTabInsideNav);
+      if (isTabActive && activeTabInsideNav) {
+      } else {
         e.preventDefault();
+        console.log("Enter is disabled");
         if (selected.firstElementChild) {
           selected.firstElementChild.click();
         } else {
@@ -154,7 +158,7 @@ document.addEventListener("keydown", function (e) {
       }
       break;
     case "Tab":
-      if (isInsideNav) {
+      if (activeTabInsideNav) {
         hideFocus();
         selected = activeTab;
         showFocus();
