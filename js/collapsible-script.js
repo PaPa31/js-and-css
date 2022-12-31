@@ -13,14 +13,21 @@ var clickSelected = function () {
 };
 var gotoPrevSibling = function () {
   hideFocus();
+
   if (selected.previousElementSibling) {
     selected = selected.previousElementSibling;
-  } else if (selected.parentElement.previousElementSibling) {
-    liElems =
-      selected.parentElement.previousElementSibling.getElementsByTagName("li");
-    if (liElems.length) {
-      selected = liElems[0];
-    }
+  } else {
+    //if (selected.parentElement.previousElementSibling) {
+    //  console.log("hi!!!");
+    //  liElems =
+    //    selected.parentElement.previousElementSibling.getElementsByTagName("li");
+    //  console.log(liElems);
+    //  if (liElems.length) {
+    //    console.log("bye!!!");
+    //    selected = liElems[0];
+    //  }
+    //  console.log(selected);
+    //}
   }
   showFocus();
 };
@@ -42,6 +49,30 @@ var gotoFirstChild = function () {
   firstSub = selected.getElementsByTagName("ol")[0];
   if (firstSub) {
     selected = firstSub.getElementsByTagName("li")[0];
+  }
+  showFocus();
+};
+var gotoLastChild = function () {
+  hideFocus();
+  //lastChild = document.querySelector("ol li:last-child");
+  //gotoParent();
+
+  //console.log("SELLL ", selected);
+
+  if (selected.classList.contains("open") === true) {
+    //firstSub = selected.getElementsByTagName("ol")[0];
+    //if (firstSub) {
+    //  selected = firstSub.getElementsByTagName("li")[0];
+    //}
+
+    olElems = selected.previousElementSibling.getElementsByTagName("ol");
+    if (olElems.length) {
+      hideFocus();
+      console.log("bye!!!", "Length = ", olElems.length);
+      selected = olElems[olElems.length - 1].parentElement;
+    }
+
+    console.log("S : ", selected);
   }
   showFocus();
 };
@@ -103,17 +134,40 @@ for (var i = 0; i < treeListItems.length; i++) {
 
 // 5. keyboard handler
 document.addEventListener("keydown", function (e) {
+  var activeTab = document.activeElement;
+  var isInsideNav =
+    activeTab.parentElement && activeTab.parentElement.tagName === "LI";
+  console.log("activeElement = ", document.activeElement.tagName);
+  var isTabActive = document.activeElement.tagName !== "BODY";
+  var hasParentLi = selected.parentElement.parentElement.tagName === "LI";
+  console.log("hasParentLi = ", hasParentLi);
+
   switch (e.key) {
     case "Enter":
-      var checkboxEl = document.getElementById("checkbox");
-      var isFocused = document.activeElement === checkboxEl;
-      if (!isFocused) {
+      if (isInsideNav) {
         e.preventDefault();
         if (selected.firstElementChild) {
           selected.firstElementChild.click();
         } else {
           selected.click();
         }
+      }
+      break;
+    case "Tab":
+      if (isInsideNav) {
+        hideFocus();
+        selected = activeTab;
+        showFocus();
+        if (e.shiftKey) {
+          fromA();
+          gotoPrevSibling();
+        } else {
+          fromA();
+          gotoNextSibling();
+        }
+        //hideFocus();
+        //selected = activeTab;
+        //showFocus();
       }
       break;
     case " ":
@@ -126,7 +180,24 @@ document.addEventListener("keydown", function (e) {
       break;
     case "ArrowUp":
       fromA();
-      gotoPrevSibling();
+      if (selected.previousElementSibling) {
+        console.log("Has Sibling!");
+        if (
+          selected.previousElementSibling.classList.contains("open") === true
+        ) {
+          gotoLastChild();
+          console.log("I point to cousin", selected);
+        } else {
+          gotoPrevSibling();
+          console.log("I point to sibling", selected);
+        }
+      } else {
+        if (hasParentLi) {
+          gotoParent();
+          console.log("I point to parent", selected);
+        } else {
+        }
+      }
       break;
     case "ArrowRight":
       if (
@@ -139,6 +210,8 @@ document.addEventListener("keydown", function (e) {
         clickSelected();
       }
       gotoFirstChild();
+      if (isTabActive && selected.tagName == "LI")
+        selected.firstElementChild.focus();
       break;
     case "ArrowLeft":
       if (selected.tagName == "A") {
