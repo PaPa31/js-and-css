@@ -21,17 +21,13 @@ var gotoPrevSibling = function () {
 var gotoPrevSiblingOrCousin = function (_hasParentLi) {
   if (selected.previousElementSibling) {
     if (selected.previousElementSibling.classList.contains("open") === true) {
-      console.log("Before Point to Cousin", selected);
       gotoLastChild();
-      console.log("Point to Cousin", selected);
     } else {
       gotoPrevSibling();
-      console.log("Point to Sibling", selected);
     }
   } else {
     if (_hasParentLi) {
       gotoParent();
-      console.log("Point to Parent", selected);
     }
   }
 };
@@ -66,7 +62,6 @@ var gotoFirstChild = function () {
 };
 var gotoLastChild = function () {
   olElems = selected.previousElementSibling.getElementsByTagName("ol");
-  console.log(olElems);
   if (olElems.length) {
     hideFocus();
     if (olElems.length !== 1) {
@@ -149,11 +144,9 @@ document.addEventListener("keydown", function (e) {
 
   switch (e.key) {
     case "Enter":
-      console.log(activeTabInsideNav);
       if (isTabActive && activeTabInsideNav) {
       } else {
         e.preventDefault();
-        console.log("Enter is disabled");
         if (selected.firstElementChild) {
           selected.firstElementChild.click();
         } else {
