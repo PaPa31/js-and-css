@@ -40,15 +40,19 @@ var gotoNextSibling = function () {
 };
 var gotoNextSiblingOrCousin = function (_hasParentLi) {
   if (selected.nextElementSibling) {
-    if (selected.classList.contains("open") === true) {
+    if (selected.nextElementSibling.classList.contains("open") === true) {
       gotoFirstChild();
+      console.log("Point to Cousin", selected);
     } else {
       gotoNextSibling();
+      console.log("Point to Sibling", selected);
     }
   } else {
     if (_hasParentLi) {
       gotoParent();
+      console.log("Point to Parent", selected);
       gotoNextSibling();
+      console.log("Point to NextSibling", selected);
     }
   }
 };
@@ -186,11 +190,14 @@ document.addEventListener("keydown", function (e) {
         selected.tagName != "A"
       ) {
         clickSelected();
+        console.log("click not <a>", selected);
       }
       if (selected.tagName == "A" && selected.nextElementSibling) {
         clickSelected();
+        console.log("click <a>", selected);
       }
       gotoFirstChild();
+      console.log("after First Child ", selected);
       if (isTabActive && selected.tagName == "LI")
         selected.firstElementChild.focus();
       break;
