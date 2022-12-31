@@ -212,6 +212,7 @@ document.addEventListener("keydown", function (e) {
           selected = selected.parentElement;
         }
         showFocus();
+
         if (selected.classList.contains("open") === true) {
           clickSelected();
         }
@@ -222,6 +223,9 @@ document.addEventListener("keydown", function (e) {
             clickSelected();
           }
         }
+      }
+      if (isTabActive && selected.tagName == "LI") {
+        selected.firstElementChild.focus();
       }
       break;
   }
