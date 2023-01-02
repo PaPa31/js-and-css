@@ -18,7 +18,7 @@ var gotoPrevSibling = function () {
   }
   showFocus();
 };
-var gotoPrevSiblingOrCousin = function (_hasParentLi) {
+var gotoPrevSiblingOrCousin = function () {
   selPrev = selected.previousElementSibling;
   if (selPrev) {
     if (
@@ -34,9 +34,7 @@ var gotoPrevSiblingOrCousin = function (_hasParentLi) {
       gotoPrevSibling();
     }
   } else {
-    if (_hasParentLi) {
-      gotoParent();
-    }
+    gotoParent();
   }
 };
 var gotoNextSibling = function () {
@@ -156,8 +154,6 @@ document.addEventListener("keydown", function (e) {
     (activeTab.parentElement && activeTab.parentElement.tagName === "LI") ||
     (activeTab.parentElement && activeTab.parentElement.tagName === "P");
 
-  var hasParentLi = selected.parentElement.parentElement.tagName === "LI";
-
   switch (e.key) {
     case "Enter":
       if (isTabActive && activeTabInsideNav) {
@@ -179,7 +175,7 @@ document.addEventListener("keydown", function (e) {
           selected = activeTab;
           fromA();
           if (e.shiftKey) {
-            gotoPrevSiblingOrCousin(hasParentLi);
+            gotoPrevSiblingOrCousin();
           } else {
             gotoNextSiblingOrCousin();
           }
@@ -197,7 +193,7 @@ document.addEventListener("keydown", function (e) {
       break;
     case "ArrowUp":
       fromA();
-      gotoPrevSiblingOrCousin(hasParentLi);
+      gotoPrevSiblingOrCousin();
       break;
     case "ArrowRight":
       if (
