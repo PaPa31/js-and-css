@@ -169,7 +169,10 @@ document.addEventListener("keydown", function (e) {
     case "Tab":
       if (activeTabInsideNav) {
         hideFocus();
-        if (activeTab.parentElement.nextElementSibling.tagName === "NAV") {
+        if (
+          activeTab.parentElement.nextElementSibling &&
+          activeTab.parentElement.nextElementSibling.tagName === "NAV"
+        ) {
           selected = initialSelected;
         } else {
           selected = activeTab;
