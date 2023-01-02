@@ -42,21 +42,25 @@ var gotoNextSibling = function () {
   }
   showFocus();
 };
-var gotoNextSiblingOrCousin = function (_hasParentLi) {
+var gotoNextSiblingOrCousin = function () {
   if (
     selected.classList.contains("open") === true &&
     selected.children.length !== 1
   ) {
     gotoFirstChild();
   } else {
-    selNext = selected.nextElementSibling;
-    if (selNext) {
+    if (selected.nextElementSibling) {
       gotoNextSibling();
     } else {
-      if (_hasParentLi) {
+      fromA();
+      gotoParent();
+      if (
+        !selected.nextElementSibling &&
+        selected.parentElement.parentElement.tagName === "LI"
+      ) {
         gotoParent();
-        gotoNextSibling();
       }
+      gotoNextSibling();
     }
   }
 };
@@ -169,12 +173,11 @@ document.addEventListener("keydown", function (e) {
           selected = initialSelected;
         } else {
           selected = activeTab;
+          fromA();
           if (e.shiftKey) {
-            fromA();
             gotoPrevSiblingOrCousin(hasParentLi);
           } else {
-            fromA();
-            gotoNextSiblingOrCousin(hasParentLi);
+            gotoNextSiblingOrCousin();
           }
         }
         showFocus();
@@ -186,7 +189,7 @@ document.addEventListener("keydown", function (e) {
       break;
     case "ArrowDown":
       fromA();
-      gotoNextSiblingOrCousin(hasParentLi);
+      gotoNextSiblingOrCousin();
       break;
     case "ArrowUp":
       fromA();
