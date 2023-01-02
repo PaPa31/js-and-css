@@ -21,21 +21,17 @@ var gotoPrevSibling = function () {
 var gotoPrevSiblingOrCousin = function (_hasParentLi) {
   selPrev = selected.previousElementSibling;
   if (selPrev) {
-    console.log(selPrev.children.length);
     if (
       selected.previousElementSibling.classList.contains("open") === true &&
       selPrev.children.length !== 1
     ) {
       gotoLastChild();
-      console.log("PREV Point to Cousin", selected);
     } else {
       gotoPrevSibling();
-      console.log("PREV Point to Sibling", selected);
     }
   } else {
     if (_hasParentLi) {
       gotoParent();
-      console.log("PREV Point to Parent", selected);
     }
   }
 };
@@ -52,28 +48,14 @@ var gotoNextSiblingOrCousin = function (_hasParentLi) {
     selected.children.length !== 1
   ) {
     gotoFirstChild();
-    console.log("to child =>", selected);
   } else {
-    console.log("ENTER to SIBLING TEST");
     selNext = selected.nextElementSibling;
     if (selNext) {
-      console.log(selNext.children.length);
-      //if (
-      //  selected.nextElementSibling.classList.contains("open") === true &&
-      //  selNext.children.length !== 1
-      //) {
-      //  gotoFirstChild();
-      //  console.log("NEXT Point to Cousin", selected);
-      //} else {
       gotoNextSibling();
-      console.log("NEXT Point to Sibling", selected);
-      //}
     } else {
       if (_hasParentLi) {
         gotoParent();
-        console.log("NEXT Point to Parent", selected);
         gotoNextSibling();
-        console.log("NEXT Point to NextSibling", selected);
       }
     }
   }
@@ -163,13 +145,8 @@ document.addEventListener("keydown", function (e) {
   var isTabActive = activeTab.tagName !== "BODY";
   var activeTabInsideNav =
     activeTab.parentElement && activeTab.parentElement.tagName === "LI";
-  console.log("activeElement = ", activeTab.tagName);
 
   var hasParentLi = selected.parentElement.parentElement.tagName === "LI";
-  console.log("hasParentLi = ", hasParentLi);
-
-  //var hasOnlyOneChildren = selected.children.length === 1;
-  //console.log("hasOnlyOneChildren = ", hasOnlyOneChildren);
 
   switch (e.key) {
     case "Enter":
@@ -215,14 +192,11 @@ document.addEventListener("keydown", function (e) {
         selected.tagName != "A"
       ) {
         clickSelected();
-        console.log("ARROW RIGHT click not <a>", selected);
       }
       if (selected.tagName == "A" && selected.nextElementSibling) {
         clickSelected();
-        console.log("ARROW RIGHT click <a>", selected);
       }
       gotoFirstChild();
-      console.log("ARROW RIGHT after First Child ", selected);
       if (isTabActive && selected.tagName == "LI")
         selected.firstElementChild.focus();
       break;
