@@ -25,7 +25,11 @@ var gotoPrevSiblingOrCousin = function (_hasParentLi) {
       selected.previousElementSibling.classList.contains("open") === true &&
       selPrev.children.length !== 1
     ) {
+      gotoPrevSibling();
       gotoLastChild();
+      if (selected.classList.contains("open") === true) {
+        gotoLastChild();
+      }
     } else {
       gotoPrevSibling();
     }
@@ -73,13 +77,13 @@ var gotoFirstChild = function () {
   showFocus();
 };
 var gotoLastChild = function () {
-  olElems = selected.previousElementSibling.getElementsByTagName("ol");
+  olElems = selected.getElementsByTagName("ol");
   if (olElems.length) {
     hideFocus();
     if (olElems.length !== 1) {
       selected = olElems[olElems.length - 1].parentElement;
     } else {
-      liElems = selected.previousElementSibling.getElementsByTagName("li");
+      liElems = selected.getElementsByTagName("li");
       if (liElems.length) {
         selected = liElems[liElems.length - 1];
       }
