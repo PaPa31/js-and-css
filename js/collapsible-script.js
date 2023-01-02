@@ -19,15 +19,23 @@ var gotoPrevSibling = function () {
   showFocus();
 };
 var gotoPrevSiblingOrCousin = function (_hasParentLi) {
-  if (selected.previousElementSibling) {
-    if (selected.previousElementSibling.classList.contains("open") === true) {
+  selPrev = selected.previousElementSibling;
+  if (selPrev) {
+    console.log(selPrev.children.length);
+    if (
+      selected.previousElementSibling.classList.contains("open") === true &&
+      selPrev.children.length !== 1
+    ) {
       gotoLastChild();
+      console.log("PREV Point to Cousin", selected);
     } else {
       gotoPrevSibling();
+      console.log("PREV Point to Sibling", selected);
     }
   } else {
     if (_hasParentLi) {
       gotoParent();
+      console.log("PREV Point to Parent", selected);
     }
   }
 };
@@ -39,20 +47,34 @@ var gotoNextSibling = function () {
   showFocus();
 };
 var gotoNextSiblingOrCousin = function (_hasParentLi) {
-  if (selected.nextElementSibling) {
-    if (selected.nextElementSibling.classList.contains("open") === true) {
-      gotoFirstChild();
-      console.log("Point to Cousin", selected);
-    } else {
-      gotoNextSibling();
-      console.log("Point to Sibling", selected);
-    }
+  if (
+    selected.classList.contains("open") === true &&
+    selected.children.length !== 1
+  ) {
+    gotoFirstChild();
+    console.log("to child =>", selected);
   } else {
-    if (_hasParentLi) {
-      gotoParent();
-      console.log("Point to Parent", selected);
+    console.log("ENTER to SIBLING TEST");
+    selNext = selected.nextElementSibling;
+    if (selNext) {
+      console.log(selNext.children.length);
+      //if (
+      //  selected.nextElementSibling.classList.contains("open") === true &&
+      //  selNext.children.length !== 1
+      //) {
+      //  gotoFirstChild();
+      //  console.log("NEXT Point to Cousin", selected);
+      //} else {
       gotoNextSibling();
-      console.log("Point to NextSibling", selected);
+      console.log("NEXT Point to Sibling", selected);
+      //}
+    } else {
+      if (_hasParentLi) {
+        gotoParent();
+        console.log("NEXT Point to Parent", selected);
+        gotoNextSibling();
+        console.log("NEXT Point to NextSibling", selected);
+      }
     }
   }
 };
@@ -146,6 +168,9 @@ document.addEventListener("keydown", function (e) {
   var hasParentLi = selected.parentElement.parentElement.tagName === "LI";
   console.log("hasParentLi = ", hasParentLi);
 
+  //var hasOnlyOneChildren = selected.children.length === 1;
+  //console.log("hasOnlyOneChildren = ", hasOnlyOneChildren);
+
   switch (e.key) {
     case "Enter":
       if (isTabActive && activeTabInsideNav) {
@@ -190,14 +215,14 @@ document.addEventListener("keydown", function (e) {
         selected.tagName != "A"
       ) {
         clickSelected();
-        console.log("click not <a>", selected);
+        console.log("ARROW RIGHT click not <a>", selected);
       }
       if (selected.tagName == "A" && selected.nextElementSibling) {
         clickSelected();
-        console.log("click <a>", selected);
+        console.log("ARROW RIGHT click <a>", selected);
       }
       gotoFirstChild();
-      console.log("after First Child ", selected);
+      console.log("ARROW RIGHT after First Child ", selected);
       if (isTabActive && selected.tagName == "LI")
         selected.firstElementChild.focus();
       break;
