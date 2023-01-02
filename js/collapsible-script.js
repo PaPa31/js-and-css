@@ -109,6 +109,7 @@ selected = document
   .getElementsByTagName("nav")[0]
   .firstElementChild.getElementsByTagName("li")[0];
 showFocus();
+var initialSelected = selected;
 
 var aList = document.querySelectorAll("nav a");
 for (var i = 0; i < aList.length; i++) {
@@ -144,7 +145,8 @@ document.addEventListener("keydown", function (e) {
   var activeTab = document.activeElement;
   var isTabActive = activeTab.tagName !== "BODY";
   var activeTabInsideNav =
-    activeTab.parentElement && activeTab.parentElement.tagName === "LI";
+    (activeTab.parentElement && activeTab.parentElement.tagName === "LI") ||
+    (activeTab.parentElement && activeTab.parentElement.tagName === "P");
 
   var hasParentLi = selected.parentElement.parentElement.tagName === "LI";
 
@@ -163,15 +165,19 @@ document.addEventListener("keydown", function (e) {
     case "Tab":
       if (activeTabInsideNav) {
         hideFocus();
-        selected = activeTab;
-        showFocus();
-        if (e.shiftKey) {
-          fromA();
-          gotoPrevSiblingOrCousin(hasParentLi);
+        if (activeTab.parentElement.nextElementSibling.tagName === "NAV") {
+          selected = initialSelected;
         } else {
-          fromA();
-          gotoNextSiblingOrCousin(hasParentLi);
+          selected = activeTab;
+          if (e.shiftKey) {
+            fromA();
+            gotoPrevSiblingOrCousin(hasParentLi);
+          } else {
+            fromA();
+            gotoNextSiblingOrCousin(hasParentLi);
+          }
         }
+        showFocus();
       }
       break;
     case " ":
