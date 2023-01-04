@@ -30,10 +30,6 @@ nav > ol ol ol {
   margin: 8px 0 0 10px !important;
 }
 
-nav > ol ol ol a {
-  padding-left: 10px;
-}
-
 nav > ol li ol {
   display: none;
   padding-left: 0px;
@@ -119,8 +115,8 @@ nav > ol > li:not([data-type="preface"]) > ol > li > a {
   margin-left: 9px;
 }
 
-nav > ol > li.open > ol > li.open > ol > li a {
-  margin-left: 20px;
+nav > ol > li.open > ol > li.open > ol > li {
+  padding-left: 35px;
 }
 
 nav > ol > li::before {
