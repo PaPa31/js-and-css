@@ -19,7 +19,7 @@ nav > ol li {
 nav > ol > li > ol > li {
   padding-top: 0.4em;
   padding-bottom: 0.4em;
-  padding-left: 15px;
+  padding-left: 16px;
 }
 
 nav > ol > li {
@@ -185,4 +185,44 @@ li[style="font-weight: bold;"] {
 .dark a[style="font-weight: bold;"],
 .dark li[style="font-weight: bold;"] {
   color: #df9509;
+}
+
+li > :only-child::before {
+  content: ">";
+  background-color: #fff;
+  z-index: 999;
+  padding: 0 4px 0 0;
+  position: absolute;
+}
+
+nav > ol > li > :only-child::before {
+  left: -22px;
+  top: 4px;
+}
+
+nav > ol > li > ol > li > :only-child::before {
+  left: -2px;
+  top: 7px;
+}
+
+nav > ol > li > ol > li > ol > li :only-child::before {
+  left: 17px;
+  top: 2px;
+}
+
+.dark li > :only-child::before {
+  color: #83a61d;
+  background-color: #2d2d2d;
+}
+
+a[style="font-weight: bold;"]:only-child::before,
+li[style="font-weight: bold;"] > a:only-child::before {
+  color: red;
+  font-weight: bold;
+}
+
+.dark a[style="font-weight: bold;"]:only-child::before,
+.dark li[style="font-weight: bold;"] > a:only-child::before {
+  color: #df9509;
+  font-weight: bold;
 }
