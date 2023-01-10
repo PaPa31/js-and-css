@@ -54,7 +54,6 @@ nav > ol li::after {
   border-width: 0px;
 }
 nav > ol li::before {
-  content: ">";
   width: 8px;
   border-bottom-width: 1px;
 }
@@ -133,14 +132,10 @@ li.open:not([data-type="preface"]) > ol > li.open::before {
   content: "⊟";
 }
 
-ol li ol li ol li::before {
+.no-child::before {
   content: ">" !important;
 }
 
-nav > ol > li[data-type="part"]::before,
-nav > ol > li[data-type="index"]::before {
-  content: ">";
-}
 nav > ol > li[data-type="part"] {
   margin: 35px 0 35px 5px;
 }

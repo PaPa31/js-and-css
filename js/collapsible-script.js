@@ -122,6 +122,14 @@ for (var i = 0; i < aList.length; i++) {
   aList[i].target = "_blank";
 }
 
+var liList = document.querySelectorAll("nav > ol li");
+for (var i = 0; i < liList.length; i++) {
+  // no-child filter
+  if (!liList[i].firstElementChild.nextElementSibling) {
+    liList[i].classList.add("no-child");
+  }
+}
+
 // 4. click handlers
 var treeListItems = document.querySelectorAll("nav > ol > li");
 for (var i = 0; i < treeListItems.length; i++) {
