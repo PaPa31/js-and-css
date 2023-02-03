@@ -616,9 +616,12 @@ div.informalfigure {
 div.sidebar {
   margin: 15px 0px 10px 0px !important;
   border: 1px solid #dcdcdc;
-  background-color: #f7f7f7;
   padding: 15px !important;
   page-break-inside: avoid;
+}
+
+.dark div.sidebar {
+  border: 1px solid #6a6a6a;
 }
 
 aside[data-type="sidebar"] {
