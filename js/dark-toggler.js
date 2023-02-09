@@ -1,3 +1,11 @@
+window.addEventListener("click", function (e) {
+  const href = e.target.getAttribute("href");
+  if (href) {
+    location.href = href + "?isDark=" + isDark();
+    e.preventDefault();
+  }
+});
+
 if (document.getElementById("checkbox")) {
   const checkbox = document.getElementById("checkbox");
 
@@ -35,8 +43,6 @@ if (document.getElementsByTagName("nav")[0]) {
   aEl.setAttribute("title", "Click or hit Space");
   aEl.innerHTML = "Expand all: 1 level";
   pWrapExpand.appendChild(aEl);
-} else {
-  console.log("Cannot find node <nav>!");
 }
 
 if (
@@ -123,10 +129,12 @@ if (
 function moveToHash() {
   let urlHash = window.location.hash;
 
+  urlHash = urlHash.split("?")[0];
+
   if (urlHash) {
     location.replace(urlHash);
     window.scrollBy({
-      top: -80,
+      top: -140,
       left: 0,
       behavior: "smooth",
     });
