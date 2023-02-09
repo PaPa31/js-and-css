@@ -15,7 +15,18 @@ if (document.getElementsByTagName("nav")[0]) {
   const navEl = document.getElementsByTagName("nav")[0];
   const pWrapExpand = document.createElement("p");
   pWrapExpand.setAttribute("id", "wrap-expand");
-  document.body.insertBefore(pWrapExpand, navEl);
+
+  const _nav = navEl.parentElement;
+  // add toUpperCase to fix "samecase" XML issue
+  if (_nav.tagName.toUpperCase() === "BODY") {
+    document.body.insertBefore(pWrapExpand, navEl);
+  } else {
+    if (_nav.parentElement.tagName.toUpperCase() === "BODY") {
+      document.body.insertBefore(pWrapExpand, navEl.parentElement);
+    } else {
+      console.log("Unable to determine nesting level of <nav>!");
+    }
+  }
 
   const aEl = document.createElement("a");
   aEl.setAttribute("id", "expand");
@@ -24,6 +35,8 @@ if (document.getElementsByTagName("nav")[0]) {
   aEl.setAttribute("title", "Click or hit Space");
   aEl.innerHTML = "Expand all: 1 level";
   pWrapExpand.appendChild(aEl);
+} else {
+  console.log("Cannot find node <nav>!");
 }
 
 if (

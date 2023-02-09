@@ -1,6 +1,7 @@
 var selected;
 var showFocus = function () {
-  if (selected.tagName != "OL") {
+  // add toUpperCase to fix "samecase" XML issue
+  if (selected.tagName.toUpperCase() != "OL") {
     selected.style.fontWeight = "bold";
   }
 };
@@ -8,7 +9,7 @@ var hideFocus = function () {
   selected.style.fontWeight = "normal";
 };
 var clickSelected = function () {
-  if (selected.tagName == "A") selected.parentElement.click();
+  if (selected.tagName.toUpperCase() == "A") selected.parentElement.click();
   else selected.click();
 };
 var gotoPrevSibling = function () {
@@ -58,7 +59,7 @@ var gotoNextSiblingOrCousin = function () {
       gotoParent();
       if (
         !selected.nextElementSibling &&
-        selected.parentElement.parentElement.tagName === "LI"
+        selected.parentElement.parentElement.tagName.toUpperCase() === "LI"
       ) {
         gotoParent();
       }
@@ -94,16 +95,16 @@ var gotoParent = function () {
   if (
     selected.parentElement &&
     selected.parentElement.parentElement &&
-    selected.parentElement.parentElement.tagName != "NAV"
+    selected.parentElement.parentElement.tagName.toUpperCase() != "NAV"
   ) {
     selected = selected.parentElement.parentElement;
   }
   showFocus();
 };
 var fromA = function () {
-  if (selected.tagName == "A") {
+  if (selected.tagName.toUpperCase() == "A") {
     hideFocus();
-    if (selected.parentElement.tagName != "NAV") {
+    if (selected.parentElement.tagName.toUpperCase() != "NAV") {
       selected = selected.parentElement;
     }
     showFocus();
@@ -157,10 +158,12 @@ for (var i = 0; i < treeListItems.length; i++) {
 // 5. keyboard handler
 document.addEventListener("keydown", function (e) {
   var activeTab = document.activeElement;
-  var isTabActive = activeTab.tagName !== "BODY";
+  var isTabActive = activeTab.tagName.toUpperCase() !== "BODY";
   var activeTabInsideNav =
-    (activeTab.parentElement && activeTab.parentElement.tagName === "LI") ||
-    (activeTab.parentElement && activeTab.parentElement.tagName === "P");
+    (activeTab.parentElement &&
+      activeTab.parentElement.tagName.toUpperCase() === "LI") ||
+    (activeTab.parentElement &&
+      activeTab.parentElement.tagName.toUpperCase() === "P");
 
   switch (e.key) {
     case "Enter":
@@ -179,7 +182,8 @@ document.addEventListener("keydown", function (e) {
         hideFocus();
         if (
           activeTab.parentElement.nextElementSibling &&
-          activeTab.parentElement.nextElementSibling.tagName === "NAV"
+          activeTab.parentElement.nextElementSibling.tagName.toUpperCase() ===
+            "NAV"
         ) {
           selected = initialSelected;
         } else {
@@ -209,22 +213,26 @@ document.addEventListener("keydown", function (e) {
     case "ArrowRight":
       if (
         selected.classList.contains("open") === false &&
-        selected.tagName != "A"
+        selected.tagName.toUpperCase() != "A"
       ) {
         clickSelected();
       }
-      if (selected.tagName == "A" && selected.nextElementSibling) {
+      if (
+        selected.tagName.toUpperCase() == "A" &&
+        selected.nextElementSibling
+      ) {
         clickSelected();
       }
       gotoFirstChild();
-      if (isTabActive && selected.tagName == "LI")
+      if (isTabActive && selected.tagName.toUpperCase() == "LI")
         selected.firstElementChild.focus();
       break;
     case "ArrowLeft":
-      if (selected.tagName == "A") {
+      if (selected.tagName.toUpperCase() == "A") {
         hideFocus();
         if (
-          selected.parentElement.parentElement.parentElement.tagName != "NAV"
+          selected.parentElement.parentElement.parentElement.tagName.toUpperCase() !=
+          "NAV"
         ) {
           selected = selected.parentElement.parentElement.parentElement;
         } else {
@@ -236,14 +244,14 @@ document.addEventListener("keydown", function (e) {
           clickSelected();
         }
       } else {
-        if (selected.parentElement.tagName != "NAV") {
+        if (selected.parentElement.tagName.toUpperCase() != "NAV") {
           gotoParent();
           if (selected.classList.contains("open") === true) {
             clickSelected();
           }
         }
       }
-      if (isTabActive && selected.tagName == "LI") {
+      if (isTabActive && selected.tagName.toUpperCase() == "LI") {
         selected.firstElementChild.focus();
       }
       break;
