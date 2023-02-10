@@ -79,28 +79,18 @@ window.addEventListener("load", (event) => {
         }
       }
 
-      const value = window.location.href.slice(window.location.href.indexOf('?') + 1);
+      const url = window.location.href;
+      const value = url.slice(url.indexOf('?') + 1);
       const val = value.split("=")[1];
 
-      if ((val === undefined) && !!isDark()) {
-        localStorage.setItem("dark-mode", "set");
-        document.body.classList.add("dark");
-      }
 
-      if ((val === undefined) && !isDark()) {
-        localStorage.removeItem("dark-mode");
-        document.body.classList.remove("dark");
-      }
-
-      if ((val !== undefined) && val === 'set') {
-        localStorage.setItem("dark-mode", "set");
-        document.body.classList.add("dark");
-      }
-
-      if ((val !== undefined) && val === 'null') {
-        localStorage.removeItem("dark-mode");
-        document.body.classList.remove("dark");
-      }
+        if (!((!val && !isDark()) || (val === 'null')) || ((!val && !!isDark()) || (val === 'set'))) {
+          localStorage.setItem("dark-mode", "set");
+          document.body.classList.add("dark");
+        } else {
+          localStorage.removeItem("dark-mode");
+          document.body.classList.remove("dark");
+        }
     `;
     // ✅ Insert element as first in body
     document.body.insertAdjacentElement("afterbegin", scriptStorage);
