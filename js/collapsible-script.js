@@ -114,7 +114,8 @@ var fromA = function () {
 // 3. selection box, default on the first item on the tree
 selected = document
   .getElementsByTagName("nav")[0]
-  .firstElementChild.getElementsByTagName("li")[0];
+  .getElementsByTagName("ol")[0]
+  .getElementsByTagName("li")[0];
 showFocus();
 var initialSelected = selected;
 
