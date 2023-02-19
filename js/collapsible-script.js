@@ -166,6 +166,13 @@ document.addEventListener("keydown", function (e) {
     (activeTab.parentElement &&
       activeTab.parentElement.tagName.toUpperCase() === "P");
 
+  var parentNav =
+    document
+      .getElementsByTagName("nav")[0]
+      .parentElement.tagName.toUpperCase() === "BODY"
+      ? "NAV"
+      : "DIV";
+
   switch (e.key) {
     case "Enter":
       if (isTabActive && activeTabInsideNav) {
@@ -184,17 +191,15 @@ document.addEventListener("keydown", function (e) {
         if (
           activeTab.parentElement.nextElementSibling &&
           activeTab.parentElement.nextElementSibling.tagName.toUpperCase() ===
-            "NAV"
+            parentNav
         ) {
           selected = initialSelected;
         } else {
           selected = activeTab;
           fromA();
           if (e.shiftKey) {
-            console.log("selected SHIFT+TAB: ", selected);
             gotoPrevSiblingOrCousin();
           } else {
-            console.log("selected TAB: ", selected);
             gotoNextSiblingOrCousin();
           }
         }
