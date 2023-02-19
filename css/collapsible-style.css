@@ -3,6 +3,10 @@
   padding: 20px;
 }
 
+#wrap-expand {
+  margin-bottom: 15px;
+}
+
 #wrap-expand,
 nav {
   padding-left: 23px;
