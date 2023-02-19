@@ -155,6 +155,10 @@ body.dark {
   color: #7f9ffd;
 }
 
+.dark pre code.go {
+  color: #ddd;
+}
+
 .dark a.ulink,
 .dark a.xref,
 .dark a.email,
