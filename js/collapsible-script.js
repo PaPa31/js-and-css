@@ -1,7 +1,7 @@
 var selected;
 var showFocus = function () {
   // add toUpperCase to fix "samecase" XML issue
-  if (selected.tagName.toUpperCase() != "OL") {
+  if (selected.tagName.toUpperCase() !== "OL") {
     selected.style.fontWeight = "bold";
   }
 };
@@ -9,7 +9,7 @@ var hideFocus = function () {
   selected.style.fontWeight = "normal";
 };
 var clickSelected = function () {
-  if (selected.tagName.toUpperCase() == "A") selected.parentElement.click();
+  if (selected.tagName.toUpperCase() === "A") selected.parentElement.click();
   else selected.click();
 };
 var gotoPrevSibling = function () {
@@ -95,16 +95,16 @@ var gotoParent = function () {
   if (
     selected.parentElement &&
     selected.parentElement.parentElement &&
-    selected.parentElement.parentElement.tagName.toUpperCase() != "NAV"
+    selected.parentElement.parentElement.tagName.toUpperCase() !== "NAV"
   ) {
     selected = selected.parentElement.parentElement;
   }
   showFocus();
 };
 var fromA = function () {
-  if (selected.tagName.toUpperCase() == "A") {
+  if (selected.tagName.toUpperCase() === "A") {
     hideFocus();
-    if (selected.parentElement.tagName.toUpperCase() != "NAV") {
+    if (selected.parentElement.tagName.toUpperCase() !== "NAV") {
       selected = selected.parentElement;
     }
     showFocus();
@@ -191,8 +191,10 @@ document.addEventListener("keydown", function (e) {
           selected = activeTab;
           fromA();
           if (e.shiftKey) {
+            console.log("selected SHIFT+TAB: ", selected);
             gotoPrevSiblingOrCousin();
           } else {
+            console.log("selected TAB: ", selected);
             gotoNextSiblingOrCousin();
           }
         }
@@ -214,25 +216,25 @@ document.addEventListener("keydown", function (e) {
     case "ArrowRight":
       if (
         selected.classList.contains("open") === false &&
-        selected.tagName.toUpperCase() != "A"
+        selected.tagName.toUpperCase() !== "A"
       ) {
         clickSelected();
       }
       if (
-        selected.tagName.toUpperCase() == "A" &&
+        selected.tagName.toUpperCase() === "A" &&
         selected.nextElementSibling
       ) {
         clickSelected();
       }
       gotoFirstChild();
-      if (isTabActive && selected.tagName.toUpperCase() == "LI")
+      if (isTabActive && selected.tagName.toUpperCase() === "LI")
         selected.firstElementChild.focus();
       break;
     case "ArrowLeft":
-      if (selected.tagName.toUpperCase() == "A") {
+      if (selected.tagName.toUpperCase() === "A") {
         hideFocus();
         if (
-          selected.parentElement.parentElement.parentElement.tagName.toUpperCase() !=
+          selected.parentElement.parentElement.parentElement.tagName.toUpperCase() !==
           "NAV"
         ) {
           selected = selected.parentElement.parentElement.parentElement;
@@ -245,14 +247,14 @@ document.addEventListener("keydown", function (e) {
           clickSelected();
         }
       } else {
-        if (selected.parentElement.tagName.toUpperCase() != "NAV") {
+        if (selected.parentElement.tagName.toUpperCase() !== "NAV") {
           gotoParent();
           if (selected.classList.contains("open") === true) {
             clickSelected();
           }
         }
       }
-      if (isTabActive && selected.tagName.toUpperCase() == "LI") {
+      if (isTabActive && selected.tagName.toUpperCase() === "LI") {
         selected.firstElementChild.focus();
       }
       break;
