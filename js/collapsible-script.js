@@ -35,13 +35,45 @@ var gotoPrevSiblingOrCousin = function () {
       gotoPrevSibling();
     }
   } else {
-    gotoParent();
+    const siblingNav =
+      selected.closest("nav").previousElementSibling.tagName.toUpperCase() ===
+      "NAV"
+        ? true
+        : false;
+    if (!siblingNav) {
+      gotoParent();
+    } else {
+      console.log("selected_4_before: ", selected);
+      hideFocus();
+      selected = selected.closest("nav").previousElementSibling;
+      gotoLastChild();
+      if (selected.classList.contains("open") === true) {
+        gotoLastChild();
+        if (selected.classList.contains("open") === true) {
+          gotoLastChild();
+        }
+      }
+      console.log("selected_4_after: ", selected);
+    }
   }
 };
 var gotoNextSibling = function () {
   hideFocus();
   if (selected.nextElementSibling) {
     selected = selected.nextElementSibling;
+  } else {
+    const siblingNav =
+      selected.closest("nav").nextElementSibling.tagName.toUpperCase() === "NAV"
+        ? true
+        : false;
+    if (!siblingNav) {
+    } else {
+      console.log("selected_3_before: ", selected);
+      hideFocus();
+      selected = selected.closest("nav").nextElementSibling;
+      gotoFirstChild();
+      console.log("selected_3_after: ", selected);
+    }
   }
   showFocus();
 };
@@ -55,13 +87,16 @@ var gotoNextSiblingOrCousin = function () {
     if (selected.nextElementSibling) {
       gotoNextSibling();
     } else {
+      console.log("selected_1_before gotoParent: ", selected);
       fromA();
       gotoParent();
+      console.log("selected_1_After: ", selected);
       if (
         !selected.nextElementSibling &&
         selected.parentElement.parentElement.tagName.toUpperCase() === "LI"
       ) {
         gotoParent();
+        console.log("selected_2: ", selected);
       }
       gotoNextSibling();
     }
@@ -76,13 +111,19 @@ var gotoFirstChild = function () {
   showFocus();
 };
 var gotoLastChild = function () {
-  olElems = selected.getElementsByTagName("ol");
+  console.log("selected before ol[0]: ", selected);
+  olElems = selected.querySelectorAll(`${selected.tagName.toLowerCase()} > ol`);
+  console.log(olElems);
+  console.log("ol: ", olElems.length);
   if (olElems.length) {
     hideFocus();
     if (olElems.length !== 1) {
       selected = olElems[olElems.length - 1].parentElement;
     } else {
-      liElems = selected.getElementsByTagName("li");
+      liElems = selected.querySelectorAll(
+        `${selected.tagName.toLowerCase()}> ol > li`
+      );
+      console.log("li: ", liElems.length);
       if (liElems.length) {
         selected = liElems[liElems.length - 1];
       }
@@ -92,11 +133,18 @@ var gotoLastChild = function () {
 };
 var gotoParent = function () {
   hideFocus();
+  //const siblingNav =
+  //  selected.closest("nav").nextElementSibling.tagName.toUpperCase() === "NAV"
+  //    ? true
+  //    : false;
+  //console.log(siblingNav);
+  //console.log(selected.parentElement.parentElement.tagName.toUpperCase());
   if (
     selected.parentElement &&
     selected.parentElement.parentElement &&
     selected.parentElement.parentElement.tagName.toUpperCase() !== "NAV"
   ) {
+    //console.log(selected.parentElement.parentElement.tagName);
     selected = selected.parentElement.parentElement;
   }
   showFocus();
