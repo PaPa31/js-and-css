@@ -16,55 +16,91 @@ var gotoPrevSibling = function () {
   console.log("gotoPrevSibling");
   hideFocus();
   if (selected.previousElementSibling) {
+    console.log("gotoPrevSibling_9_before: ", selected);
     selected = selected.previousElementSibling;
+    console.log("gotoPrevSibling_9_after: ", selected);
   } else {
-    const siblingNav =
-      selected.closest("nav").previousElementSibling.tagName.toUpperCase() ===
-      "NAV"
-        ? true
-        : false;
-    if (!siblingNav) {
-      gotoParent();
-    } else {
-      console.log("gotoPrevSibling_4_before: ", selected);
-      hideFocus();
-      selected = selected.closest("nav").previousElementSibling;
-      gotoLastChild();
-      if (selected.classList.contains("open") === true) {
-        gotoLastChild();
-        if (selected.classList.contains("open") === true) {
-          gotoLastChild();
-        }
-      }
-      console.log("gotoPrevSibling_4_after: ", selected);
-    }
+    gotoPrevUncle();
   }
   showFocus();
 };
-var gotoPrevSiblingOrCousin = function () {
-  console.log("gotoPrevSiblingOrCousin");
-  selPrev = selected.previousElementSibling;
+//var gotoPrevCousin = function () {
+//  console.log("gotoPrevCousin");
+//  gotoParent()
+//  hideFocus();
+//  if (selected.previousElementSibling) {
+//    console.log("gotoPrevSibling_10_before: ", selected);
+//    selected = selected.previousElementSibling;
+//    console.log("gotoPrevSibling_10_after: ", selected);
+//  } else {
+//    gotoPrevUncle();
+//  }
+//  showFocus();
+//};
+var gotoPrevUncle = function () {
+  console.log("gotoPrevUncle");
+  const siblingNav =
+    selected.closest("nav").previousElementSibling.tagName.toUpperCase() ===
+    "NAV"
+      ? true
+      : false;
+  if (!siblingNav) {
+    console.log("Strange!!");
+    gotoParent();
+  } else {
+    hideFocus();
+    console.log("gotoPrevUncle_4_before: ", selected);
+    selected = selected.closest("nav").previousElementSibling;
+    console.log("gotoPrevUncle_4_after: ", selected);
+    gotoLastChild();
+    console.log("1", selected);
+    if (selected.classList.contains("open") === true) {
+      console.log("gotoPrev_4.1_before: ", selected);
+      gotoLastChild();
+      console.log("gotoPrev_4.1_after: ", selected);
+    }
+    if (selected.classList.contains("open") === true) {
+      gotoLastChild();
+      console.log("2", selected);
+      if (selected.classList.contains("open") === true) {
+        gotoLastChild("3", selected);
+      }
+    }
+    console.log("gotoPrevUncle_444_after: ", selected);
+  }
+};
+
+var gotoPrev = function () {
+  console.log("gotoPrev");
+  const selPrev = selected.previousElementSibling;
   if (selPrev) {
     if (
       selected.previousElementSibling.classList.contains("open") === true &&
       selPrev.children.length !== 1
     ) {
-      console.log("gotoPrevSiblingOrCousin_5_before: ", selected);
+      console.log("gotoPrev_5_before: ", selected);
       gotoPrevSibling();
       gotoLastChild();
+      console.log("gotoPrev_5_after: ", selected);
       if (selected.classList.contains("open") === true) {
+        console.log("gotoPrev_5.1_before: ", selected);
         gotoLastChild();
+        console.log("gotoPrev_5.1_after: ", selected);
+        if (selected.classList.contains("open") === true) {
+          console.log("gotoPrev_5.2_before: ", selected);
+          gotoLastChild();
+          console.log("gotoPrev_5.2_after: ", selected);
+        }
       }
-      console.log("gotoPrevSiblingOrCousin_5_before: ", selected);
     } else {
-      console.log("gotoPrevSiblingOrCousin_7_before: ", selected);
+      console.log("gotoPrev_7_before: ", selected);
       gotoPrevSibling();
-      console.log("gotoPrevSiblingOrCousin_7_before: ", selected);
+      console.log("gotoPrev_7_before: ", selected);
     }
   } else {
-    console.log("gotoPrevSiblingOrCousin_6_before: ", selected);
+    console.log("gotoPrev_6_before: ", selected);
     gotoPrevSibling();
-    console.log("gotoPrevSiblingOrCousin_6_before: ", selected);
+    console.log("gotoPrev_6_before: ", selected);
   }
 };
 var gotoNextSibling = function () {
@@ -131,6 +167,7 @@ var gotoLastChild = function () {
   console.log("gotoLastChild");
   console.log("selected before ol[0]: ", selected);
   olElems = selected.querySelectorAll("ol")[0];
+  //const olElems = selected.firstElementChild;
   console.log(olElems);
   console.log("ol: ", olElems.length);
   hideFocus();
@@ -138,7 +175,7 @@ var gotoLastChild = function () {
     if (olElems.length !== 1) {
       selected = olElems[olElems.length - 1].parentElement;
     } else {
-      liElems = selected.querySelectorAll(
+      const liElems = selected.querySelectorAll(
         `${selected.tagName.toLowerCase()}> ol > li`
       );
       console.log("li (ol.length): ", liElems.length);
@@ -147,13 +184,17 @@ var gotoLastChild = function () {
       }
     }
   } else {
-    liElems = selected.querySelectorAll(
-      `${selected.tagName.toLowerCase()}> ol > li`
-    );
+    //const liElems = selected.querySelectorAll(
+    //  `${selected.tagName.toLowerCase()}> ol > li`
+    //);
+    selected = olElems;
+    const liElems = selected.children;
+    console.log(liElems);
     console.log("li (ol alone): ", liElems.length);
     if (liElems.length) {
       selected = liElems[liElems.length - 1];
     }
+    console.log("gotoLastChild Final: ", selected);
   }
   showFocus();
 };
@@ -282,7 +323,7 @@ document.addEventListener("keydown", function (e) {
           selected = activeTab;
           fromA();
           if (e.shiftKey) {
-            gotoPrevSiblingOrCousin();
+            gotoPrev();
           } else {
             gotoNext();
           }
@@ -300,7 +341,7 @@ document.addEventListener("keydown", function (e) {
       break;
     case "ArrowUp":
       fromA();
-      gotoPrevSiblingOrCousin();
+      gotoPrev();
       break;
     case "ArrowRight":
       if (
