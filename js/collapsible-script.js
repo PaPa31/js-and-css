@@ -13,27 +13,10 @@ var clickSelected = function () {
   else selected.click();
 };
 var gotoPrevSibling = function () {
+  console.log("gotoPrevSibling");
   hideFocus();
   if (selected.previousElementSibling) {
     selected = selected.previousElementSibling;
-  }
-  showFocus();
-};
-var gotoPrevSiblingOrCousin = function () {
-  selPrev = selected.previousElementSibling;
-  if (selPrev) {
-    if (
-      selected.previousElementSibling.classList.contains("open") === true &&
-      selPrev.children.length !== 1
-    ) {
-      gotoPrevSibling();
-      gotoLastChild();
-      if (selected.classList.contains("open") === true) {
-        gotoLastChild();
-      }
-    } else {
-      gotoPrevSibling();
-    }
   } else {
     const siblingNav =
       selected.closest("nav").previousElementSibling.tagName.toUpperCase() ===
@@ -55,6 +38,32 @@ var gotoPrevSiblingOrCousin = function () {
       }
       console.log("selected_4_after: ", selected);
     }
+  }
+  showFocus();
+};
+var gotoPrevSiblingOrCousin = function () {
+  selPrev = selected.previousElementSibling;
+  if (selPrev) {
+    if (
+      selected.previousElementSibling.classList.contains("open") === true &&
+      selPrev.children.length !== 1
+    ) {
+      console.log("selected_5_before: ", selected);
+      gotoPrevSibling();
+      gotoLastChild();
+      if (selected.classList.contains("open") === true) {
+        gotoLastChild();
+      }
+      console.log("selected_5_before: ", selected);
+    } else {
+      console.log("selected_7_before: ", selected);
+      gotoPrevSibling();
+      console.log("selected_7_before: ", selected);
+    }
+  } else {
+    console.log("selected_6_before: ", selected);
+    gotoPrevSibling();
+    console.log("selected_6_before: ", selected);
   }
 };
 var gotoNextSibling = function () {
@@ -112,24 +121,32 @@ var gotoFirstChild = function () {
 };
 var gotoLastChild = function () {
   console.log("selected before ol[0]: ", selected);
-  olElems = selected.querySelectorAll(`${selected.tagName.toLowerCase()} > ol`);
+  olElems = selected.querySelectorAll("ol")[0];
   console.log(olElems);
   console.log("ol: ", olElems.length);
+  hideFocus();
   if (olElems.length) {
-    hideFocus();
     if (olElems.length !== 1) {
       selected = olElems[olElems.length - 1].parentElement;
     } else {
       liElems = selected.querySelectorAll(
         `${selected.tagName.toLowerCase()}> ol > li`
       );
-      console.log("li: ", liElems.length);
+      console.log("li (ol.length): ", liElems.length);
       if (liElems.length) {
         selected = liElems[liElems.length - 1];
       }
     }
-    showFocus();
+  } else {
+    liElems = selected.querySelectorAll(
+      `${selected.tagName.toLowerCase()}> ol > li`
+    );
+    console.log("li (ol alone): ", liElems.length);
+    if (liElems.length) {
+      selected = liElems[liElems.length - 1];
+    }
   }
+  showFocus();
 };
 var gotoParent = function () {
   hideFocus();
