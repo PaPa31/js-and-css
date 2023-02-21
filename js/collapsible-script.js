@@ -40,8 +40,9 @@ var gotoPrevSibling = function () {
 var gotoPrevUncle = function () {
   console.log("gotoPrevUncle");
   const siblingNav =
+    selected.closest("nav").previousElementSibling &&
     selected.closest("nav").previousElementSibling.tagName.toUpperCase() ===
-    "NAV"
+      "NAV"
       ? true
       : false;
   if (!siblingNav) {
@@ -125,11 +126,11 @@ var gotoNextCousin = function () {
 };
 var gotoNextUncle = function () {
   const siblingNav =
+    selected.closest("nav").previousElementSibling &&
     selected.closest("nav").nextElementSibling.tagName.toUpperCase() === "NAV"
       ? true
       : false;
-  if (!siblingNav) {
-  } else {
+  if (siblingNav) {
     console.log("gotoNextUncle_3_before: ", selected);
     hideFocus();
     selected = selected.closest("nav").nextElementSibling;
@@ -227,6 +228,9 @@ var gotoParent = function () {
 };
 var fromA = function () {
   console.log("fromA");
+  console.log("selected.scrollTop: ", selected.scrollTop);
+  console.log("selected.scrollHeight: ", selected.scrollHeight);
+  selected.scrollTop = selected.scrollHeight / 2;
   if (selected.tagName.toUpperCase() === "A") {
     hideFocus();
     if (selected.parentElement.tagName.toUpperCase() !== "NAV") {
