@@ -26,7 +26,7 @@ var gotoPrevSibling = function () {
     if (!siblingNav) {
       gotoParent();
     } else {
-      console.log("selected_4_before: ", selected);
+      console.log("gotoPrevSibling_4_before: ", selected);
       hideFocus();
       selected = selected.closest("nav").previousElementSibling;
       gotoLastChild();
@@ -36,57 +36,74 @@ var gotoPrevSibling = function () {
           gotoLastChild();
         }
       }
-      console.log("selected_4_after: ", selected);
+      console.log("gotoPrevSibling_4_after: ", selected);
     }
   }
   showFocus();
 };
 var gotoPrevSiblingOrCousin = function () {
+  console.log("gotoPrevSiblingOrCousin");
   selPrev = selected.previousElementSibling;
   if (selPrev) {
     if (
       selected.previousElementSibling.classList.contains("open") === true &&
       selPrev.children.length !== 1
     ) {
-      console.log("selected_5_before: ", selected);
+      console.log("gotoPrevSiblingOrCousin_5_before: ", selected);
       gotoPrevSibling();
       gotoLastChild();
       if (selected.classList.contains("open") === true) {
         gotoLastChild();
       }
-      console.log("selected_5_before: ", selected);
+      console.log("gotoPrevSiblingOrCousin_5_before: ", selected);
     } else {
-      console.log("selected_7_before: ", selected);
+      console.log("gotoPrevSiblingOrCousin_7_before: ", selected);
       gotoPrevSibling();
-      console.log("selected_7_before: ", selected);
+      console.log("gotoPrevSiblingOrCousin_7_before: ", selected);
     }
   } else {
-    console.log("selected_6_before: ", selected);
+    console.log("gotoPrevSiblingOrCousin_6_before: ", selected);
     gotoPrevSibling();
-    console.log("selected_6_before: ", selected);
+    console.log("gotoPrevSiblingOrCousin_6_before: ", selected);
   }
 };
 var gotoNextSibling = function () {
+  console.log("gotoNextSibling");
   hideFocus();
   if (selected.nextElementSibling) {
     selected = selected.nextElementSibling;
   } else {
-    const siblingNav =
-      selected.closest("nav").nextElementSibling.tagName.toUpperCase() === "NAV"
-        ? true
-        : false;
-    if (!siblingNav) {
-    } else {
-      console.log("selected_3_before: ", selected);
-      hideFocus();
-      selected = selected.closest("nav").nextElementSibling;
-      gotoFirstChild();
-      console.log("selected_3_after: ", selected);
-    }
+    gotoNextCousin();
   }
   showFocus();
 };
-var gotoNextSiblingOrCousin = function () {
+var gotoNextCousin = function () {
+  gotoParent();
+  hideFocus();
+  if (selected.nextElementSibling) {
+    selected = selected.nextElementSibling;
+  } else {
+    gotoNextUncle();
+  }
+  showFocus();
+};
+var gotoNextUncle = function () {
+  const siblingNav =
+    selected.closest("nav").nextElementSibling.tagName.toUpperCase() === "NAV"
+      ? true
+      : false;
+  if (!siblingNav) {
+  } else {
+    console.log("gotoNextUncle_3_before: ", selected);
+    hideFocus();
+    selected = selected.closest("nav").nextElementSibling;
+    gotoFirstChild();
+    showFocus();
+    console.log("gotoNextUncle_3_after: ", selected);
+  }
+};
+var gotoNext = function () {
+  console.log("gotoNext");
   if (
     selected.classList.contains("open") === true &&
     selected.children.length !== 1
@@ -96,22 +113,13 @@ var gotoNextSiblingOrCousin = function () {
     if (selected.nextElementSibling) {
       gotoNextSibling();
     } else {
-      console.log("selected_1_before gotoParent: ", selected);
-      fromA();
-      gotoParent();
-      console.log("selected_1_After: ", selected);
-      if (
-        !selected.nextElementSibling &&
-        selected.parentElement.parentElement.tagName.toUpperCase() === "LI"
-      ) {
-        gotoParent();
-        console.log("selected_2: ", selected);
-      }
+      gotoLiParent();
       gotoNextSibling();
     }
   }
 };
 var gotoFirstChild = function () {
+  console.log("gotoFirstChild");
   hideFocus();
   firstSub = selected.getElementsByTagName("ol")[0];
   if (firstSub) {
@@ -120,6 +128,7 @@ var gotoFirstChild = function () {
   showFocus();
 };
 var gotoLastChild = function () {
+  console.log("gotoLastChild");
   console.log("selected before ol[0]: ", selected);
   olElems = selected.querySelectorAll("ol")[0];
   console.log(olElems);
@@ -148,25 +157,35 @@ var gotoLastChild = function () {
   }
   showFocus();
 };
+var gotoLiParent = function () {
+  console.log("gotoLiParent_1_before gotoParent: ", selected);
+  fromA();
+  gotoParent();
+  console.log("gotoLiParent_1_After: ", selected);
+  if (
+    !selected.nextElementSibling &&
+    selected.parentElement.parentElement.tagName.toUpperCase() === "LI"
+  ) {
+    gotoParent();
+    console.log("gotoLiParent_2: ", selected);
+  }
+};
 var gotoParent = function () {
+  console.log("gotoParent");
   hideFocus();
-  //const siblingNav =
-  //  selected.closest("nav").nextElementSibling.tagName.toUpperCase() === "NAV"
-  //    ? true
-  //    : false;
-  //console.log(siblingNav);
-  //console.log(selected.parentElement.parentElement.tagName.toUpperCase());
   if (
     selected.parentElement &&
     selected.parentElement.parentElement &&
     selected.parentElement.parentElement.tagName.toUpperCase() !== "NAV"
   ) {
-    //console.log(selected.parentElement.parentElement.tagName);
+    console.log("gotoParent_8_before", selected);
     selected = selected.parentElement.parentElement;
+    console.log("gotoParent_8_before", selected);
   }
   showFocus();
 };
 var fromA = function () {
+  console.log("fromA");
   if (selected.tagName.toUpperCase() === "A") {
     hideFocus();
     if (selected.parentElement.tagName.toUpperCase() !== "NAV") {
@@ -265,7 +284,7 @@ document.addEventListener("keydown", function (e) {
           if (e.shiftKey) {
             gotoPrevSiblingOrCousin();
           } else {
-            gotoNextSiblingOrCousin();
+            gotoNext();
           }
         }
         showFocus();
@@ -277,7 +296,7 @@ document.addEventListener("keydown", function (e) {
       break;
     case "ArrowDown":
       fromA();
-      gotoNextSiblingOrCousin();
+      gotoNext();
       break;
     case "ArrowUp":
       fromA();
