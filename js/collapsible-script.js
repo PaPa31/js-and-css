@@ -277,6 +277,7 @@ for (var i = 0; i < treeListItems.length; i++) {
       // open the element
       classList.add("open");
     }
+    scrollToCenter();
   });
 }
 
