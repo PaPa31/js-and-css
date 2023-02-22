@@ -417,11 +417,13 @@ var actExpandCollapse = function () {
   if (1 - j && i === 1) {
     collapseOneLevel(aSel[1]);
     expandOneLevel(aSel[0]);
+    gotoParent();
   } else {
     if (i != 0) {
       expandOneLevel(aSel[1 - j]);
     } else {
       collapseOneLevel(aSel[1]);
+      gotoParent();
     }
   }
 
