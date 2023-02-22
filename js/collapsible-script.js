@@ -83,11 +83,17 @@ var gotoPrev = function () {
       gotoPrevSibling();
       gotoLastChild();
       console.log("gotoPrev_5_after: ", selected);
-      if (selected.classList.contains("open") === true) {
+      if (
+        selected.classList.contains("open") === true &&
+        selected.children.length !== 1
+      ) {
         console.log("gotoPrev_5.1_before: ", selected);
         gotoLastChild();
         console.log("gotoPrev_5.1_after: ", selected);
-        if (selected.classList.contains("open") === true) {
+        if (
+          selected.classList.contains("open") === true &&
+          selected.children.length !== 1
+        ) {
           console.log("gotoPrev_5.2_before: ", selected);
           gotoLastChild();
           console.log("gotoPrev_5.2_after: ", selected);
@@ -167,38 +173,23 @@ var gotoFirstChild = function () {
 var gotoLastChild = function () {
   console.log("gotoLastChild");
   console.log("selected before ol[0]: ", selected);
-  olElems = selected.querySelectorAll("ol")[0];
-  //const olElems = selected.firstElementChild;
+  const olElems = selected.getElementsByTagName("ol");
   console.log(olElems);
   console.log("ol: ", olElems.length);
   hideFocus();
-  if (olElems.length) {
-    if (olElems.length !== 1) {
-      selected = olElems[olElems.length - 1].parentElement;
-    } else {
-      const liElems = selected.querySelectorAll(
-        `${selected.tagName.toLowerCase()}> ol > li`
-      );
-      console.log("li (ol.length): ", liElems.length);
-      if (liElems.length) {
-        selected = liElems[liElems.length - 1];
-      }
-    }
-  } else {
-    //const liElems = selected.querySelectorAll(
-    //  `${selected.tagName.toLowerCase()}> ol > li`
-    //);
-    selected = olElems;
-    const liElems = selected.children;
-    console.log(liElems);
-    console.log("li (ol alone): ", liElems.length);
-    if (liElems.length) {
-      selected = liElems[liElems.length - 1];
-    }
-    console.log("gotoLastChild Final: ", selected);
+  if (olElems.length !== 1) {
+    selected = olElems[olElems.length - 1].parentElement;
   }
+  const liElems = olElems[0].children;
+  console.log(liElems);
+  console.log("li (ol alone): ", liElems.length);
+  if (liElems.length) {
+    selected = liElems[liElems.length - 1];
+  }
+  console.log("gotoLastChild Final: ", selected);
   showFocus();
 };
+
 var gotoLiParent = function () {
   console.log("gotoLiParent_1_before gotoParent: ", selected);
   fromA();
