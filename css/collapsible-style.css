@@ -7,7 +7,21 @@
   margin-bottom: 15px;
 }
 
-#wrap-expand,
+button#expand {
+  background: inherit;
+  color: inherit;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button#expand:hover {
+  border-color: #df9509;
+  background-color: #df9509;
+  color: #fff;
+}
+
 nav {
   padding-left: 23px;
 }

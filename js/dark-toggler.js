@@ -36,13 +36,12 @@ if (document.getElementsByTagName("nav")[0]) {
     }
   }
 
-  const aEl = document.createElement("a");
-  aEl.setAttribute("id", "expand");
-  aEl.setAttribute("href", "javascript: void(0)");
-  aEl.setAttribute("onclick", "actExpandCollapse()");
-  aEl.setAttribute("title", "Click or hit Space");
-  aEl.innerHTML = "Expand all: 1 level";
-  pWrapExpand.appendChild(aEl);
+  const buttonEl = document.createElement("button");
+  buttonEl.setAttribute("id", "expand");
+  buttonEl.setAttribute("onclick", "actExpandCollapse()");
+  buttonEl.setAttribute("title", "Click or hit Space");
+  buttonEl.innerHTML = "Expand all: 1 level";
+  pWrapExpand.appendChild(buttonEl);
 }
 
 if (
