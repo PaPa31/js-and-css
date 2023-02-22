@@ -406,10 +406,12 @@ var collapseOneLevel = function (sel) {
 };
 var i = 1;
 var j = 1;
-var exp = ["Collapse", "Expand"];
+var expText = ["Collapse", "Expand"];
 var aSel = ["nav > ol > li", "nav ol > li"];
 
 var actExpandCollapse = function () {
+  var borderStyle = ["solid", "dashed", "dotted"];
+  var levelValue = document.getElementById("level-value");
   var button = document.getElementById("expand");
   if (1 - j && i === 1) {
     collapseOneLevel(aSel[1]);
@@ -422,13 +424,16 @@ var actExpandCollapse = function () {
     }
   }
 
+  levelValue.innerHTML = i + " level";
+  button.style.borderStyle = borderStyle[i];
+
   if (j) {
     i = i + 1;
-    button.innerHTML = exp[j] + " all: " + i + " level";
   } else {
-    button.innerHTML = exp[j] + " all: " + i + " level";
     i = i - 1;
   }
+
+  button.innerHTML = expText[j] + ": to " + i + " level";
 
   if (i === 2 || i === 0) {
     j = 1 - j;

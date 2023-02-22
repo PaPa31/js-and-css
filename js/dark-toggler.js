@@ -36,11 +36,16 @@ if (document.getElementsByTagName("nav")[0]) {
     }
   }
 
+  const levelValueEl = document.createElement("span");
+  levelValueEl.setAttribute("id", "level-value");
+  levelValueEl.innerHTML = "0 level";
+  pWrapExpand.appendChild(levelValueEl);
+
   const buttonEl = document.createElement("button");
   buttonEl.setAttribute("id", "expand");
   buttonEl.setAttribute("onclick", "actExpandCollapse()");
   buttonEl.setAttribute("title", "Click or hit Space");
-  buttonEl.innerHTML = "Expand all: 1 level";
+  buttonEl.innerHTML = "Expand: to 1 level";
   pWrapExpand.appendChild(buttonEl);
 }
 

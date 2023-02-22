@@ -4,7 +4,9 @@
 }
 
 #wrap-expand {
-  margin-bottom: 15px;
+  margin-bottom: 13px;
+  position: relative;
+  height: 32px;
 }
 
 button#expand {
@@ -14,12 +16,24 @@ button#expand {
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
+  width: 140px;
+  position: absolute;
+  top: -7px;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 button#expand:hover {
-  border-color: #df9509;
-  background-color: #df9509;
-  color: #fff;
+  opacity: 0.7;
+}
+
+#level-value {
+  margin-right: 10px;
+}
+
+body nav:first-child {
+  margin-top: 15px;
 }
 
 nav {
