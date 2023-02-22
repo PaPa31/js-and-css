@@ -328,6 +328,7 @@ document.addEventListener("keydown", function (e) {
           }
         }
         showFocus();
+        scrollToCenter();
       }
       break;
     case " ":
