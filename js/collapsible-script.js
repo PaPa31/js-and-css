@@ -227,10 +227,6 @@ var gotoParent = function () {
   showFocus();
 };
 var fromA = function () {
-  console.log("fromA");
-  console.log("selected.scrollTop: ", selected.scrollTop);
-  console.log("selected.scrollHeight: ", selected.scrollHeight);
-  selected.scrollTop = selected.scrollHeight / 2;
   if (selected.tagName.toUpperCase() === "A") {
     hideFocus();
     if (selected.parentElement.tagName.toUpperCase() !== "NAV") {
@@ -238,6 +234,14 @@ var fromA = function () {
     }
     showFocus();
   }
+};
+
+var scrollToCenter = function () {
+  selected.firstElementChild.scrollIntoView({
+    behavior: "smooth",
+    inline: "end",
+    block: "center",
+  });
 };
 
 // 3. selection box, default on the first item on the tree
@@ -342,10 +346,12 @@ document.addEventListener("keydown", function (e) {
     case "ArrowDown":
       fromA();
       gotoNext();
+      scrollToCenter();
       break;
     case "ArrowUp":
       fromA();
       gotoPrev();
+      scrollToCenter();
       break;
     case "ArrowRight":
       if (
