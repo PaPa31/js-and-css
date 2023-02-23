@@ -394,6 +394,19 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
+function getDepth(list) {
+  for (
+    var depth = 0;
+    list.querySelector(Array(depth++ + 3).join(list.tagName + " "));
+
+  );
+  return depth;
+}
+
+var olLevelNesting = getDepth(document.getElementsByTagName("ol")[0]);
+
+console.log(olLevelNesting);
+
 var expandOneLevel = function (sel) {
   var allListItems = document.querySelectorAll(sel);
   for (var k = 0; k < allListItems.length; k++) {
@@ -406,40 +419,48 @@ var collapseOneLevel = function (sel) {
     allListItems[k].classList.remove("open");
   }
 };
-var i = 1;
+var i = 0;
 var j = 1;
 var expText = ["Collapse", "Expand"];
-var aSel = ["nav > ol > li", "nav ol > li"];
+var aSel = [
+  "nav > ol > li",
+  "nav > ol > li > ol > li",
+  "nav > ol > li > ol > li > ol > li",
+  "nav > ol > li > ol > li > ol > li > ol > li",
+];
 
 var actExpandCollapse = function () {
-  var borderStyle = ["solid", "dashed", "dotted"];
+  var borderStyle = ["solid", "dashed", "dotted", "hidden"];
   var levelValue = document.getElementById("level-value");
   var button = document.getElementById("expand");
-  if (1 - j && i === 1) {
-    collapseOneLevel(aSel[1]);
-    expandOneLevel(aSel[0]);
+  console.log("i = ", i, " ; j = ", j);
+
+  if (!j) {
+    i = i - 1;
+  }
+
+  if (1 - j) {
+    console.log("collapse 1", aSel[i]);
+    collapseOneLevel(aSel[i]);
     gotoParent();
   } else {
-    if (i != 0) {
-      expandOneLevel(aSel[1 - j]);
-    } else {
-      collapseOneLevel(aSel[1]);
-      gotoParent();
-    }
+    console.log("expand", aSel[i]);
+    expandOneLevel(aSel[i]);
+    scrollToCenter();
+  }
+
+  if (j) {
+    i = i + 1;
   }
 
   levelValue.innerHTML = i + " level";
   button.style.borderStyle = borderStyle[i];
 
-  if (j) {
-    i = i + 1;
-  } else {
-    i = i - 1;
-  }
-
-  button.innerHTML = expText[j] + ": to " + i + " level";
-
-  if (i === 2 || i === 0) {
+  if (i === olLevelNesting - 1 || i === 0) {
     j = 1 - j;
+    console.log("change j => ", j);
   }
+
+  var nextLevel = j ? i + 1 : i - 1;
+  button.innerHTML = expText[j] + ": to " + nextLevel + " level";
 };
