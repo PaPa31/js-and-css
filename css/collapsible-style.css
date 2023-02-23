@@ -131,7 +131,7 @@ nav > ol > li > ol > li::after {
   top: 10px;
 }
 
-nav > ol > li > ol > li.open > ol > li::before {
+nav > ol > li > ol > li.open ol > li::before {
   left: 4px;
   top: 2px;
   height: 10px;
@@ -139,12 +139,12 @@ nav > ol > li > ol > li.open > ol > li::before {
   width: 0px;
 }
 
-nav > ol > li > ol > li.open > ol > li::after {
-  top: 5px;
+nav > ol > li > ol > li.open ol > li::after {
+  top: 6px;
   left: 4px;
 }
 
-nav > ol > li:not([data-type="preface"]) > ol > li::before {
+nav > ol > li:not([data-type="preface"]) ol > li::before {
   top: 5px;
   height: 11px;
   width: 0px;
@@ -153,11 +153,11 @@ nav > ol > li:not([data-type="preface"]) > ol > li::before {
   line-height: 1.2;
 }
 
-nav > ol > li:not([data-type="preface"]) > ol > li > a {
+nav > ol > li:not([data-type="preface"]) ol > li > a {
   margin-left: 9px;
 }
 
-nav > ol > li.open > ol > li.open > ol > li {
+nav > ol > li.open > ol > li.open ol > li {
   padding-left: 35px;
 }
 
