@@ -47,7 +47,6 @@ if (document.getElementsByTagName("nav")[0]) {
 
   // 'var' for global scope
   var olLevelNesting = getDepth(document.getElementsByTagName("ol")[0]);
-  console.log(olLevelNesting);
 
   const levelsEl = document.createElement("span");
   pWrapExpand.appendChild(levelsEl);

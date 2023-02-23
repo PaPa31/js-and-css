@@ -420,18 +420,14 @@ var actExpandCollapse = function () {
   var borderStyle = ["solid", "dashed", "dotted", "hidden"];
   var levelValue = document.getElementById("level-value");
   var button = document.getElementById("expand");
-  console.log("i = ", i, " ; j = ", j);
-
   if (!j) {
     i = i - 1;
   }
 
   if (1 - j) {
-    console.log("collapse 1", aSel[i]);
     collapseOneLevel(aSel[i]);
     gotoParent();
   } else {
-    console.log("expand", aSel[i]);
     expandOneLevel(aSel[i]);
     scrollToCenter();
   }
@@ -445,9 +441,10 @@ var actExpandCollapse = function () {
 
   if (i === olLevelNesting - 1 || i === 0) {
     j = 1 - j;
-    console.log("change j => ", j);
   }
 
   var nextLevel = j ? i + 1 : i - 1;
-  button.innerHTML = expText[j] + ": to " + nextLevel + " level";
+
+  //XHTML does not support document.write or .innerHTML
+  button.textContent = expText[j] + ": to " + nextLevel + " level";
 };
