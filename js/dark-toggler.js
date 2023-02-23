@@ -36,17 +36,41 @@ if (document.getElementsByTagName("nav")[0]) {
     }
   }
 
-  const levelValueEl = document.createElement("span");
+  const getDepth = function (list) {
+    for (
+      var depth = 0;
+      list.querySelector(Array(depth++ + 3).join(list.tagName + " "));
+
+    );
+    return depth;
+  };
+
+  // 'var' for global scope
+  var olLevelNesting = getDepth(document.getElementsByTagName("ol")[0]);
+  console.log(olLevelNesting);
+
+  const levelsEl = document.createElement("span");
+  pWrapExpand.appendChild(levelsEl);
+
+  const levelValueEl = document.createElement("div");
   levelValueEl.setAttribute("id", "level-value");
   levelValueEl.innerHTML = "0 level";
-  pWrapExpand.appendChild(levelValueEl);
+  levelsEl.appendChild(levelValueEl);
+
+  const deepNestingEl = document.createElement("div");
+  deepNestingEl.setAttribute("id", "deep-nesting");
+  deepNestingEl.innerHTML = "Depth: " + olLevelNesting;
+  levelsEl.appendChild(deepNestingEl);
+
+  const wrapButtonEl = document.createElement("span");
+  pWrapExpand.appendChild(wrapButtonEl);
 
   const buttonEl = document.createElement("button");
   buttonEl.setAttribute("id", "expand");
   buttonEl.setAttribute("onclick", "actExpandCollapse()");
   buttonEl.setAttribute("title", "Click or hit Space");
   buttonEl.innerHTML = "Expand: to 1 level";
-  pWrapExpand.appendChild(buttonEl);
+  wrapButtonEl.appendChild(buttonEl);
 }
 
 if (

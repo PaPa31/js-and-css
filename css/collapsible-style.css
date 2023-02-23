@@ -5,8 +5,19 @@
 
 #wrap-expand {
   margin-bottom: 13px;
+  height: 39px;
+}
+
+#wrap-expand span {
   position: relative;
-  height: 32px;
+  height: 100%;
+  width: 79px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#wrap-expand div {
+  font-size: 0.9em;
 }
 
 button#expand {
@@ -18,7 +29,7 @@ button#expand {
   cursor: pointer;
   width: 140px;
   position: absolute;
-  top: -7px;
+  top: 0;
   bottom: 0;
   margin-top: auto;
   margin-bottom: auto;

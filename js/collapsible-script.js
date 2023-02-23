@@ -394,19 +394,6 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-function getDepth(list) {
-  for (
-    var depth = 0;
-    list.querySelector(Array(depth++ + 3).join(list.tagName + " "));
-
-  );
-  return depth;
-}
-
-var olLevelNesting = getDepth(document.getElementsByTagName("ol")[0]);
-
-console.log(olLevelNesting);
-
 var expandOneLevel = function (sel) {
   var allListItems = document.querySelectorAll(sel);
   for (var k = 0; k < allListItems.length; k++) {
