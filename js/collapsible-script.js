@@ -20,7 +20,7 @@ var clickSelected = function () {
   else selected.click();
 };
 var gotoPrevSibling = function () {
-  logIn("5 gotoPrevSibling");
+  logIn("5 gotoPrevSibling", selected);
   hideFocus();
   if (selected.previousElementSibling) {
     logg("5 before previousElementSibling: ", selected);
@@ -30,10 +30,10 @@ var gotoPrevSibling = function () {
     gotoPrevUncle();
   }
   showFocus();
-  logOut("5 gotoPrevSibling");
+  logOut("5 gotoPrevSibling", selected);
 };
 var gotoPrevUncle = function () {
-  logIn("6 gotoPrevUncle");
+  logIn("6 gotoPrevUncle", selected);
   const siblingNav =
     selected.closest("nav").previousElementSibling &&
     selected.closest("nav").previousElementSibling.tagName.toUpperCase() ===
@@ -59,10 +59,10 @@ var gotoPrevUncle = function () {
       }
     }
   }
-  logOut("6 gotoPrevUncle");
+  logOut("6 gotoPrevUncle", selected);
 };
 var gotoPrev = function () {
-  logIn("7 gotoPrev");
+  logIn("7 gotoPrev", selected);
   const selPrev = selected.previousElementSibling;
   if (selPrev) {
     if (
@@ -89,10 +89,10 @@ var gotoPrev = function () {
   } else {
     gotoPrevSibling();
   }
-  logOut("7 gotoPrev");
+  logOut("7 gotoPrev", selected);
 };
 var gotoNextSibling = function () {
-  logIn("8 gotoNextSibling");
+  logIn("8 gotoNextSibling", selected);
   hideFocus();
   if (selected.nextElementSibling) {
     logg("8 before nextElementSibling: ", selected);
@@ -102,10 +102,10 @@ var gotoNextSibling = function () {
     gotoNextCousin();
   }
   showFocus();
-  logOut("8 gotoNextSibling");
+  logOut("8 gotoNextSibling", selected);
 };
 var gotoNextCousin = function () {
-  logIn("9 gotoNextCousin");
+  logIn("9 gotoNextCousin", selected);
   gotoParent();
   hideFocus();
   if (selected.nextElementSibling) {
@@ -116,10 +116,10 @@ var gotoNextCousin = function () {
     gotoNextUncle();
   }
   showFocus();
-  logOut("9 gotoNextCousin");
+  logOut("9 gotoNextCousin", selected);
 };
 var gotoNextUncle = function () {
-  logIn("10 gotoNextUncle");
+  logIn("10 gotoNextUncle", selected);
   const siblingNav =
     selected.closest("nav").previousElementSibling &&
     selected.closest("nav").nextElementSibling.tagName.toUpperCase() === "NAV"
@@ -133,10 +133,10 @@ var gotoNextUncle = function () {
     gotoFirstChild();
     showFocus();
   }
-  logOut("10 gotoNextUncle");
+  logOut("10 gotoNextUncle", selected);
 };
 var gotoNext = function () {
-  logIn("11 gotoNext");
+  logIn("11 gotoNext", selected);
   if (
     selected.classList.contains("open") === true &&
     selected.children.length !== 1
@@ -150,10 +150,10 @@ var gotoNext = function () {
       gotoNextSibling();
     }
   }
-  logOut("11 gotoNext");
+  logOut("11 gotoNext", selected);
 };
 var gotoFirstChild = function () {
-  logIn("12 gotoFirstChild");
+  logIn("12 gotoFirstChild", selected);
   hideFocus();
   firstSub = selected.getElementsByTagName("ol")[0];
   if (firstSub) {
@@ -162,10 +162,10 @@ var gotoFirstChild = function () {
     logg("12 after ol[0]: ", selected);
   }
   showFocus();
-  logOut("12 gotoFirstChild");
+  logOut("12 gotoFirstChild", selected);
 };
 var gotoLastChild = function () {
-  logIn("13 gotoLastChild");
+  logIn("13 gotoLastChild", selected);
   const olElems = selected.getElementsByTagName("ol");
   logg("13 olElems: ", olElems);
   logg("13 olElems.length: ", olElems.length);
@@ -180,21 +180,21 @@ var gotoLastChild = function () {
     selected = liElems[liElems.length - 1];
   }
   showFocus();
-  logOut("13 gotoLastChild");
+  logOut("13 gotoLastChild", selected);
 };
 
 var gotoLiParent = function () {
-  logIn("14 gotoLiParent");
+  logIn("14 gotoLiParent", selected);
   fromA();
   gotoParent();
   if (!selected.nextElementSibling && ded().tagName.toUpperCase() === "LI") {
     gotoParent();
   }
   15;
-  logOut("14 gotoLiParent");
+  logOut("14 gotoLiParent", selected);
 };
 var gotoParent = function () {
-  logIn("15 gotoParent");
+  logIn("15 gotoParent", selected);
   hideFocus();
   if (papa() && ded() && ded().tagName.toUpperCase() !== "NAV") {
     logg("15 before ded: ", selected);
@@ -202,10 +202,10 @@ var gotoParent = function () {
     logg("15 after ded: ", selected);
   }
   showFocus();
-  logOut("15 gotoParent");
+  logOut("15 gotoParent", selected);
 };
 var fromA = function () {
-  logIn("16 fromA");
+  logIn("16 fromA", selected);
   if (selected.tagName.toUpperCase() === "A") {
     hideFocus();
     if (papa().tagName.toUpperCase() !== "NAV") {
@@ -215,7 +215,7 @@ var fromA = function () {
     }
     showFocus();
   }
-  logOut("16 fromA");
+  logOut("16 fromA", selected);
 };
 
 var papa = () => selected.parentElement;
@@ -223,8 +223,10 @@ var ded = () => selected.parentElement.parentElement;
 var praDed = () => selected.parentElement.parentElement.parentElement;
 
 var logg = (...messages) => console.log(...messages);
-var logIn = (mes) => console.group(mes);
-var logOut = (mes) => console.groupEnd(mes);
+
+// remove '...' to stop logs 'selected'
+var logIn = (...mes) => console.group(...mes);
+var logOut = (...mes) => console.groupEnd(...mes);
 
 // 3. selection box, default on the first item on the tree
 selected = document
