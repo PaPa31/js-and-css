@@ -182,7 +182,6 @@ var gotoLastChild = function () {
   showFocus();
   logOut("13 gotoLastChild", selected);
 };
-
 var gotoLiParent = function () {
   logIn("14 gotoLiParent", selected);
   fromA();
@@ -222,12 +221,15 @@ var papa = () => selected.parentElement;
 var ded = () => selected.parentElement.parentElement;
 var praDed = () => selected.parentElement.parentElement.parentElement;
 
+// replace to true to start output loggs
 var showLogg = false;
 var logg = (...m) => {
   if (showLogg) console.log(...m);
 };
 
-// remove '...' to stop logs 'selected'
+// remove '...' (in LogIn & LogOut)
+// to show only checkpoints
+// without 'selected' element
 var logIn = (...mes) => {
   if (showLogg) console.group(...mes);
 };
