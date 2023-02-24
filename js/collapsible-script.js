@@ -222,11 +222,18 @@ var papa = () => selected.parentElement;
 var ded = () => selected.parentElement.parentElement;
 var praDed = () => selected.parentElement.parentElement.parentElement;
 
-var logg = (...messages) => console.log(...messages);
+var showLogg = false;
+var logg = (...m) => {
+  if (showLogg) console.log(...m);
+};
 
 // remove '...' to stop logs 'selected'
-var logIn = (...mes) => console.group(...mes);
-var logOut = (...mes) => console.groupEnd(...mes);
+var logIn = (...mes) => {
+  if (showLogg) console.group(...mes);
+};
+var logOut = (...mes) => {
+  if (showLogg) console.groupEnd(...mes);
+};
 
 // 3. selection box, default on the first item on the tree
 selected = document
