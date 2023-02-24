@@ -9,7 +9,7 @@ var hideFocus = function () {
   selected.style.fontWeight = "normal";
 };
 var clickSelected = function () {
-  if (selected.tagName.toUpperCase() === "A") selected.parentElement.click();
+  if (selected.tagName.toUpperCase() === "A") papa().click();
   else selected.click();
 };
 var gotoPrevSibling = function () {
@@ -195,10 +195,7 @@ var gotoLiParent = function () {
   fromA();
   gotoParent();
   console.log("gotoLiParent_1_After: ", selected);
-  if (
-    !selected.nextElementSibling &&
-    selected.parentElement.parentElement.tagName.toUpperCase() === "LI"
-  ) {
+  if (!selected.nextElementSibling && ded().tagName.toUpperCase() === "LI") {
     gotoParent();
     console.log("gotoLiParent_2: ", selected);
   }
@@ -206,13 +203,9 @@ var gotoLiParent = function () {
 var gotoParent = function () {
   console.log("gotoParent");
   hideFocus();
-  if (
-    selected.parentElement &&
-    selected.parentElement.parentElement &&
-    selected.parentElement.parentElement.tagName.toUpperCase() !== "NAV"
-  ) {
+  if (papa() && ded() && ded().tagName.toUpperCase() !== "NAV") {
     console.log("gotoParent_8_before", selected);
-    selected = selected.parentElement.parentElement;
+    selected = ded();
     console.log("gotoParent_8_before", selected);
   }
   showFocus();
@@ -220,8 +213,8 @@ var gotoParent = function () {
 var fromA = function () {
   if (selected.tagName.toUpperCase() === "A") {
     hideFocus();
-    if (selected.parentElement.tagName.toUpperCase() !== "NAV") {
-      selected = selected.parentElement;
+    if (papa().tagName.toUpperCase() !== "NAV") {
+      selected = papa();
     }
     showFocus();
   }
@@ -234,6 +227,10 @@ var scrollToCenter = function () {
     block: "center",
   });
 };
+
+var papa = () => selected.parentElement;
+var ded = () => selected.parentElement.parentElement;
+var praDed = () => selected.parentElement.parentElement.parentElement;
 
 // 3. selection box, default on the first item on the tree
 selected = document
@@ -335,6 +332,7 @@ document.addEventListener("keydown", function (e) {
     case " ":
       e.preventDefault();
       actExpandCollapse();
+      scrollToCenter();
       break;
     case "ArrowDown":
       fromA();
@@ -366,13 +364,10 @@ document.addEventListener("keydown", function (e) {
     case "ArrowLeft":
       if (selected.tagName.toUpperCase() === "A") {
         hideFocus();
-        if (
-          selected.parentElement.parentElement.parentElement.tagName.toUpperCase() !==
-          "NAV"
-        ) {
-          selected = selected.parentElement.parentElement.parentElement;
+        if (praDed().tagName.toUpperCase() !== "NAV") {
+          selected = praDed();
         } else {
-          selected = selected.parentElement;
+          selected = papa();
         }
         showFocus();
 
@@ -380,7 +375,7 @@ document.addEventListener("keydown", function (e) {
           clickSelected();
         }
       } else {
-        if (selected.parentElement.tagName.toUpperCase() !== "NAV") {
+        if (papa().tagName.toUpperCase() !== "NAV") {
           gotoParent();
           if (selected.classList.contains("open") === true) {
             clickSelected();
@@ -416,8 +411,8 @@ var actExpandCollapse = function () {
   if (1 - j) {
     collapseOneLevel(query);
     if (
-      selected.parentElement.parentElement.tagName.toUpperCase() !== "NAV" &&
-      selected.parentElement.parentElement.classList.contains("open") !== true
+      ded().tagName.toUpperCase() !== "NAV" &&
+      ded().classList.contains("open") !== true
     )
       gotoParent();
   } else {
