@@ -53,7 +53,7 @@ if (document.getElementsByTagName("nav")[0]) {
 
   const levelValueEl = document.createElement("div");
   levelValueEl.setAttribute("id", "level-value");
-  levelValueEl.innerHTML = "0 level";
+  levelValueEl.innerHTML = "1 level";
   levelsEl.appendChild(levelValueEl);
 
   const deepNestingEl = document.createElement("div");
@@ -68,7 +68,7 @@ if (document.getElementsByTagName("nav")[0]) {
   buttonEl.setAttribute("id", "expand");
   buttonEl.setAttribute("onclick", "actExpandCollapse()");
   buttonEl.setAttribute("title", "Click or hit Space");
-  buttonEl.innerHTML = "Expand: to 1 level";
+  buttonEl.innerHTML = "Expand: to 2 level";
   wrapButtonEl.appendChild(buttonEl);
 }
 

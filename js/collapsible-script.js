@@ -395,26 +395,13 @@ document.addEventListener("keydown", function (e) {
 });
 
 var expandOneLevel = function (sel) {
-  var allListItems = document.querySelectorAll(sel);
-  for (var k = 0; k < allListItems.length; k++) {
-    allListItems[k].classList.add("open");
-  }
+  document.querySelectorAll(sel).forEach((el) => el.classList.add("open"));
 };
 var collapseOneLevel = function (sel) {
-  var allListItems = document.querySelectorAll(sel);
-  for (var k = 0; k < allListItems.length; k++) {
-    allListItems[k].classList.remove("open");
-  }
+  document.querySelectorAll(sel).forEach((el) => el.classList.remove("open"));
 };
-var i = 0;
+var i = 1;
 var j = 1;
-var expText = ["Collapse", "Expand"];
-var aSel = [
-  "nav > ol > li",
-  "nav > ol > li > ol > li",
-  "nav > ol > li > ol > li > ol > li",
-  "nav > ol > li > ol > li > ol > li > ol > li",
-];
 
 var actExpandCollapse = function () {
   var borderStyle = ["solid", "dashed", "dotted", "hidden"];
@@ -424,11 +411,17 @@ var actExpandCollapse = function () {
     i = i - 1;
   }
 
+  var query = "nav " + Array(i + 1).join("> ol > li ");
+
   if (1 - j) {
-    collapseOneLevel(aSel[i]);
-    gotoParent();
+    collapseOneLevel(query);
+    if (
+      selected.parentElement.parentElement.tagName.toUpperCase() !== "NAV" &&
+      selected.parentElement.parentElement.classList.contains("open") !== true
+    )
+      gotoParent();
   } else {
-    expandOneLevel(aSel[i]);
+    expandOneLevel(query);
     scrollToCenter();
   }
 
@@ -436,15 +429,15 @@ var actExpandCollapse = function () {
     i = i + 1;
   }
 
-  levelValue.innerHTML = i + " level";
-  button.style.borderStyle = borderStyle[i];
+  levelValue.textContent = i + " level";
+  button.style.borderStyle = borderStyle[i - 1];
 
-  if (i === olLevelNesting - 1 || i === 0) {
+  if (i === olLevelNesting || i === 1) {
     j = 1 - j;
   }
 
-  var nextLevel = j ? i + 1 : i - 1;
-
   //XHTML does not support document.write or .innerHTML
-  button.textContent = expText[j] + ": to " + nextLevel + " level";
+  button.textContent = `${j ? "Expand" : "Collapse"}: to ${
+    j ? i + 1 : i - 1
+  } level`;
 };
