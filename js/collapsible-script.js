@@ -24,19 +24,6 @@ var gotoPrevSibling = function () {
   }
   showFocus();
 };
-//var gotoPrevCousin = function () {
-//  console.log("gotoPrevCousin");
-//  gotoParent()
-//  hideFocus();
-//  if (selected.previousElementSibling) {
-//    console.log("gotoPrevSibling_10_before: ", selected);
-//    selected = selected.previousElementSibling;
-//    console.log("gotoPrevSibling_10_after: ", selected);
-//  } else {
-//    gotoPrevUncle();
-//  }
-//  showFocus();
-//};
 var gotoPrevUncle = function () {
   console.log("gotoPrevUncle");
   const siblingNav =
