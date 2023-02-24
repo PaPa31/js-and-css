@@ -13,19 +13,20 @@ var clickSelected = function () {
   else selected.click();
 };
 var gotoPrevSibling = function () {
-  console.log("gotoPrevSibling");
+  logIn("gotoPrevSibling");
   hideFocus();
   if (selected.previousElementSibling) {
-    console.log("gotoPrevSibling_9_before: ", selected);
+    logg("gotoPrevSibling_9_before: ", selected);
     selected = selected.previousElementSibling;
-    console.log("gotoPrevSibling_9_after: ", selected);
+    logg("gotoPrevSibling_9_after: ", selected);
   } else {
     gotoPrevUncle();
   }
   showFocus();
+  logOut("gotoPrevSibling");
 };
 var gotoPrevUncle = function () {
-  console.log("gotoPrevUncle");
+  logIn("gotoPrevUncle");
   const siblingNav =
     selected.closest("nav").previousElementSibling &&
     selected.closest("nav").previousElementSibling.tagName.toUpperCase() ===
@@ -33,72 +34,74 @@ var gotoPrevUncle = function () {
       ? true
       : false;
   if (!siblingNav) {
-    console.log("Strange!!");
+    logg("Strange!!");
     gotoParent();
   } else {
     hideFocus();
-    console.log("gotoPrevUncle_4_before: ", selected);
+    logg("gotoPrevUncle_4_before: ", selected);
     selected = selected.closest("nav").previousElementSibling;
-    console.log("gotoPrevUncle_4_after: ", selected);
+    logg("gotoPrevUncle_4_after: ", selected);
     gotoLastChild();
-    console.log("1", selected);
+    logg("1", selected);
     if (selected.classList.contains("open") === true) {
-      console.log("gotoPrev_4.1_before: ", selected);
+      logg("gotoPrev_4.1_before: ", selected);
       gotoLastChild();
-      console.log("gotoPrev_4.1_after: ", selected);
+      logg("gotoPrev_4.1_after: ", selected);
     }
     if (selected.classList.contains("open") === true) {
       gotoLastChild();
-      console.log("2", selected);
+      logg("2", selected);
       if (selected.classList.contains("open") === true) {
         gotoLastChild("3", selected);
       }
     }
-    console.log("gotoPrevUncle_444_after: ", selected);
+    logg("gotoPrevUncle_444_after: ", selected);
   }
+  logOut("gotoPrevUncle");
 };
 
 var gotoPrev = function () {
-  console.log("gotoPrev");
+  logIn("gotoPrev");
   const selPrev = selected.previousElementSibling;
   if (selPrev) {
     if (
       selected.previousElementSibling.classList.contains("open") === true &&
       selPrev.children.length !== 1
     ) {
-      console.log("gotoPrev_5_before: ", selected);
+      logg("gotoPrev_5_before: ", selected);
       gotoPrevSibling();
       gotoLastChild();
-      console.log("gotoPrev_5_after: ", selected);
+      logg("gotoPrev_5_after: ", selected);
       if (
         selected.classList.contains("open") === true &&
         selected.children.length !== 1
       ) {
-        console.log("gotoPrev_5.1_before: ", selected);
+        logg("gotoPrev_5.1_before: ", selected);
         gotoLastChild();
-        console.log("gotoPrev_5.1_after: ", selected);
+        logg("gotoPrev_5.1_after: ", selected);
         if (
           selected.classList.contains("open") === true &&
           selected.children.length !== 1
         ) {
-          console.log("gotoPrev_5.2_before: ", selected);
+          logg("gotoPrev_5.2_before: ", selected);
           gotoLastChild();
-          console.log("gotoPrev_5.2_after: ", selected);
+          logg("gotoPrev_5.2_after: ", selected);
         }
       }
     } else {
-      console.log("gotoPrev_7_before: ", selected);
+      logg("gotoPrev_7_before: ", selected);
       gotoPrevSibling();
-      console.log("gotoPrev_7_before: ", selected);
+      logg("gotoPrev_7_before: ", selected);
     }
   } else {
-    console.log("gotoPrev_6_before: ", selected);
+    logg("gotoPrev_6_before: ", selected);
     gotoPrevSibling();
-    console.log("gotoPrev_6_before: ", selected);
+    logg("gotoPrev_6_before: ", selected);
   }
+  logOut("gotoPrev");
 };
 var gotoNextSibling = function () {
-  console.log("gotoNextSibling");
+  logIn("gotoNextSibling");
   hideFocus();
   if (selected.nextElementSibling) {
     selected = selected.nextElementSibling;
@@ -106,8 +109,10 @@ var gotoNextSibling = function () {
     gotoNextCousin();
   }
   showFocus();
+  logOut("gotoNextSibling");
 };
 var gotoNextCousin = function () {
+  logIn("gotoNextCousin");
   gotoParent();
   hideFocus();
   if (selected.nextElementSibling) {
@@ -116,24 +121,27 @@ var gotoNextCousin = function () {
     gotoNextUncle();
   }
   showFocus();
+  logOut("gotoNextCousin");
 };
 var gotoNextUncle = function () {
+  logIn("gotoNextUncle");
   const siblingNav =
     selected.closest("nav").previousElementSibling &&
     selected.closest("nav").nextElementSibling.tagName.toUpperCase() === "NAV"
       ? true
       : false;
   if (siblingNav) {
-    console.log("gotoNextUncle_3_before: ", selected);
+    logg("gotoNextUncle_3_before: ", selected);
     hideFocus();
     selected = selected.closest("nav").nextElementSibling;
     gotoFirstChild();
     showFocus();
-    console.log("gotoNextUncle_3_after: ", selected);
+    logg("gotoNextUncle_3_after: ", selected);
   }
+  logOut("gotoNextUncle");
 };
 var gotoNext = function () {
-  console.log("gotoNext");
+  logIn("gotoNext");
   if (
     selected.classList.contains("open") === true &&
     selected.children.length !== 1
@@ -147,57 +155,64 @@ var gotoNext = function () {
       gotoNextSibling();
     }
   }
+  logOut("gotoNext");
 };
 var gotoFirstChild = function () {
-  console.log("gotoFirstChild");
+  logIn("gotoFirstChild");
   hideFocus();
   firstSub = selected.getElementsByTagName("ol")[0];
   if (firstSub) {
     selected = firstSub.getElementsByTagName("li")[0];
   }
   showFocus();
+  logOut("gotoFirstChild");
 };
 var gotoLastChild = function () {
-  console.log("gotoLastChild");
-  console.log("selected before ol[0]: ", selected);
+  logIn("gotoLastChild");
+  logg("selected before ol[0]: ", selected);
   const olElems = selected.getElementsByTagName("ol");
-  console.log(olElems);
-  console.log("ol: ", olElems.length);
+  logg(olElems);
+  logg("ol: ", olElems.length);
   hideFocus();
   if (olElems.length !== 1) {
     selected = olElems[olElems.length - 1].parentElement;
   }
   const liElems = olElems[0].children;
-  console.log(liElems);
-  console.log("li (ol alone): ", liElems.length);
+  logg(liElems);
+  logg("li (ol alone): ", liElems.length);
   if (liElems.length) {
     selected = liElems[liElems.length - 1];
   }
-  console.log("gotoLastChild Final: ", selected);
+  logg("gotoLastChild Final: ", selected);
   showFocus();
+  logOut("gotoLastChild");
 };
 
 var gotoLiParent = function () {
-  console.log("gotoLiParent_1_before gotoParent: ", selected);
+  logIn("gotoLiParent");
+  logg("gotoLiParent_1_before gotoParent: ", selected);
   fromA();
   gotoParent();
-  console.log("gotoLiParent_1_After: ", selected);
+  logg("gotoLiParent_1_After: ", selected);
   if (!selected.nextElementSibling && ded().tagName.toUpperCase() === "LI") {
     gotoParent();
-    console.log("gotoLiParent_2: ", selected);
+    logg("gotoLiParent_2: ", selected);
   }
+  logOut("gotoLiParent");
 };
 var gotoParent = function () {
-  console.log("gotoParent");
+  logIn("gotoParent");
   hideFocus();
   if (papa() && ded() && ded().tagName.toUpperCase() !== "NAV") {
-    console.log("gotoParent_8_before", selected);
+    logg("gotoParent_8_before", selected);
     selected = ded();
-    console.log("gotoParent_8_before", selected);
+    logg("gotoParent_8_before", selected);
   }
   showFocus();
+  logOut("gotoParent");
 };
 var fromA = function () {
+  logIn("fromA");
   if (selected.tagName.toUpperCase() === "A") {
     hideFocus();
     if (papa().tagName.toUpperCase() !== "NAV") {
@@ -205,6 +220,7 @@ var fromA = function () {
     }
     showFocus();
   }
+  logOut("fromA");
 };
 
 var scrollToCenter = function () {
@@ -218,6 +234,10 @@ var scrollToCenter = function () {
 var papa = () => selected.parentElement;
 var ded = () => selected.parentElement.parentElement;
 var praDed = () => selected.parentElement.parentElement.parentElement;
+
+var logg = (...messages) => console.log(...messages);
+var logIn = (mes) => console.group(mes);
+var logOut = (mes) => console.groupEnd(mes);
 
 // 3. selection box, default on the first item on the tree
 selected = document
