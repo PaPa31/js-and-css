@@ -17,7 +17,7 @@ var scrollToCenter = function () {
     inline: "center",
     block: "center",
   });
-  logOut1("#1_1 scrollToCenter", selected);
+  logOut1();
 };
 var clickSelected = function () {
   if (selected.tagName.toUpperCase() === "A") papa().click();
@@ -34,7 +34,7 @@ var gotoPrevSibling = function () {
     gotoPrevUncle();
   }
   showFocus();
-  logOut("5 gotoPrevSibling", selected);
+  logOut();
 };
 var gotoPrevUncle = function () {
   logIn("6 gotoPrevUncle", selected);
@@ -63,7 +63,7 @@ var gotoPrevUncle = function () {
       }
     }
   }
-  logOut("6 gotoPrevUncle", selected);
+  logOut();
 };
 var gotoPrev = function () {
   logIn("7 gotoPrev", selected);
@@ -93,7 +93,7 @@ var gotoPrev = function () {
   } else {
     gotoPrevSibling();
   }
-  logOut("7 gotoPrev", selected);
+  logOut();
 };
 var gotoNextSibling = function () {
   logIn("8 gotoNextSibling", selected);
@@ -106,7 +106,7 @@ var gotoNextSibling = function () {
     gotoNextCousin();
   }
   showFocus();
-  logOut("8 gotoNextSibling", selected);
+  logOut();
 };
 var gotoNextCousin = function () {
   logIn("9 gotoNextCousin", selected);
@@ -120,7 +120,7 @@ var gotoNextCousin = function () {
     gotoNextUncle();
   }
   showFocus();
-  logOut("9 gotoNextCousin", selected);
+  logOut();
 };
 var gotoNextUncle = function () {
   logIn("10 gotoNextUncle", selected);
@@ -137,7 +137,7 @@ var gotoNextUncle = function () {
     gotoFirstChild();
     showFocus();
   }
-  logOut("10 gotoNextUncle", selected);
+  logOut();
 };
 var gotoNext = function () {
   logIn("11 gotoNext", selected);
@@ -154,7 +154,7 @@ var gotoNext = function () {
       gotoNextSibling();
     }
   }
-  logOut("11 gotoNext", selected);
+  logOut();
 };
 var gotoFirstChild = function () {
   logIn("12 gotoFirstChild", selected);
@@ -166,7 +166,7 @@ var gotoFirstChild = function () {
     logg("12 after ol[0]: ", selected);
   }
   showFocus();
-  logOut("12 gotoFirstChild", selected);
+  logOut();
 };
 var gotoLastChild = function () {
   logIn("13 gotoLastChild", selected);
@@ -184,7 +184,7 @@ var gotoLastChild = function () {
     selected = liElems[liElems.length - 1];
   }
   showFocus();
-  logOut("13 gotoLastChild", selected);
+  logOut();
 };
 var gotoLiParent = function () {
   logIn("14 gotoLiParent", selected);
@@ -194,7 +194,7 @@ var gotoLiParent = function () {
     gotoParent();
   }
   15;
-  logOut("14 gotoLiParent", selected);
+  logOut();
 };
 var gotoParent = function () {
   logIn("15 gotoParent", selected);
@@ -205,7 +205,7 @@ var gotoParent = function () {
     logg("15 after ded: ", selected);
   }
   showFocus();
-  logOut("15 gotoParent", selected);
+  logOut();
 };
 var fromA = function () {
   logIn("16 fromA", selected);
@@ -218,7 +218,7 @@ var fromA = function () {
     }
     showFocus();
   }
-  logOut("16 fromA", selected);
+  logOut();
 };
 var coloringSelected = function (sel = selected) {
   // if no args, sel = selected
@@ -246,8 +246,8 @@ if (true) {
   var logIn = (...mes) => {
     if (showLogg) console.group(...mes);
   };
-  var logOut = (...mes) => {
-    if (showLogg) console.groupEnd(...mes);
+  var logOut = () => {
+    if (showLogg) console.groupEnd();
   };
 
   // loggs subsystem 2
@@ -259,8 +259,8 @@ if (true) {
   var logIn1 = (...mes) => {
     if (showLogg1) console.group(...mes);
   };
-  var logOut1 = (...mes) => {
-    if (showLogg1) console.groupEnd(...mes);
+  var logOut1 = () => {
+    if (showLogg1) console.groupEnd();
   };
 
   // loggs subsystem 3
@@ -272,8 +272,8 @@ if (true) {
   var logIn2 = (...mes) => {
     if (showLogg2) console.group(...mes);
   };
-  var logOut2 = (...mes) => {
-    if (showLogg2) console.groupEnd(...mes);
+  var logOut2 = () => {
+    if (showLogg2) console.groupEnd();
   };
 }
 
@@ -321,7 +321,7 @@ for (var i = 0; i < treeListItems.length; i++) {
       // open the element
       classList.add("open");
     }
-    logOut2("#2 click listener", selected);
+    logOut2();
   });
 }
 
@@ -489,7 +489,7 @@ var recursionUptoNav = function (sel) {
   if (sel.parentElement.tagName.toUpperCase() === "NAV") return;
   coloringSelected(sel);
   recursionUptoNav(sel.parentElement);
-  logOut1("#1_2 recursionUptoNav", sel);
+  logOut1();
 };
 
 let lastSelected = localStorage.getItem("last")
@@ -510,7 +510,7 @@ var restoreLastSelected = function () {
     showFocus();
     setTimeout(scrollToCenter, 200);
   }
-  logOut1("#1_3 restoreLastSelected", selected);
+  logOut1();
 };
 
 setTimeout(restoreLastSelected, 100);
