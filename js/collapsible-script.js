@@ -231,17 +231,27 @@ var papa = () => selected.parentElement;
 var ded = () => selected.parentElement.parentElement;
 var praDed = () => selected.parentElement.parentElement.parentElement;
 
-// 2. loggs systems
+// 2. loggs system
 if (true) {
+  // Assistant for debugging errors.
+  // View active elements DOM,
+  // when navigation by TOC menu items.
+
+  // For production - delete this block and loggs.
+  // To delete all loggs use regex:^ *log.*$\n*
+
+  // managing vars
+  // change to show/hide output loggs
+  var showLogg = false; // logg - 'key-navigation functions'
+  var showLogg1 = true; // logg1 - 'restore-last-selected functions'
+  var showLogg2 = true; // logg2 - shared 'click-event-listener'
+
   // loggs subsystem 1
-  // replace to true to start output loggs
-  var showLogg = false;
   var logg = (...m) => {
     if (showLogg) console.log(...m);
   };
 
-  // remove '...' (in LogIn & LogOut)
-  // to show only checkpoints
+  // remove '...' to show
   // without 'selected' element
   var logIn = (...mes) => {
     if (showLogg) console.group(...mes);
@@ -251,7 +261,6 @@ if (true) {
   };
 
   // loggs subsystem 2
-  var showLogg1 = true;
   var logg1 = (...m) => {
     if (showLogg1) console.log(...m);
   };
@@ -264,7 +273,7 @@ if (true) {
   };
 
   // loggs subsystem 3
-  var showLogg2 = true;
+  // 'shared'
   var logg2 = (...m) => {
     if (showLogg2) console.log(...m);
   };
