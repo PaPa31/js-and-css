@@ -175,7 +175,7 @@ li.open:not([data-type="preface"]) > ol > li.open::before {
   content: "⊟";
 }
 
-.no-child::before {
+.one-child::before {
   content: ">" !important;
 }
 

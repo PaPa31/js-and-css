@@ -298,9 +298,9 @@ var liList = document.querySelectorAll("nav > ol li");
 for (var i = 0; i < liList.length; i++) {
   //add id for quick navigation when resuming work
   liList[i].id = i;
-  // add 'no-child' class for .no-child::before rule
+  // add 'one-child' class for .one-child::before rule
   if (!liList[i].firstElementChild.nextElementSibling) {
-    liList[i].classList.add("no-child");
+    liList[i].classList.add("one-child");
   }
 }
 
