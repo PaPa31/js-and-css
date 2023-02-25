@@ -513,9 +513,6 @@ var restoreLastSelected = function () {
     selected = document.getElementById(lastSelected);
     logg1("2 selected = ", selected);
     recursionUptoNav(selected);
-    logg1("3 before firstElementChild; selected = ", selected);
-    selected = selected.firstElementChild;
-    logg1("3 after firstElementChild; selected = ", selected);
     showFocus();
     setTimeout(scrollToCenter, 200);
   }
