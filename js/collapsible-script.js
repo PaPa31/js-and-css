@@ -9,13 +9,15 @@ var hideFocus = function () {
   selected.style.fontWeight = "normal";
 };
 var scrollToCenter = function () {
+  logIn1("#1_1 scrollToCenter", selected);
   var sel = selected.firstElementChild ? selected.firstElementChild : selected;
-  console.log("scroll to center; sel =", sel);
+  logg1("1 after initial if; sel =", sel);
   sel.scrollIntoView({
     behavior: "smooth",
     inline: "center",
     block: "center",
   });
+  logOut1("#1_1 scrollToCenter", selected);
 };
 var clickSelected = function () {
   if (selected.tagName.toUpperCase() === "A") papa().click();
@@ -221,12 +223,18 @@ var fromA = function () {
 var colorSelected = function () {
   if (selected.tagName.toUpperCase() === "A") papa().click();
   else selected.click();
+  if (sel.tagName.toUpperCase() === "LI") {
+    sel.classList.add("open");
+  }
 };
 
 var papa = () => selected.parentElement;
 var ded = () => selected.parentElement.parentElement;
 var praDed = () => selected.parentElement.parentElement.parentElement;
 
+// 2. loggs systems
+
+// loggs subsystem 1
 // replace to true to start output loggs
 var showLogg = false;
 var logg = (...m) => {
@@ -241,6 +249,32 @@ var logIn = (...mes) => {
 };
 var logOut = (...mes) => {
   if (showLogg) console.groupEnd(...mes);
+};
+
+// loggs subsystem 2
+var showLogg1 = true;
+var logg1 = (...m) => {
+  if (showLogg1) console.log(...m);
+};
+
+var logIn1 = (...mes) => {
+  if (showLogg1) console.group(...mes);
+};
+var logOut1 = (...mes) => {
+  if (showLogg1) console.groupEnd(...mes);
+};
+
+// loggs subsystem 3
+var showLogg2 = true;
+var logg2 = (...m) => {
+  if (showLogg2) console.log(...m);
+};
+
+var logIn2 = (...mes) => {
+  if (showLogg2) console.group(...mes);
+};
+var logOut2 = (...mes) => {
+  if (showLogg2) console.groupEnd(...mes);
 };
 
 // 3. selection box, default on the first item on the tree
@@ -266,10 +300,10 @@ var treeListItems = document.querySelectorAll("nav > ol > li");
 for (var i = 0; i < treeListItems.length; i++) {
   // click handler
   treeListItems[i].addEventListener("click", function (e) {
+    logIn2("#2 click listener", selected);
     var current = e.target;
-    console.log("1 click; current = ", current);
-    console.log("1 click; selected = ", selected);
-    console.log(current.parentElement.id);
+    logg2("1 current = ", current);
+    logg2("2 current.parentElement.id= ", current.parentElement.id);
     lastSelected = current.parentElement.id;
     localStorage.setItem("last", lastSelected);
     hideFocus();
@@ -287,6 +321,7 @@ for (var i = 0; i < treeListItems.length; i++) {
       // open the element
       classList.add("open");
     }
+    logOut2("#2 click listener", selected);
   });
 }
 
@@ -450,12 +485,13 @@ var actExpandCollapse = function () {
 };
 
 var recursionUptoNav = function (sel) {
-  console.log("2 in recursionUptoNav: ", sel);
+  logIn1("#1_2 recursionUptoNav", sel);
   if (sel.parentElement.tagName.toUpperCase() === "NAV") return;
   if (sel.tagName.toUpperCase() === "LI") {
     sel.classList.add("open");
   }
   recursionUptoNav(sel.parentElement);
+  logOut1("#1_2 recursionUptoNav", sel);
 };
 
 let lastSelected = localStorage.getItem("last")
@@ -463,17 +499,19 @@ let lastSelected = localStorage.getItem("last")
   : 0;
 
 var restoreLastSelected = function () {
+  logIn1("#1_3 restoreLastSelected", selected);
   if (lastSelected) {
     hideFocus();
-    console.log("3.1 id = ", lastSelected);
+    logg1("1 id = ", lastSelected);
     selected = document.getElementById(lastSelected);
-    console.log("3.2 selected = ", selected);
+    logg1("2 selected = ", selected);
     recursionUptoNav(selected);
     selected = selected.firstElementChild;
-    console.log("3.3 selected = ", selected);
+    logg1("3 selected = ", selected);
     showFocus();
     setTimeout(scrollToCenter, 200);
   }
+  logOut1("#1_3 restoreLastSelected", selected);
 };
 
 setTimeout(restoreLastSelected, 100);
