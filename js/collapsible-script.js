@@ -243,8 +243,8 @@ if (true) {
   // managing vars
   // change to show/hide output loggs
   var showLogg = false; // logg - 'key-navigation functions'
-  var showLogg1 = true; // logg1 - 'restore-last-selected functions'
-  var showLogg2 = true; // logg2 - shared 'click-event-listener'
+  var showLogg1 = false; // logg1 - 'restore-last-selected functions'
+  var showLogg2 = false; // logg2 - shared 'click-event-listener'
 
   // loggs subsystem 1
   var logg = (...m) => {
