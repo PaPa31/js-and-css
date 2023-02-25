@@ -496,7 +496,7 @@ var actExpandCollapse = function () {
 var recursionUptoNav = function (sel) {
   logIn1("#1_2 recursionUptoNav", sel);
   if (sel.parentElement.tagName.toUpperCase() === "NAV") return;
-  openSelected(sel);
+  openSelected(sel.parentElement);
   recursionUptoNav(sel.parentElement);
   logOut1();
 };
