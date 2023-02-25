@@ -220,7 +220,7 @@ var fromA = function () {
   }
   logOut();
 };
-var coloringSelected = function (sel = selected) {
+var openSelected = function (sel = selected) {
   // if no args, sel = selected
   if (sel.tagName.toUpperCase() === "LI") {
     sel.classList.add("open");
@@ -496,7 +496,7 @@ var actExpandCollapse = function () {
 var recursionUptoNav = function (sel) {
   logIn1("#1_2 recursionUptoNav", sel);
   if (sel.parentElement.tagName.toUpperCase() === "NAV") return;
-  coloringSelected(sel);
+  openSelected(sel);
   recursionUptoNav(sel.parentElement);
   logOut1();
 };
