@@ -9,9 +9,11 @@ var hideFocus = function () {
   selected.style.fontWeight = "normal";
 };
 var scrollToCenter = function () {
-  selected.firstElementChild.scrollIntoView({
+  var sel = selected.firstElementChild ? selected.firstElementChild : selected;
+  console.log("scroll to center; sel =", sel);
+  sel.scrollIntoView({
     behavior: "smooth",
-    inline: "end",
+    inline: "center",
     block: "center",
   });
 };
@@ -216,6 +218,10 @@ var fromA = function () {
   }
   logOut("16 fromA", selected);
 };
+var colorSelected = function () {
+  if (selected.tagName.toUpperCase() === "A") papa().click();
+  else selected.click();
+};
 
 var papa = () => selected.parentElement;
 var ded = () => selected.parentElement.parentElement;
@@ -245,14 +251,11 @@ selected = document
 showFocus();
 var initialSelected = selected;
 
-var aList = document.querySelectorAll("nav a");
-for (var i = 0; i < aList.length; i++) {
-  aList[i].target = "_blank";
-}
-
 var liList = document.querySelectorAll("nav > ol li");
 for (var i = 0; i < liList.length; i++) {
-  // no-child filter
+  //add id for quick navigation when resuming work
+  liList[i].id = i;
+  // add 'no-child' class for .no-child::before rule
   if (!liList[i].firstElementChild.nextElementSibling) {
     liList[i].classList.add("no-child");
   }
@@ -264,6 +267,11 @@ for (var i = 0; i < treeListItems.length; i++) {
   // click handler
   treeListItems[i].addEventListener("click", function (e) {
     var current = e.target;
+    console.log("1 click; current = ", current);
+    console.log("1 click; selected = ", selected);
+    console.log(current.parentElement.id);
+    lastSelected = current.parentElement.id;
+    localStorage.setItem("last", lastSelected);
     hideFocus();
     selected = current;
     showFocus();
@@ -440,3 +448,32 @@ var actExpandCollapse = function () {
     j ? i + 1 : i - 1
   } level`;
 };
+
+var recursionUptoNav = function (sel) {
+  console.log("2 in recursionUptoNav: ", sel);
+  if (sel.parentElement.tagName.toUpperCase() === "NAV") return;
+  if (sel.tagName.toUpperCase() === "LI") {
+    sel.classList.add("open");
+  }
+  recursionUptoNav(sel.parentElement);
+};
+
+let lastSelected = localStorage.getItem("last")
+  ? localStorage.getItem("last")
+  : 0;
+
+var restoreLastSelected = function () {
+  if (lastSelected) {
+    hideFocus();
+    console.log("3.1 id = ", lastSelected);
+    selected = document.getElementById(lastSelected);
+    console.log("3.2 selected = ", selected);
+    recursionUptoNav(selected);
+    selected = selected.firstElementChild;
+    console.log("3.3 selected = ", selected);
+    showFocus();
+    setTimeout(scrollToCenter, 200);
+  }
+};
+
+setTimeout(restoreLastSelected, 100);
