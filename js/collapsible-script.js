@@ -314,7 +314,7 @@ for (var i = 0; i < treeListItems.length; i++) {
     logg2("1 current = ", current);
     logg2("2 current.parentElement.id= ", current.parentElement.id);
     lastSelected = current.parentElement.id;
-    localStorage.setItem("last", lastSelected);
+    localStorage.setItem("lastTOCSelected", lastSelected);
     hideFocus();
     selected = current;
     showFocus();
@@ -501,8 +501,8 @@ var recursionUptoNav = function (sel) {
   logOut1();
 };
 
-let lastSelected = localStorage.getItem("last")
-  ? localStorage.getItem("last")
+let lastSelected = localStorage.getItem("lastTOCSelected")
+  ? localStorage.getItem("lastTOCSelected")
   : 0;
 
 var restoreLastSelected = function () {
