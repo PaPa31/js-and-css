@@ -220,9 +220,8 @@ var fromA = function () {
   }
   logOut("16 fromA", selected);
 };
-var colorSelected = function () {
-  if (selected.tagName.toUpperCase() === "A") papa().click();
-  else selected.click();
+var coloringSelected = function (sel = selected) {
+  // if no args, sel = selected
   if (sel.tagName.toUpperCase() === "LI") {
     sel.classList.add("open");
   }
@@ -488,9 +487,7 @@ var actExpandCollapse = function () {
 var recursionUptoNav = function (sel) {
   logIn1("#1_2 recursionUptoNav", sel);
   if (sel.parentElement.tagName.toUpperCase() === "NAV") return;
-  if (sel.tagName.toUpperCase() === "LI") {
-    sel.classList.add("open");
-  }
+  coloringSelected(sel);
   recursionUptoNav(sel.parentElement);
   logOut1("#1_2 recursionUptoNav", sel);
 };
