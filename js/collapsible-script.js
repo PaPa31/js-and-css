@@ -233,49 +233,50 @@ var ded = () => selected.parentElement.parentElement;
 var praDed = () => selected.parentElement.parentElement.parentElement;
 
 // 2. loggs systems
+if (true) {
+  // loggs subsystem 1
+  // replace to true to start output loggs
+  var showLogg = false;
+  var logg = (...m) => {
+    if (showLogg) console.log(...m);
+  };
 
-// loggs subsystem 1
-// replace to true to start output loggs
-var showLogg = false;
-var logg = (...m) => {
-  if (showLogg) console.log(...m);
-};
+  // remove '...' (in LogIn & LogOut)
+  // to show only checkpoints
+  // without 'selected' element
+  var logIn = (...mes) => {
+    if (showLogg) console.group(...mes);
+  };
+  var logOut = (...mes) => {
+    if (showLogg) console.groupEnd(...mes);
+  };
 
-// remove '...' (in LogIn & LogOut)
-// to show only checkpoints
-// without 'selected' element
-var logIn = (...mes) => {
-  if (showLogg) console.group(...mes);
-};
-var logOut = (...mes) => {
-  if (showLogg) console.groupEnd(...mes);
-};
+  // loggs subsystem 2
+  var showLogg1 = true;
+  var logg1 = (...m) => {
+    if (showLogg1) console.log(...m);
+  };
 
-// loggs subsystem 2
-var showLogg1 = true;
-var logg1 = (...m) => {
-  if (showLogg1) console.log(...m);
-};
+  var logIn1 = (...mes) => {
+    if (showLogg1) console.group(...mes);
+  };
+  var logOut1 = (...mes) => {
+    if (showLogg1) console.groupEnd(...mes);
+  };
 
-var logIn1 = (...mes) => {
-  if (showLogg1) console.group(...mes);
-};
-var logOut1 = (...mes) => {
-  if (showLogg1) console.groupEnd(...mes);
-};
+  // loggs subsystem 3
+  var showLogg2 = true;
+  var logg2 = (...m) => {
+    if (showLogg2) console.log(...m);
+  };
 
-// loggs subsystem 3
-var showLogg2 = true;
-var logg2 = (...m) => {
-  if (showLogg2) console.log(...m);
-};
-
-var logIn2 = (...mes) => {
-  if (showLogg2) console.group(...mes);
-};
-var logOut2 = (...mes) => {
-  if (showLogg2) console.groupEnd(...mes);
-};
+  var logIn2 = (...mes) => {
+    if (showLogg2) console.group(...mes);
+  };
+  var logOut2 = (...mes) => {
+    if (showLogg2) console.groupEnd(...mes);
+  };
+}
 
 // 3. selection box, default on the first item on the tree
 selected = document
