@@ -245,8 +245,10 @@ if (true) {
   var showLogg = false; // logg - 'key-navigation functions'
   var showLogg1 = false; // logg1 - 'restore-last-selected functions'
   var showLogg2 = false; // logg2 - shared 'click-event-listener'
+  var showLogg3 = true; // logg3 - 'scroll'
 
   // loggs subsystem 1
+  // 'key-navigation functions'
   var logg = (...m) => {
     if (showLogg) console.log(...m);
   };
@@ -261,6 +263,7 @@ if (true) {
   };
 
   // loggs subsystem 2
+  // 'restore-last-selected functions'
   var logg1 = (...m) => {
     if (showLogg1) console.log(...m);
   };
@@ -283,6 +286,19 @@ if (true) {
   };
   var logOut2 = () => {
     if (showLogg2) console.groupEnd();
+  };
+
+  // loggs subsystem 4
+  // 'scroll'
+  var logg3 = (...m) => {
+    if (showLogg3) console.log(...m);
+  };
+
+  var logIn3 = (...mes) => {
+    if (showLogg3) console.group(...mes);
+  };
+  var logOut3 = () => {
+    if (showLogg3) console.groupEnd();
   };
 }
 

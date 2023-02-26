@@ -78,11 +78,15 @@ if (true) {
   JD.scrollHandler = function () {
     curentScrollTop =
       document.documentElement.scrollTop || document.body.scrollTop;
+    logIn3("#3 scrollHandler", "curentScrollTop=", curentScrollTop);
 
     // tiny transition correction
-    curentScrollTop = curentScrollTop - 29;
+    curentScrollTop = curentScrollTop - 19;
 
     var anchorTop = offset(fixedElBefore).top;
+
+    logg3("1 anchorTop = ", anchorTop);
+    logg3("2 fixedEl.offsetHeight = ", fixedEl.offsetHeight);
 
     if (curentScrollTop > anchorTop) {
       if (!fixed) {
@@ -99,6 +103,11 @@ if (true) {
         fixed = false;
       }
     }
+
+    logg3(
+      "3 after if; fixedElBefore.style.height = ",
+      fixedElBefore.style.height
+    );
 
     function isWindow(obj) {
       return obj != null && obj === obj.window;
@@ -123,6 +132,7 @@ if (true) {
         left: box.left + win.pageXOffset - docElem.clientLeft,
       };
     }
+    logOut3();
   };
 
   window.addEventListener("scroll", JD.debounce(250, JD.scrollHandler));
