@@ -22,12 +22,12 @@ if (document.getElementById("checkbox")) {
 if (true) {
   const he = document.getElementsByTagName("header")[0];
   var fixedEl;
-  const d1 = document.createElement("div");
+  const wrapFixedEl = document.createElement("div");
   if (document.getElementsByTagName("h1").length === 0) {
     fixedEl = document.createElement("div");
     fixedEl.id = "fixed";
-    he.parentNode.insertBefore(d1, he.nextSibling);
-    d1.appendChild(fixedEl);
+    he.parentNode.insertBefore(wrapFixedEl, he.nextSibling);
+    wrapFixedEl.appendChild(fixedEl);
   } else {
     fixedEl = document.getElementsByTagName("h1")[0];
   }
