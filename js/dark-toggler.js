@@ -21,14 +21,12 @@ if (document.getElementById("checkbox")) {
 
 if (true) {
   const he = document.getElementsByTagName("header")[0];
-  //let parentDiv;
   var fixedEl;
   const d1 = document.createElement("div");
   if (document.getElementsByTagName("h1").length === 0) {
     fixedEl = document.createElement("div");
     fixedEl.id = "fixed";
-    const paDiv = he.parentNode;
-    paDiv.insertBefore(d1, he.nextSibling);
+    he.parentNode.insertBefore(d1, he.nextSibling);
     d1.appendChild(fixedEl);
   } else {
     fixedEl = document.getElementsByTagName("h1")[0];
@@ -105,24 +103,10 @@ if (true) {
 }
 
 if (document.getElementsByTagName("nav")[0]) {
-  //const navEl = document.getElementsByTagName("nav")[0];
   const pWrapExpand = document.createElement("p");
   pWrapExpand.setAttribute("id", "wrap-expand");
 
-  //d1.insertBefore(fixedEl, pWrapExpand);
   fixedEl.appendChild(pWrapExpand);
-
-  //const _nav = navEl.parentElement;
-  //// add toUpperCase to fix "samecase" XML issue
-  //if (_nav.tagName.toUpperCase() === "BODY") {
-  //  document.body.insertBefore(pWrapExpand, navEl);
-  //} else {
-  //  if (_nav.parentElement.tagName.toUpperCase() === "BODY") {
-  //    document.body.insertBefore(pWrapExpand, navEl.parentElement);
-  //  } else {
-  //    console.log("Unable to determine nesting level of <nav>!");
-  //  }
-  //}
 
   const getDepth = function (list) {
     for (
