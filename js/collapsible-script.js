@@ -247,7 +247,7 @@ if (true) {
   var showLogg2 = false; // logg2 - shared 'click-event-listener'
   var showLogg3 = true; // logg3 - 'scroll'
 
-  // loggs subsystem 1
+  // loggs subsystem 0
   // 'key-navigation functions'
   var logg = (...m) => {
     if (showLogg) console.log(...m);
@@ -262,7 +262,7 @@ if (true) {
     if (showLogg) console.groupEnd();
   };
 
-  // loggs subsystem 2
+  // loggs subsystem 1
   // 'restore-last-selected functions'
   var logg1 = (...m) => {
     if (showLogg1) console.log(...m);
@@ -275,7 +275,7 @@ if (true) {
     if (showLogg1) console.groupEnd();
   };
 
-  // loggs subsystem 3
+  // loggs subsystem 2
   // 'shared'
   var logg2 = (...m) => {
     if (showLogg2) console.log(...m);
@@ -288,7 +288,7 @@ if (true) {
     if (showLogg2) console.groupEnd();
   };
 
-  // loggs subsystem 4
+  // loggs subsystem 3
   // 'scroll'
   var logg3 = (...m) => {
     if (showLogg3) console.log(...m);

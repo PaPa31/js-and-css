@@ -83,6 +83,8 @@ if (true) {
     // tiny transition correction
     curentScrollTop = curentScrollTop - 19;
 
+    logg3("0 tiny correction; curentScrollTop = ", curentScrollTop);
+
     var anchorTop = offset(fixedElBefore).top;
 
     logg3("1 anchorTop = ", anchorTop);
