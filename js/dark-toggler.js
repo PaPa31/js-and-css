@@ -55,8 +55,27 @@ if (true) {
     JD = {},
     curentScrollTop;
 
-  // 3.1 scroll handler with debounce
-  JD.firstName = function () {
+  JD.debounce = function (wait, func, immediate) {
+    var timeout;
+    return function () {
+      var context = this,
+        args = arguments;
+      var later = function () {
+        timeout = null;
+        if (!immediate) {
+          func.apply(context, args);
+        }
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait || 200);
+      if (callNow) {
+        func.apply(context, args);
+      }
+    };
+  };
+
+  JD.scrollHandler = function () {
     curentScrollTop =
       document.documentElement.scrollTop || document.body.scrollTop;
 
@@ -106,7 +125,7 @@ if (true) {
     }
   };
 
-  window.addEventListener("scroll", JD.firstName, false);
+  window.addEventListener("scroll", JD.debounce(250, JD.scrollHandler));
 }
 
 //4. expand/collapse button
