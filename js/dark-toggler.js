@@ -22,38 +22,30 @@ if (document.getElementById("checkbox")) {
 if (true) {
   const he = document.getElementsByTagName("header")[0];
   //let parentDiv;
-  var h1;
+  var fixedEl;
   const d1 = document.createElement("div");
   if (document.getElementsByTagName("h1").length === 0) {
-    h1 = document.createElement("h1");
+    fixedEl = document.createElement("div");
+    fixedEl.id = "fixed";
     const paDiv = he.parentNode;
     paDiv.insertBefore(d1, he.nextSibling);
-    d1.appendChild(h1);
+    d1.appendChild(fixedEl);
   } else {
-    h1 = document.getElementsByTagName("h1")[0];
+    fixedEl = document.getElementsByTagName("h1")[0];
   }
-  const parentDiv = h1.parentNode;
+  const parentDiv = fixedEl.parentNode;
 
-  //const isH1 = document.getElementsByTagName("h1").length === 0;
-  //const h1 = isH1
-  //  ? document.createElement("h1")
-  //  : document.getElementsByTagName("h1")[0];
+  const fixedElBefore = document.createElement("div");
+  fixedElBefore.setAttribute("id", "fixedElBefore");
+  fixedElBefore.setAttribute("style", "height: 0px;");
+  // ✅ Insert element before fixedEl
+  parentDiv.insertBefore(fixedElBefore, fixedEl);
 
-  //const parentDiv = isH1 ? he.parentNode : h1.parentNode;
-
-  //if (isH1) parentDiv.insertBefore(h1, he.nextSibling);
-
-  const h1Before = document.createElement("div");
-  h1Before.setAttribute("id", "h1Before");
-  h1Before.setAttribute("style", "height: 0px;");
-  // ✅ Insert element before h1
-  parentDiv.insertBefore(h1Before, h1);
-
-  const h1After = document.createElement("div");
-  h1After.setAttribute("id", "h1After");
-  h1After.setAttribute("style", "height: 80px;");
-  // ✅ Insert element after h1
-  parentDiv.insertBefore(h1After, h1.nextSibling);
+  const fixedElAfter = document.createElement("div");
+  fixedElAfter.setAttribute("id", "fixedElAfter");
+  fixedElAfter.setAttribute("style", "height: 80px;");
+  // ✅ Insert element after fixedEl
+  parentDiv.insertBefore(fixedElAfter, fixedEl.nextSibling);
 
   let fixed = false,
     JD = {},
@@ -66,19 +58,19 @@ if (true) {
     // tiny transition correction
     curentScrollTop = curentScrollTop - 29;
 
-    var anchorTop = offset(h1Before).top;
+    var anchorTop = offset(fixedElBefore).top;
 
     if (curentScrollTop > anchorTop) {
       if (!fixed) {
-        h1Before.style.height = h1.offsetHeight + "px";
-        h1.className = "tog-fixed";
+        fixedElBefore.style.height = fixedEl.offsetHeight + "px";
+        fixedEl.className = "tog-fixed";
         he.className = "he-fixed";
         fixed = true;
       }
     } else {
       if (fixed) {
-        h1Before.style.height = 0;
-        h1.className = "";
+        fixedElBefore.style.height = 0;
+        fixedEl.className = "";
         he.className = "";
         fixed = false;
       }
@@ -117,8 +109,8 @@ if (document.getElementsByTagName("nav")[0]) {
   const pWrapExpand = document.createElement("p");
   pWrapExpand.setAttribute("id", "wrap-expand");
 
-  //d1.insertBefore(h1, pWrapExpand);
-  h1.appendChild(pWrapExpand);
+  //d1.insertBefore(fixedEl, pWrapExpand);
+  fixedEl.appendChild(pWrapExpand);
 
   //const _nav = navEl.parentElement;
   //// add toUpperCase to fix "samecase" XML issue
