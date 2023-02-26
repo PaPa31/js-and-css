@@ -201,3 +201,74 @@ function moveToHash() {
 }
 
 setTimeout(moveToHash, 400);
+
+// 6. loggs system
+if (true) {
+  // Assistant for debugging errors.
+  // View active elements DOM,
+  // when navigation by TOC menu items.
+
+  // For production - delete this block and loggs.
+  // To delete all loggs use regex:^ *log.*$\n*
+
+  // managing vars
+  // change to show/hide output loggs
+  var showLogg = false; // logg - 'key-navigation functions'
+  var showLogg1 = false; // logg1 - 'restore-last-selected functions'
+  var showLogg2 = false; // logg2 - shared 'click-event-listener'
+  var showLogg3 = true; // logg3 - 'scroll'
+
+  // loggs subsystem 0
+  // 'key-navigation functions'
+  var logg = (...m) => {
+    if (showLogg) console.log(...m);
+  };
+
+  // remove '...' to show
+  // without 'selected' element
+  var logIn = (...mes) => {
+    if (showLogg) console.group(...mes);
+  };
+  var logOut = () => {
+    if (showLogg) console.groupEnd();
+  };
+
+  // loggs subsystem 1
+  // 'restore-last-selected functions'
+  var logg1 = (...m) => {
+    if (showLogg1) console.log(...m);
+  };
+
+  var logIn1 = (...mes) => {
+    if (showLogg1) console.group(...mes);
+  };
+  var logOut1 = () => {
+    if (showLogg1) console.groupEnd();
+  };
+
+  // loggs subsystem 2
+  // 'shared'
+  var logg2 = (...m) => {
+    if (showLogg2) console.log(...m);
+  };
+
+  var logIn2 = (...mes) => {
+    if (showLogg2) console.group(...mes);
+  };
+  var logOut2 = () => {
+    if (showLogg2) console.groupEnd();
+  };
+
+  // loggs subsystem 3
+  // 'scroll'
+  var logg3 = (...m) => {
+    if (showLogg3) console.log(...m);
+  };
+
+  var logIn3 = (...mes) => {
+    if (showLogg3) console.group(...mes);
+  };
+  var logOut3 = () => {
+    if (showLogg3) console.groupEnd();
+  };
+}
