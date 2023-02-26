@@ -1,3 +1,5 @@
+// 1. url search param
+// to workaround Firefox file:// same domain issue
 window.addEventListener("click", function (e) {
   const href = e.target.getAttribute("href");
   if (href) {
@@ -6,6 +8,7 @@ window.addEventListener("click", function (e) {
   }
 });
 
+// 2. dark/light toggle handler
 if (document.getElementById("checkbox")) {
   const checkbox = document.getElementById("checkbox");
 
@@ -19,6 +22,7 @@ if (document.getElementById("checkbox")) {
   );
 }
 
+// 3. fix/unfix block functionality
 if (true) {
   const he = document.getElementsByTagName("header")[0];
   const wrapFixedEl = document.createElement("div");
@@ -51,6 +55,7 @@ if (true) {
     JD = {},
     curentScrollTop;
 
+  // 3.1 scroll handler with debounce
   JD.firstName = function () {
     curentScrollTop =
       document.documentElement.scrollTop || document.body.scrollTop;
@@ -104,6 +109,7 @@ if (true) {
   window.addEventListener("scroll", JD.firstName, false);
 }
 
+//4. expand/collapse button
 if (document.getElementsByTagName("nav")[0]) {
   const pWrapExpand = document.createElement("p");
   pWrapExpand.setAttribute("id", "wrap-expand");
@@ -146,6 +152,8 @@ if (document.getElementsByTagName("nav")[0]) {
   wrapButtonEl.appendChild(buttonEl);
 }
 
+// 5. pending reload
+// waiting for apply all injected css
 function moveToHash() {
   let urlHash = window.location.hash;
 
