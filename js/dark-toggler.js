@@ -19,70 +19,29 @@ if (document.getElementById("checkbox")) {
   );
 }
 
-if (document.getElementsByTagName("nav")[0]) {
-  const navEl = document.getElementsByTagName("nav")[0];
-  const pWrapExpand = document.createElement("p");
-  pWrapExpand.setAttribute("id", "wrap-expand");
-
-  const _nav = navEl.parentElement;
-  // add toUpperCase to fix "samecase" XML issue
-  if (_nav.tagName.toUpperCase() === "BODY") {
-    document.body.insertBefore(pWrapExpand, navEl);
-  } else {
-    if (_nav.parentElement.tagName.toUpperCase() === "BODY") {
-      document.body.insertBefore(pWrapExpand, navEl.parentElement);
-    } else {
-      console.log("Unable to determine nesting level of <nav>!");
-    }
-  }
-
-  const getDepth = function (list) {
-    for (
-      var depth = 0;
-      list.querySelector(Array(depth++ + 3).join(list.tagName + " "));
-
-    );
-    return depth;
-  };
-
-  // 'var' for global scope
-  var olLevelNesting = getDepth(document.getElementsByTagName("ol")[0]);
-
-  const levelsEl = document.createElement("span");
-  pWrapExpand.appendChild(levelsEl);
-
-  const levelValueEl = document.createElement("div");
-  levelValueEl.setAttribute("id", "level-value");
-  levelValueEl.innerHTML = "1 level";
-  levelsEl.appendChild(levelValueEl);
-
-  const deepNestingEl = document.createElement("div");
-  deepNestingEl.setAttribute("id", "deep-nesting");
-  deepNestingEl.innerHTML = "Depth: " + olLevelNesting;
-  levelsEl.appendChild(deepNestingEl);
-
-  const wrapButtonEl = document.createElement("span");
-  pWrapExpand.appendChild(wrapButtonEl);
-
-  const buttonEl = document.createElement("button");
-  buttonEl.setAttribute("id", "expand");
-  buttonEl.setAttribute("onclick", "actExpandCollapse()");
-  buttonEl.setAttribute("title", "Click or hit Space");
-  buttonEl.innerHTML = "Expand: to 2 level";
-  wrapButtonEl.appendChild(buttonEl);
-}
-
-if (
-  document.querySelector('section[data-type="preface"]') ||
-  document.querySelector('section[data-type="chapter"]') ||
-  document.querySelector('section[data-type="appendix"]') ||
-  document.querySelector('section[data-type="glossary"]') ||
-  document.querySelector('section[data-type="bibliography"]') ||
-  document.querySelector('section[data-type="index"]')
-) {
+if (true) {
   const he = document.getElementsByTagName("header")[0];
-  const h1 = document.getElementsByTagName("h1")[0];
+  //let parentDiv;
+  var h1;
+  const d1 = document.createElement("div");
+  if (document.getElementsByTagName("h1").length === 0) {
+    h1 = document.createElement("h1");
+    const paDiv = he.parentNode;
+    paDiv.insertBefore(d1, he.nextSibling);
+    d1.appendChild(h1);
+  } else {
+    h1 = document.getElementsByTagName("h1")[0];
+  }
   const parentDiv = h1.parentNode;
+
+  //const isH1 = document.getElementsByTagName("h1").length === 0;
+  //const h1 = isH1
+  //  ? document.createElement("h1")
+  //  : document.getElementsByTagName("h1")[0];
+
+  //const parentDiv = isH1 ? he.parentNode : h1.parentNode;
+
+  //if (isH1) parentDiv.insertBefore(h1, he.nextSibling);
 
   const h1Before = document.createElement("div");
   h1Before.setAttribute("id", "h1Before");
@@ -151,6 +110,62 @@ if (
   };
 
   window.addEventListener("scroll", JD.firstName, false);
+}
+
+if (document.getElementsByTagName("nav")[0]) {
+  //const navEl = document.getElementsByTagName("nav")[0];
+  const pWrapExpand = document.createElement("p");
+  pWrapExpand.setAttribute("id", "wrap-expand");
+
+  //d1.insertBefore(h1, pWrapExpand);
+  h1.appendChild(pWrapExpand);
+
+  //const _nav = navEl.parentElement;
+  //// add toUpperCase to fix "samecase" XML issue
+  //if (_nav.tagName.toUpperCase() === "BODY") {
+  //  document.body.insertBefore(pWrapExpand, navEl);
+  //} else {
+  //  if (_nav.parentElement.tagName.toUpperCase() === "BODY") {
+  //    document.body.insertBefore(pWrapExpand, navEl.parentElement);
+  //  } else {
+  //    console.log("Unable to determine nesting level of <nav>!");
+  //  }
+  //}
+
+  const getDepth = function (list) {
+    for (
+      var depth = 0;
+      list.querySelector(Array(depth++ + 3).join(list.tagName + " "));
+
+    );
+    return depth;
+  };
+
+  // 'var' for global scope
+  var olLevelNesting = getDepth(document.getElementsByTagName("ol")[0]);
+
+  const levelsEl = document.createElement("span");
+  pWrapExpand.appendChild(levelsEl);
+
+  const levelValueEl = document.createElement("div");
+  levelValueEl.setAttribute("id", "level-value");
+  levelValueEl.innerHTML = "1 level";
+  levelsEl.appendChild(levelValueEl);
+
+  const deepNestingEl = document.createElement("div");
+  deepNestingEl.setAttribute("id", "deep-nesting");
+  deepNestingEl.innerHTML = "Depth: " + olLevelNesting;
+  levelsEl.appendChild(deepNestingEl);
+
+  const wrapButtonEl = document.createElement("span");
+  pWrapExpand.appendChild(wrapButtonEl);
+
+  const buttonEl = document.createElement("button");
+  buttonEl.setAttribute("id", "expand");
+  buttonEl.setAttribute("onclick", "actExpandCollapse()");
+  buttonEl.setAttribute("title", "Click or hit Space");
+  buttonEl.innerHTML = "Expand: to 2 level";
+  wrapButtonEl.appendChild(buttonEl);
 }
 
 function moveToHash() {
