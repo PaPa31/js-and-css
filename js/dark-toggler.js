@@ -21,16 +21,18 @@ if (document.getElementById("checkbox")) {
 
 if (true) {
   const he = document.getElementsByTagName("header")[0];
-  var fixedEl;
   const wrapFixedEl = document.createElement("div");
-  if (document.getElementsByTagName("h1").length === 0) {
-    fixedEl = document.createElement("div");
-    fixedEl.id = "fixed";
-    he.parentNode.insertBefore(wrapFixedEl, he.nextSibling);
-    wrapFixedEl.appendChild(fixedEl);
-  } else {
-    fixedEl = document.getElementsByTagName("h1")[0];
-  }
+  wrapFixedEl.id = "wrap-fixed";
+  he.parentNode.insertBefore(wrapFixedEl, he.nextSibling);
+
+  var fixedEl =
+    document.getElementsByTagName("h1").length === 0
+      ? document.createElement("div")
+      : document.getElementsByTagName("h1")[0];
+
+  fixedEl.id = "fixed";
+  wrapFixedEl.appendChild(fixedEl);
+
   const parentDiv = fixedEl.parentNode;
 
   const fixedElBefore = document.createElement("div");
