@@ -37,19 +37,19 @@ if (true) {
   fixedEl.id = "fixed";
   wrapFixedEl.appendChild(fixedEl);
 
-  const parentDiv = fixedEl.parentNode;
+  //const parentDiv = wrapFixedEl.parentNode;
 
-  const fixedElBefore = document.createElement("div");
-  fixedElBefore.setAttribute("id", "fixedElBefore");
-  fixedElBefore.setAttribute("style", "height: 0px;");
-  // ✅ Insert element before fixedEl
-  parentDiv.insertBefore(fixedElBefore, fixedEl);
+  //const fixedElBefore = document.createElement("div");
+  //fixedElBefore.setAttribute("id", "fixedElBefore");
+  //fixedElBefore.setAttribute("style", "height: 0px;");
+  //// ✅ Insert element before fixedEl
+  //parentDiv.insertBefore(fixedElBefore, fixedEl);
 
   const fixedElAfter = document.createElement("div");
   fixedElAfter.setAttribute("id", "fixedElAfter");
-  fixedElAfter.setAttribute("style", "height: 80px;");
+  fixedElAfter.setAttribute("style", "height: 180px;");
   // ✅ Insert element after fixedEl
-  parentDiv.insertBefore(fixedElAfter, fixedEl.nextSibling);
+  wrapFixedEl.parentNode.insertBefore(fixedElAfter, wrapFixedEl.nextSibling);
 
   let fixed = false,
     JD = {},
@@ -81,26 +81,28 @@ if (true) {
     logIn3("#3 scrollHandler", "curentScrollTop=", curentScrollTop);
 
     // tiny transition correction
-    curentScrollTop = curentScrollTop - 19;
+    curentScrollTop = curentScrollTop - 69;
 
     logg3("0 tiny correction; curentScrollTop = ", curentScrollTop);
 
-    var anchorTop = offset(fixedElBefore).top;
+    var anchorTop = offset(fixedElAfter).top;
 
     logg3("1 anchorTop = ", anchorTop);
     logg3("2 fixedEl.offsetHeight = ", fixedEl.offsetHeight);
 
     if (curentScrollTop > anchorTop) {
       if (!fixed) {
-        fixedElBefore.style.height = fixedEl.offsetHeight + "px";
-        fixedEl.className = "tog-fixed";
+        //fixedElBefore.style.height = fixedEl.offsetHeight + 80 + "px";
+        wrapFixedEl.className = "tog-fixed";
+        //fixedEl.className = "tog-fixed";
         he.className = "he-fixed";
         fixed = true;
       }
     } else {
       if (fixed) {
-        fixedElBefore.style.height = 0;
-        fixedEl.className = "";
+        //fixedElBefore.style.height = 0;
+        wrapFixedEl.className = "";
+        //fixedEl.className = "";
         he.className = "";
         fixed = false;
       }
@@ -137,7 +139,9 @@ if (true) {
     logOut3();
   };
 
-  window.addEventListener("scroll", JD.debounce(250, JD.scrollHandler));
+  //window.addEventListener("scroll", JD.scrollHandler);
+
+  window.addEventListener("scroll", JD.debounce(50, JD.scrollHandler));
 }
 
 //4. expand/collapse button
