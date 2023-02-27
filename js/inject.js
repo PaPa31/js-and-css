@@ -139,7 +139,7 @@ if (true) {
   var showLogg = false; // logg - 'key-navigation functions'
   var showLogg1 = false; // logg1 - 'restore-last-selected functions'
   var showLogg2 = false; // logg2 - shared 'click-event-listener'
-  var showLogg3 = true; // logg3 - 'scroll'
+  var showLogg3 = false; // logg3 - 'scroll'
 
   // loggs subsystem 0
   // 'key-navigation functions'

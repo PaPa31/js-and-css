@@ -2333,7 +2333,6 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  /*right: 0;*/
   width: 660px;
   margin: 10px auto 0;
   z-index: 2;
@@ -2354,31 +2353,31 @@ header > * {
   color: white;
 }
 
-/*.dark header {
-  background-color: #2b1111;
-}*/
+#fixed-before {
+  border-bottom: 1px solid #777;
+  transition: width 0.3s ease-in-out;
+  width: 0;
+}
+
+.tog-fixed #fixed-before {
+  width: 100%;
+  border-bottom: 1px solid #777;
+}
 
 #wrap-fixed {
-  border-bottom: 1px solid #777;
-  transition: width 0.3s ease;
-  width: 100%;
-  height: 130px;
+  height: 100px;
   position: fixed;
-  width: 660px;
+  background: inherit;
+  width: 720px;
+  top: 0;
+  left: 0;
 }
 
 #wrap-fixed.tog-fixed {
-  width: 0;
-  border: none;
+  height: 49px;
 }
 
 #fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  max-width: 720px;
   font-size: 1.5em;
 }
 
@@ -2394,7 +2393,7 @@ header > * {
 }
 
 .tog-fixed #fixed {
-  padding-top: 15px !important;
+  padding-top: 22px !important;
   font-size: 1em !important;
 }
 

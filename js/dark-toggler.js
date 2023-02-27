@@ -27,6 +27,7 @@ if (true) {
   const he = document.getElementsByTagName("header")[0];
   const wrapFixedEl = document.createElement("div");
   wrapFixedEl.id = "wrap-fixed";
+  // Insert as next sibling of <header>
   he.parentNode.insertBefore(wrapFixedEl, he.nextSibling);
 
   var fixedEl =
@@ -35,20 +36,19 @@ if (true) {
       : document.getElementsByTagName("h1")[0];
 
   fixedEl.id = "fixed";
+  // Insert as first child of fixed block
   wrapFixedEl.appendChild(fixedEl);
 
-  //const parentDiv = wrapFixedEl.parentNode;
-
-  //const fixedElBefore = document.createElement("div");
-  //fixedElBefore.setAttribute("id", "fixedElBefore");
-  //fixedElBefore.setAttribute("style", "height: 0px;");
-  //// ✅ Insert element before fixedEl
-  //parentDiv.insertBefore(fixedElBefore, fixedEl);
+  const fixedElBefore = document.createElement("div");
+  fixedElBefore.setAttribute("id", "fixed-before");
+  fixedElBefore.setAttribute("style", "height: 5px;");
+  // ✅ Insert as last child of fixed block
+  wrapFixedEl.insertBefore(fixedElBefore, fixedEl.nextSibling);
 
   const fixedElAfter = document.createElement("div");
-  fixedElAfter.setAttribute("id", "fixedElAfter");
+  fixedElAfter.setAttribute("id", "fixed-after");
   fixedElAfter.setAttribute("style", "height: 180px;");
-  // ✅ Insert element after fixedEl
+  // ✅ Insert as next sibling of fixed block
   wrapFixedEl.parentNode.insertBefore(fixedElAfter, wrapFixedEl.nextSibling);
 
   let fixed = false,
@@ -92,26 +92,17 @@ if (true) {
 
     if (curentScrollTop > anchorTop) {
       if (!fixed) {
-        //fixedElBefore.style.height = fixedEl.offsetHeight + 80 + "px";
         wrapFixedEl.className = "tog-fixed";
-        //fixedEl.className = "tog-fixed";
         he.className = "he-fixed";
         fixed = true;
       }
     } else {
       if (fixed) {
-        //fixedElBefore.style.height = 0;
         wrapFixedEl.className = "";
-        //fixedEl.className = "";
         he.className = "";
         fixed = false;
       }
     }
-
-    logg3(
-      "3 after if; fixedElBefore.style.height = ",
-      fixedElBefore.style.height
-    );
 
     function isWindow(obj) {
       return obj != null && obj === obj.window;
@@ -138,8 +129,6 @@ if (true) {
     }
     logOut3();
   };
-
-  //window.addEventListener("scroll", JD.scrollHandler);
 
   window.addEventListener("scroll", JD.debounce(50, JD.scrollHandler));
 }
