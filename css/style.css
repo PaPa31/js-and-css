@@ -73,6 +73,14 @@ body.dark {
   color: #a4a400;
 }
 
+nav a:visited {
+  color: #ba636e;
+}
+
+.dark nav a:visited {
+  color: #74ac79;
+}
+
 /*--- start dark theme --- */
 
 .dark .button_label {
