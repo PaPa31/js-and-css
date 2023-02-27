@@ -140,6 +140,7 @@ if (true) {
   var showLogg1 = false; // logg1 - 'restore-last-selected functions'
   var showLogg2 = false; // logg2 - shared 'click-event-listener'
   var showLogg3 = false; // logg3 - 'scroll'
+  var showLogg4 = true; // logg4 - 'expand/collapse functions'
 
   // loggs subsystem 0
   // 'key-navigation functions'
@@ -193,5 +194,18 @@ if (true) {
   };
   var logOut3 = () => {
     if (showLogg3) console.groupEnd();
+  };
+
+  // loggs subsystem 4
+  // 'expand/collapse functions'
+  var logg4 = (...m) => {
+    if (showLogg4) console.log(...m);
+  };
+
+  var logIn4 = (...mes) => {
+    if (showLogg4) console.group(...mes);
+  };
+  var logOut4 = () => {
+    if (showLogg4) console.groupEnd();
   };
 }

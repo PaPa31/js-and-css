@@ -333,7 +333,6 @@ document.addEventListener("keydown", function (e) {
     case " ":
       e.preventDefault();
       actExpandCollapse();
-      scrollToCenter();
       break;
     case "ArrowDown":
       fromA();
@@ -400,6 +399,7 @@ var i = 1;
 var j = 1;
 
 var actExpandCollapse = function () {
+  logIn4("actExpandCollapse; i=", i);
   var borderStyle = ["solid", "dashed", "dotted", "hidden"];
   var levelValue = document.getElementById("level-value");
   var button = document.getElementById("expand");
@@ -436,6 +436,8 @@ var actExpandCollapse = function () {
   button.textContent = `${j ? "Expand" : "Collapse"}: to ${
     j ? i + 1 : i - 1
   } level`;
+
+  logOut4();
 };
 
 var recursionUptoNav = function (sel) {
