@@ -2365,16 +2365,13 @@ header > * {
 }
 
 #wrap-fixed {
-  height: 100px;
+  height: auto;
   position: fixed;
   background: inherit;
   width: 720px;
   top: 0;
   left: 0;
-}
-
-#wrap-fixed.tog-fixed {
-  height: 49px;
+  z-index: 1;
 }
 
 #fixed {
