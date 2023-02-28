@@ -187,11 +187,6 @@ function moveToHash() {
 
   if (urlHash) {
     window.location.replace(urlHash);
-    window.scrollBy({
-      top: -140,
-      left: 0,
-      behavior: "smooth",
-    });
   }
 }
 
