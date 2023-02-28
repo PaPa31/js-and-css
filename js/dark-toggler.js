@@ -1,9 +1,10 @@
-// 1. url search param
+// 1. add url search param
 // to workaround Firefox file:// same domain issue
 window.addEventListener("click", function (e) {
   const href = e.target.getAttribute("href");
   if (href) {
-    location.href = href + "?isDark=" + isDark();
+    // href method for 'reload' and 'back' buttons
+    window.location.href = href + "?isDark=" + isDark();
     e.preventDefault();
   }
 });
@@ -17,6 +18,7 @@ if (document.getElementById("checkbox")) {
     function (e) {
       toggleLocalStorageItem();
       toggleDark();
+      changeSearchWithoutReload();
     },
     false
   );
@@ -184,7 +186,7 @@ function moveToHash() {
   urlHash = urlHash.split("?")[0];
 
   if (urlHash) {
-    location.replace(urlHash);
+    window.location.replace(urlHash);
     window.scrollBy({
       top: -140,
       left: 0,
@@ -192,5 +194,19 @@ function moveToHash() {
     });
   }
 }
+
+// 6. 'change url in address bar only'
+var changeSearchWithoutReload = function () {
+  logIn5("changeSearchWithoutReload");
+  const oldHref = window.location.toString();
+  logg5("oldHref:", oldHref);
+  const newHref = oldHref.split("?")[0] + "?isDark=" + isDark();
+
+  if (history.pushState) {
+    logg5("newHref:", newHref);
+    window.history.replaceState({ path: newHref }, "", newHref);
+  }
+  logOut5();
+};
 
 setTimeout(moveToHash, 400);

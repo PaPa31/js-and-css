@@ -83,14 +83,15 @@ window.addEventListener("load", (event) => {
       const value = url.slice(url.indexOf('?') + 1);
       const val = value.split("=")[1];
 
-
-        if (!((!val && !isDark()) || (val === 'null')) || ((!val && !!isDark()) || (val === 'set'))) {
-          localStorage.setItem("dark-mode", "set");
-          document.body.classList.add("dark");
-        } else {
-          localStorage.removeItem("dark-mode");
-          document.body.classList.remove("dark");
-        }
+      if (!((!val && !isDark()) || (val === 'null')) || ((!val && isDark()) || (val === 'set'))) {
+        logg5('set dark;', "val =", val)
+        localStorage.setItem("dark-mode", "set");
+        document.body.classList.add("dark");
+      } else {
+        logg5('remove dark;', "val =", val)
+        localStorage.removeItem("dark-mode");
+        document.body.classList.remove("dark");
+      }
     `;
     // ✅ Insert element as first in body
     document.body.insertAdjacentElement("afterbegin", scriptStorage);
@@ -140,7 +141,8 @@ if (true) {
   var showLogg1 = false; // logg1 - 'restore-last-selected functions'
   var showLogg2 = false; // logg2 - shared 'click-event-listener'
   var showLogg3 = false; // logg3 - 'scroll'
-  var showLogg4 = true; // logg4 - 'expand/collapse functions'
+  var showLogg4 = false; // logg4 - 'expand/collapse functions'
+  var showLogg5 = false; // logg5 - 'change url search param'
 
   // loggs subsystem 0
   // 'key-navigation functions'
@@ -207,5 +209,18 @@ if (true) {
   };
   var logOut4 = () => {
     if (showLogg4) console.groupEnd();
+  };
+
+  // loggs subsystem 5
+  // 'change url search param''
+  var logg5 = (...m) => {
+    if (showLogg5) console.log(...m);
+  };
+
+  var logIn5 = (...mes) => {
+    if (showLogg5) console.group(...mes);
+  };
+  var logOut5 = () => {
+    if (showLogg5) console.groupEnd();
   };
 }
