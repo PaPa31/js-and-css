@@ -202,7 +202,8 @@ var changeSearchWithoutReload = function () {
   logg5("oldHref:", oldHref);
   const newHref = oldHref.split("?")[0] + "?isDark=" + isDark();
 
-  if (history.pushState) {
+  //'!!' need due to Firefox ': missing error'
+  if (!!history.pushState) {
     logg5("newHref:", newHref);
     window.history.replaceState({ path: newHref }, "", newHref);
   }
