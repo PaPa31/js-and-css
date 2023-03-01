@@ -55,7 +55,7 @@ if (true) {
 
   const fixedElBefore = document.createElement("div");
   fixedElBefore.setAttribute("id", "fixed-before");
-  fixedElBefore.setAttribute("style", "height: 5px;");
+  fixedElBefore.setAttribute("style", "height: 25px;");
   // ✅ Insert as last child of fixed block
   wrapFixedEl.insertBefore(fixedElBefore, fixedEl.nextSibling);
 
@@ -64,6 +64,11 @@ if (true) {
   fixedElAfter.setAttribute("style", "height: 180px;");
   // ✅ Insert as next sibling of fixed block
   wrapFixedEl.parentNode.insertBefore(fixedElAfter, wrapFixedEl.nextSibling);
+
+  var breadCrumbEl = document.createElement("div");
+  breadCrumbEl.id = "breadcrumb";
+  // Insert as child of last fixed block
+  fixedElBefore.appendChild(breadCrumbEl);
 
   let fixed = false,
     JD = {},
@@ -216,6 +221,47 @@ var changeSearchWithoutReload = function () {
   }
   logOut5();
 };
+
+const spanMaker = () => {
+  const spanTag = document.createElement("span");
+  spanTag.innerHTML = " > ";
+  breadCrumbEl.appendChild(spanTag);
+};
+
+var aMaker = (inner, href) => {
+  const aTag = document.createElement("a");
+  aTag.setAttribute("href", href);
+  aTag.innerHTML = inner;
+
+  breadCrumbEl.appendChild(aTag);
+};
+
+var breadcrumb = function () {
+  var url = window.location.toString();
+  const delim = url.split("/") ? "/" : "\\";
+  const urlApart = url.split(delim);
+  console.log("urlApart", urlApart);
+
+  let rootBook = false;
+  let urlHead = "";
+  let urlLast = "";
+  const lenArr = urlApart.length;
+  urlApart.forEach((folder, i) => {
+    if (urlApart[i] === "Books") {
+      rootBook = true;
+      console.log(urlHead);
+    }
+    if (rootBook) {
+      console.log(folder);
+      urlLast = urlLast === "" ? folder : urlLast + delim + folder;
+      if (i + 1 < lenArr) aMaker(folder, urlHead + delim + urlLast);
+      if (i + 2 < lenArr) spanMaker();
+    } else {
+      urlHead = urlHead === "" ? folder : urlHead + delim + folder;
+    }
+  });
+};
+breadcrumb();
 
 changeSearchWithoutReload();
 

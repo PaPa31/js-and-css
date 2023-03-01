@@ -73,13 +73,13 @@ body.dark {
   color: #a4a400;
 }
 
-a:visited {
+/*:not(#wrap-fixed) a:visited {
   color: #ba636e;
 }
 
-.dark a:visited {
+.dark :not(#wrap-fixed) a:visited {
   color: #74ac79;
-}
+}*/
 
 /*--- start dark theme --- */
 
@@ -2343,13 +2343,30 @@ header > * {
 
 #fixed-before {
   border-bottom: 1px solid #777;
-  transition: width 0.3s ease-in-out;
-  width: 0;
+  /*transition: width 0.3s ease-in-out;*/
+  width: 100%;
 }
 
 .tog-fixed #fixed-before {
-  width: 100%;
-  border-bottom: 1px solid #777;
+  /*width: 100%;*/
+  /*border-bottom: 1px solid #777;*/
+}
+
+#breadcrumb * {
+  font-size: 75%;
+}
+
+#breadcrumb {
+  margin-left: 15px;
+}
+
+#breadcrumb a:not(:nth-last-child(5)) {
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+#breadcrumb:hover a {
+  opacity: 1;
 }
 
 #wrap-fixed {
@@ -2377,8 +2394,9 @@ header > * {
 }
 
 .tog-fixed #fixed {
-  padding-top: 22px !important;
-  font-size: 1em !important;
+  padding-top: 22px;
+  font-size: 1em;
+  padding-left: 17px;
 }
 
 :target {
