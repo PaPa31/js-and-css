@@ -1,3 +1,19 @@
+// 6. 'change url in address bar only'
+var changeSearchWithoutReload = function () {
+  logIn5("changeSearchWithoutReload");
+  const oldHref = window.location.toString();
+  logg5("oldHref:", oldHref);
+  const newHref = oldHref.split("?")[0] + "?isDark=" + isDark();
+
+  if (history.pushState) {
+    logg5("newHref:", newHref);
+    window.history.replaceState({ path: newHref }, "", newHref);
+  }
+  logOut5();
+};
+
+changeSearchWithoutReload();
+
 // 1. add url search param
 // to workaround Firefox file:// same domain issue
 window.addEventListener("click", function (e) {
@@ -36,6 +52,47 @@ if (document.getElementById("checkbox")) {
   );
 }
 
+// 7. breadcrumb
+const spanMaker = () => {
+  const spanTag = document.createElement("span");
+  spanTag.innerHTML = " > ";
+  breadCrumbEl.appendChild(spanTag);
+};
+
+const aMaker = (inner, href) => {
+  const aTag = document.createElement("a");
+  aTag.setAttribute("href", href);
+  aTag.innerHTML = inner;
+
+  breadCrumbEl.appendChild(aTag);
+};
+
+const breadcrumb = function () {
+  var url = window.location.toString();
+  const delim = url.split("/") ? "/" : "\\";
+  const urlApart = url.split(delim);
+  console.log("urlApart", urlApart);
+
+  let rootBook = false;
+  let urlHead = "";
+  let urlLast = "";
+  const lenArr = urlApart.length;
+  urlApart.forEach((folder, i) => {
+    if (urlApart[i] === "Books") {
+      rootBook = true;
+      console.log(urlHead);
+    }
+    if (rootBook) {
+      console.log(folder);
+      urlLast = urlLast === "" ? folder : urlLast + delim + folder;
+      if (i + 1 < lenArr) aMaker(folder, urlHead + delim + urlLast);
+      if (i + 2 < lenArr) spanMaker();
+    } else {
+      urlHead = urlHead === "" ? folder : urlHead + delim + folder;
+    }
+  });
+};
+
 // 3. fix/unfix block functionality
 if (true) {
   const he = document.getElementsByTagName("header")[0];
@@ -69,6 +126,7 @@ if (true) {
   breadCrumbEl.id = "breadcrumb";
   // Insert as child of last fixed block
   fixedElBefore.appendChild(breadCrumbEl);
+  breadcrumb();
 
   let fixed = false,
     JD = {},
@@ -206,63 +264,5 @@ function moveToHash() {
     window.location.replace(urlHash);
   }
 }
-
-// 6. 'change url in address bar only'
-var changeSearchWithoutReload = function () {
-  logIn5("changeSearchWithoutReload");
-  const oldHref = window.location.toString();
-  logg5("oldHref:", oldHref);
-  const newHref = oldHref.split("?")[0] + "?isDark=" + isDark();
-
-  //'!!' need due to Firefox ': missing error'
-  if (!!history.pushState) {
-    logg5("newHref:", newHref);
-    window.history.replaceState({ path: newHref }, "", newHref);
-  }
-  logOut5();
-};
-
-const spanMaker = () => {
-  const spanTag = document.createElement("span");
-  spanTag.innerHTML = " > ";
-  breadCrumbEl.appendChild(spanTag);
-};
-
-var aMaker = (inner, href) => {
-  const aTag = document.createElement("a");
-  aTag.setAttribute("href", href);
-  aTag.innerHTML = inner;
-
-  breadCrumbEl.appendChild(aTag);
-};
-
-var breadcrumb = function () {
-  var url = window.location.toString();
-  const delim = url.split("/") ? "/" : "\\";
-  const urlApart = url.split(delim);
-  console.log("urlApart", urlApart);
-
-  let rootBook = false;
-  let urlHead = "";
-  let urlLast = "";
-  const lenArr = urlApart.length;
-  urlApart.forEach((folder, i) => {
-    if (urlApart[i] === "Books") {
-      rootBook = true;
-      console.log(urlHead);
-    }
-    if (rootBook) {
-      console.log(folder);
-      urlLast = urlLast === "" ? folder : urlLast + delim + folder;
-      if (i + 1 < lenArr) aMaker(folder, urlHead + delim + urlLast);
-      if (i + 2 < lenArr) spanMaker();
-    } else {
-      urlHead = urlHead === "" ? folder : urlHead + delim + folder;
-    }
-  });
-};
-breadcrumb();
-
-changeSearchWithoutReload();
 
 setTimeout(moveToHash, 400);
