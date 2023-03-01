@@ -12,7 +12,7 @@ window.addEventListener("click", function (e) {
     // preventDefault only when open other page
     if (samePage) {
       //alert("===");
-      window.location.assign(href);
+      window.location.replace(href);
     } else {
       //alert("!==");
       window.location.assign(href);
