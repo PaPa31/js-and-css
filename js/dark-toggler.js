@@ -1,11 +1,23 @@
 // 1. add url search param
 // to workaround Firefox file:// same domain issue
 window.addEventListener("click", function (e) {
-  const href = e.target.getAttribute("href");
+  let href = e.target.getAttribute("href");
+
   if (href) {
-    // href method for 'reload' and 'back' buttons
-    window.location.href = href + "?isDark=" + isDark();
-    e.preventDefault();
+    const pageName = href.split("#")[0];
+    const samePage = window.location.toString().includes(pageName);
+
+    href = href + "?isDark=" + isDark();
+
+    // preventDefault only when open other page
+    if (samePage) {
+      //alert("===");
+      window.location.assign(href);
+    } else {
+      //alert("!==");
+      window.location.assign(href);
+      e.preventDefault();
+    }
   }
 });
 
@@ -204,5 +216,7 @@ var changeSearchWithoutReload = function () {
   }
   logOut5();
 };
+
+changeSearchWithoutReload();
 
 setTimeout(moveToHash, 400);
