@@ -73,11 +73,11 @@ body.dark {
   color: #a4a400;
 }
 
-nav a:visited {
+a:visited {
   color: #ba636e;
 }
 
-.dark nav a:visited {
+.dark a:visited {
   color: #74ac79;
 }
 
@@ -111,10 +111,6 @@ nav a:visited {
 
 .dark em {
   color: #ff8860;
-}
-
-.dark a[data-type="noteref"] {
-  color: #abffb4;
 }
 
 .dark pre code.nx {
@@ -173,10 +169,6 @@ nav a:visited {
 .dark a.link,
 .dark a {
   color: #abffb4;
-}
-
-.dark p[data-type="footnote"] a[href$="-marker"] {
-  color: #abffb4 !important;
 }
 
 .dark div[data-type="example"] h1,
@@ -448,7 +440,7 @@ a.email,
 a.link,
 a {
   text-decoration: none;
-  color: #8e0012;
+  color: red;
 }
 
 span.lineannotation {
@@ -1039,24 +1031,11 @@ p[data-type="footnote"] sup {
   padding-right: 0.5em !important;
 }
 
-p[data-type="footnote"] a[href$="-marker"] {
-  font-family: sans-serif !important;
-  font-size: 90% !important;
-  color: #8e0012 !important;
-}
-
 /* Special handling to account for Platform number (in footnote) spacing issue */
 p[data-type="footnote"] a[data-type="xref"] {
   margin: 0 !important;
   padding: 0 !important;
   text-indent: 0 !important;
-}
-
-a[data-type="noteref"] {
-  font-family: sans-serif !important;
-  color: #8e0012;
-  margin-left: 0;
-  padding-left: 0;
 }
 
 a[name^="bookmark"] {
@@ -2403,7 +2382,7 @@ header > * {
 }
 
 :target {
-  padding-top: 60px;
+  padding-top: 69px;
 }
 
 @media (min-width: 720px) {
