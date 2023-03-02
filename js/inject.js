@@ -1,3 +1,7 @@
+// change these vars depending on your Books root location
+var booksRootUnix = "file:///media/storage418Gb/Users/parsh/Documents/Books";
+var booksRootWindows = "file:///F:/Users/parsh/Documents/Books";
+
 window.addEventListener("load", (event) => {
   if (!document.getElementById("toggler-script")) {
     //inject metatag with UTF-8 charset
@@ -18,10 +22,7 @@ window.addEventListener("load", (event) => {
 
     //inject link to css for Unix browsers
     const linkTag2 = document.createElement("link");
-    linkTag2.setAttribute(
-      "href",
-      "file:///media/storage418Gb/Users/parsh/Documents/Books/js-and-css/css/style.css"
-    );
+    linkTag2.setAttribute("href", booksRootUnix + "/js-and-css/css/style.css");
     linkTag2.setAttribute("rel", "stylesheet");
     linkTag2.setAttribute("type", "text/css");
     document.head.appendChild(linkTag2);
@@ -30,7 +31,7 @@ window.addEventListener("load", (event) => {
     const linkTag3 = document.createElement("link");
     linkTag3.setAttribute(
       "href",
-      "file:///F:/Users/parsh/Documents/Books/js-and-css/css/style.css"
+      booksRootWindows + "/js-and-css/css/style.css"
     );
     linkTag3.setAttribute("rel", "stylesheet");
     linkTag3.setAttribute("type", "text/css");
@@ -109,7 +110,7 @@ window.addEventListener("load", (event) => {
     scriptTag2.setAttribute("type", "text/javascript");
     scriptTag2.setAttribute(
       "src",
-      "file:///media/storage418Gb/Users/parsh/Documents/Books/js-and-css/js/dark-toggler.js"
+      booksRootUnix + "/js-and-css/js/dark-toggler.js"
     );
     // ✅ Insert element as last in head
     document.head.appendChild(scriptTag2);
@@ -119,7 +120,7 @@ window.addEventListener("load", (event) => {
     scriptTag3.setAttribute("type", "text/javascript");
     scriptTag3.setAttribute(
       "src",
-      "file:///F:/Users/parsh/Documents/Books/js-and-css/js/dark-toggler.js"
+      booksRootWindows + "/js-and-css/js/dark-toggler.js"
     );
     // ✅ Insert element as last in head
     document.head.appendChild(scriptTag3);
