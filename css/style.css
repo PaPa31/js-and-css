@@ -2352,24 +2352,24 @@ header > * {
   /*border-bottom: 1px solid #777;*/
 }
 
-#breadcrumb * {
+#breadcrumbs * {
   font-size: 75%;
 }
 
-#breadcrumb {
+#breadcrumbs {
   margin-left: 15px;
 }
 
-#breadcrumb span {
+#breadcrumbs span {
   opacity: 0.5;
 }
 
-#breadcrumb a:not(:nth-last-child(5)) {
+#breadcrumbs a:not(:nth-last-child(5)) {
   opacity: 0.5;
   transition: opacity 0.2s ease;
 }
 
-#breadcrumb:hover a {
+#breadcrumbs:hover a {
   opacity: 1;
 }
 

@@ -52,11 +52,11 @@ if (document.getElementById("checkbox")) {
   );
 }
 
-// 7. breadcrumb
+// 7. breadcrumbs
 const spanMaker = () => {
   const spanTag = document.createElement("span");
   spanTag.innerHTML = " > ";
-  breadCrumbEl.appendChild(spanTag);
+  breadCrumbsEl.appendChild(spanTag);
 };
 
 const aMaker = (inner, href) => {
@@ -64,10 +64,10 @@ const aMaker = (inner, href) => {
   aTag.setAttribute("href", href);
   aTag.innerHTML = inner;
 
-  breadCrumbEl.appendChild(aTag);
+  breadCrumbsEl.appendChild(aTag);
 };
 
-const breadcrumb = function () {
+const breadcrumbs = function () {
   var url = window.location.toString();
   const delim = url.split("/") ? "/" : "\\";
   const urlApart = url.split(delim);
@@ -122,11 +122,11 @@ if (true) {
   // ✅ Insert as next sibling of fixed block
   wrapFixedEl.parentNode.insertBefore(fixedElAfter, wrapFixedEl.nextSibling);
 
-  var breadCrumbEl = document.createElement("div");
-  breadCrumbEl.id = "breadcrumb";
+  var breadCrumbsEl = document.createElement("div");
+  breadCrumbsEl.id = "breadcrumbs";
   // Insert as child of last fixed block
-  fixedElBefore.appendChild(breadCrumbEl);
-  breadcrumb();
+  fixedElBefore.appendChild(breadCrumbsEl);
+  breadcrumbs();
 
   let fixed = false,
     JD = {},
