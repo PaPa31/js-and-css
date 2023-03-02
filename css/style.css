@@ -2360,6 +2360,10 @@ header > * {
   margin-left: 15px;
 }
 
+#breadcrumb span {
+  opacity: 0.5;
+}
+
 #breadcrumb a:not(:nth-last-child(5)) {
   opacity: 0.5;
   transition: opacity 0.2s ease;
