@@ -63,15 +63,16 @@ const aMaker = (inner, href) => {
   const aTag = document.createElement("a");
   aTag.setAttribute("href", href);
   aTag.innerHTML = inner;
-
   breadCrumbsEl.appendChild(aTag);
 };
 
 const breadcrumbs = function () {
+  logIn6("breadcrumbs");
   var url = window.location.toString();
+  logg6("url =", url);
   const delim = url.split("/") ? "/" : "\\";
   const urlApart = url.split(delim);
-  console.log("urlApart", urlApart);
+  logg6("urlApart", urlApart);
 
   let rootBook = false;
   let urlHead = "";
@@ -80,10 +81,10 @@ const breadcrumbs = function () {
   urlApart.forEach((folder, i) => {
     if (urlApart[i] === "Books") {
       rootBook = true;
-      console.log(urlHead);
+      logg6("urlHead =", urlHead);
     }
     if (rootBook) {
-      console.log(folder);
+      logg6(folder);
       urlLast = urlLast === "" ? folder : urlLast + delim + folder;
       if (i + 1 < lenArr) aMaker(folder, urlHead + delim + urlLast);
       if (i + 2 < lenArr) spanMaker();
@@ -91,6 +92,7 @@ const breadcrumbs = function () {
       urlHead = urlHead === "" ? folder : urlHead + delim + folder;
     }
   });
+  logOut6();
 };
 
 // 3. fix/unfix block functionality

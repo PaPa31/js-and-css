@@ -143,6 +143,7 @@ if (true) {
   var showLogg3 = false; // logg3 - 'scroll'
   var showLogg4 = false; // logg4 - 'expand/collapse functions'
   var showLogg5 = false; // logg5 - 'change url search param'
+  var showLogg6 = true; // logg6 - 'breadcrumbs'
 
   // loggs subsystem 0
   // 'key-navigation functions'
@@ -212,7 +213,7 @@ if (true) {
   };
 
   // loggs subsystem 5
-  // 'change url search param''
+  // 'change url search param'
   var logg5 = (...m) => {
     if (showLogg5) console.log(...m);
   };
@@ -222,5 +223,18 @@ if (true) {
   };
   var logOut5 = () => {
     if (showLogg5) console.groupEnd();
+  };
+
+  // loggs subsystem 6
+  // 'breadcrumbs'
+  var logg6 = (...m) => {
+    if (showLogg6) console.log(...m);
+  };
+
+  var logIn6 = (...mes) => {
+    if (showLogg6) console.group(...mes);
+  };
+  var logOut6 = () => {
+    if (showLogg6) console.groupEnd();
   };
 }
