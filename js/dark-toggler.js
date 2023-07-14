@@ -1,12 +1,24 @@
 // 6. 'change url in address bar only'
 var changeSearchWithoutReload = function () {
+  const hashWithoutSearch = window.location.hash.split("?")[0];
+  //alert("hashWithoutSearch=" + hashWithoutSearch);
   logIn5("changeSearchWithoutReload");
-  const oldHref = window.location.toString();
-  logg5("oldHref:", oldHref);
-  const newHref = oldHref.split("?")[0] + "?isDark=" + isDark();
 
   if (history.pushState) {
+    const oldHref = window.location.toString();
+    logg5("oldHref:", oldHref);
+    const searchUrl = "?isDark=" + isDark();
+    logg5("1 searchUrl=", searchUrl);
+    const newHref =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname +
+      hashWithoutSearch +
+      searchUrl;
+    //const newHref = oldHref.split("?")[0] + "?isDark=" + isDark();
     logg5("newHref:", newHref);
+
     window.history.replaceState({ path: newHref }, "", newHref);
   }
   logOut5();
@@ -17,23 +29,64 @@ changeSearchWithoutReload();
 // 1. add url search param
 // to workaround Firefox file:// same domain issue
 window.addEventListener("click", function (e) {
+  const hashWithoutSearch = window.location.hash.split("?")[0];
   let href = e.target.getAttribute("href");
+  //alert("1 href=" + href);
+  //alert("window.location.href= " + window.location.href);
 
   if (href) {
+    //changeSearchWithoutReload();
     const pageName = href.split("#")[0];
     const samePage = window.location.toString().includes(pageName);
 
-    href = href + "?isDark=" + isDark();
+    const searchUrl = "?isDark=" + isDark();
+    logg5("2 searchUrl=", searchUrl);
+    const newHref =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname +
+      hashWithoutSearch +
+      searchUrl;
+
+    //href = href + "?isDark=" + isDark();
+    //alert("2 newHref=" + newHref);
+
+    //const urlParams = new URLSearchParams(window.location.search);
+
+    /// Change some part of the URL params
+
+    //if (history.pushState) {
+    //  const newurl =
+    //    window.location.protocol +
+    //    "//" +
+    //    window.location.host +
+    //    window.location.pathname +
+    //    "?" +
+    //    urlParams.toString() +
+    //    window.location.hash;
+    //  window.history.replaceState({ path: newurl }, "", newurl);
+    //} else {
+    //  window.location.search = urlParams.toString();
+    //}
 
     // preventDefault only when open other page
     if (samePage) {
+      //changeSearchWithoutReload();
       //alert("===");
-      window.location.replace(href);
+      //window.location.replace(newHref);
+      window.history.replaceState({ path: newHref }, "", newHref);
+      //changeSearchWithoutReload();
     } else {
       //alert("!==");
       window.location.assign(href);
       e.preventDefault();
     }
+    window.scrollBy({
+      top: -140,
+      left: 0,
+      behavior: "smooth",
+    });
   }
 });
 
@@ -78,8 +131,12 @@ const breadcrumbs = function () {
   let urlHead = "";
   let urlLast = "";
   const lenArr = urlApart.length;
+  const protocol = urlApart[0].slice(0, 4);
+  logg6("ptotocol:", protocol);
+  const folderStart = protocol === "http" ? "Coding" : "Books";
+
   urlApart.forEach((folder, i) => {
-    if (urlApart[i] === "Books") {
+    if (urlApart[i] === folderStart) {
       rootBook = true;
       logg6("urlHead =", urlHead);
     }
@@ -260,7 +317,7 @@ if (document.getElementsByTagName("nav")[0]) {
 function moveToHash() {
   let urlHash = window.location.hash;
 
-  urlHash = urlHash.split("?")[0];
+  //urlHash = urlHash.split("?")[0];
 
   if (urlHash) {
     window.location.replace(urlHash);

@@ -143,8 +143,8 @@ if (true) {
   var showLogg2 = false; // logg2 - shared 'click-event-listener'
   var showLogg3 = false; // logg3 - 'scroll'
   var showLogg4 = false; // logg4 - 'expand/collapse functions'
-  var showLogg5 = false; // logg5 - 'change url search param'
-  var showLogg6 = true; // logg6 - 'breadcrumbs'
+  var showLogg5 = true; // logg5 - 'change url search param'
+  var showLogg6 = false; // logg6 - 'breadcrumbs'
 
   // loggs subsystem 0
   // 'key-navigation functions'

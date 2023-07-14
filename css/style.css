@@ -2403,10 +2403,6 @@ header > * {
   padding-left: 17px;
 }
 
-:target {
-  padding-top: 69px;
-}
-
 @media (min-width: 720px) {
   .button_label {
     transform: scale(1.5);
